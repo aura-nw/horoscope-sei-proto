@@ -12,7 +12,7 @@
     "test": "__tests__"
   },
   "files": [
-    "types",
+    "dist",
     "main"
   ],
   "scripts": {
