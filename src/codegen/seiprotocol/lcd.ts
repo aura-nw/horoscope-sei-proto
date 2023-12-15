@@ -64,7 +64,7 @@ export const createLCDClient = async ({
         oracle: new (await import("./seichain/oracle/query.lcd")).LCDQueryClient({
           requestClient
         }),
-        tokenfactory: new (await import("./seichain/tokenfactory/query.lcd")).LCDQueryClient({
+        tokenfactory: new (await import("../tokenfactory/query.lcd")).LCDQueryClient({
           requestClient
         })
       }

@@ -36,7 +36,7 @@ export const createRPCQueryClient = async ({ rpcEndpoint }) => {
                 epoch: (await import("./seichain/epoch/query.rpc.Query")).createRpcQueryExtension(client),
                 mint: (await import("./seichain/mint/v1beta1/query.rpc.Query")).createRpcQueryExtension(client),
                 oracle: (await import("./seichain/oracle/query.rpc.Query")).createRpcQueryExtension(client),
-                tokenfactory: (await import("./seichain/tokenfactory/query.rpc.Query")).createRpcQueryExtension(client)
+                tokenfactory: (await import("../tokenfactory/query.rpc.Query")).createRpcQueryExtension(client)
             }
         }
     };

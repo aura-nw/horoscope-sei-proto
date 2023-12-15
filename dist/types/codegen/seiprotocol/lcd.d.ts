@@ -33,7 +33,7 @@ export declare const createLCDClient: ({ restEndpoint }: {
             epoch: import("./seichain/epoch/query.lcd").LCDQueryClient;
             mint: import("./seichain/mint/v1beta1/query.lcd").LCDQueryClient;
             oracle: import("./seichain/oracle/query.lcd").LCDQueryClient;
-            tokenfactory: import("./seichain/tokenfactory/query.lcd").LCDQueryClient;
+            tokenfactory: import("../tokenfactory/query.lcd").LCDQueryClient;
         };
     };
 }>;

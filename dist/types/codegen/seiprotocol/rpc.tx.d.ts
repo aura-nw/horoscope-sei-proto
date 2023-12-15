@@ -26,7 +26,7 @@ export declare const createRPCMsgClient: ({ rpc }: {
         seichain: {
             dex: import("./seichain/dex/tx.rpc.msg").MsgClientImpl;
             oracle: import("./seichain/oracle/tx.rpc.msg").MsgClientImpl;
-            tokenfactory: import("./seichain/tokenfactory/tx.rpc.msg").MsgClientImpl;
+            tokenfactory: import("../tokenfactory/tx.rpc.msg").MsgClientImpl;
         };
     };
 }>;

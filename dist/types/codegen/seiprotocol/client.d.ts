@@ -4,23 +4,28 @@ import { HttpEndpoint } from "@cosmjs/tendermint-rpc";
 export declare const seiprotocolAminoConverters: {
     "/seiprotocol.seichain.tokenfactory.MsgCreateDenom": {
         aminoType: string;
-        toAmino: (message: import("./seichain/tokenfactory/tx").MsgCreateDenom) => import("./seichain/tokenfactory/tx").MsgCreateDenomAmino;
-        fromAmino: (object: import("./seichain/tokenfactory/tx").MsgCreateDenomAmino) => import("./seichain/tokenfactory/tx").MsgCreateDenom;
+        toAmino: (message: import("../tokenfactory/tx").MsgCreateDenom) => import("../tokenfactory/tx").MsgCreateDenomAmino;
+        fromAmino: (object: import("../tokenfactory/tx").MsgCreateDenomAmino) => import("../tokenfactory/tx").MsgCreateDenom;
     };
     "/seiprotocol.seichain.tokenfactory.MsgMint": {
         aminoType: string;
-        toAmino: (message: import("./seichain/tokenfactory/tx").MsgMint) => import("./seichain/tokenfactory/tx").MsgMintAmino;
-        fromAmino: (object: import("./seichain/tokenfactory/tx").MsgMintAmino) => import("./seichain/tokenfactory/tx").MsgMint;
+        toAmino: (message: import("../tokenfactory/tx").MsgMint) => import("../tokenfactory/tx").MsgMintAmino;
+        fromAmino: (object: import("../tokenfactory/tx").MsgMintAmino) => import("../tokenfactory/tx").MsgMint;
     };
     "/seiprotocol.seichain.tokenfactory.MsgBurn": {
         aminoType: string;
-        toAmino: (message: import("./seichain/tokenfactory/tx").MsgBurn) => import("./seichain/tokenfactory/tx").MsgBurnAmino;
-        fromAmino: (object: import("./seichain/tokenfactory/tx").MsgBurnAmino) => import("./seichain/tokenfactory/tx").MsgBurn;
+        toAmino: (message: import("../tokenfactory/tx").MsgBurn) => import("../tokenfactory/tx").MsgBurnAmino;
+        fromAmino: (object: import("../tokenfactory/tx").MsgBurnAmino) => import("../tokenfactory/tx").MsgBurn;
     };
     "/seiprotocol.seichain.tokenfactory.MsgChangeAdmin": {
         aminoType: string;
-        toAmino: (message: import("./seichain/tokenfactory/tx").MsgChangeAdmin) => import("./seichain/tokenfactory/tx").MsgChangeAdminAmino;
-        fromAmino: (object: import("./seichain/tokenfactory/tx").MsgChangeAdminAmino) => import("./seichain/tokenfactory/tx").MsgChangeAdmin;
+        toAmino: (message: import("../tokenfactory/tx").MsgChangeAdmin) => import("../tokenfactory/tx").MsgChangeAdminAmino;
+        fromAmino: (object: import("../tokenfactory/tx").MsgChangeAdminAmino) => import("../tokenfactory/tx").MsgChangeAdmin;
+    };
+    "/seiprotocol.seichain.tokenfactory.MsgSetDenomMetadata": {
+        aminoType: string;
+        toAmino: (message: import("../tokenfactory/tx").MsgSetDenomMetadata) => import("../tokenfactory/tx").MsgSetDenomMetadataAmino;
+        fromAmino: (object: import("../tokenfactory/tx").MsgSetDenomMetadataAmino) => import("../tokenfactory/tx").MsgSetDenomMetadata;
     };
     "/seiprotocol.seichain.oracle.MsgAggregateExchangeRateVote": {
         aminoType: string;

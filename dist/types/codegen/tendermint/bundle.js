@@ -1,40 +1,40 @@
-import * as _115 from "./abci/types";
-import * as _116 from "./crypto/keys";
-import * as _117 from "./crypto/proof";
-import * as _118 from "./libs/bits/types";
-import * as _119 from "./p2p/types";
-import * as _120 from "./types/block";
-import * as _121 from "./types/evidence";
-import * as _122 from "./types/params";
-import * as _123 from "./types/types";
-import * as _124 from "./types/validator";
-import * as _125 from "./version/types";
+import * as _152 from "./abci/types";
+import * as _153 from "./crypto/keys";
+import * as _154 from "./crypto/proof";
+import * as _155 from "./libs/bits/types";
+import * as _156 from "./p2p/types";
+import * as _157 from "./types/block";
+import * as _158 from "./types/evidence";
+import * as _159 from "./types/params";
+import * as _160 from "./types/types";
+import * as _161 from "./types/validator";
+import * as _162 from "./version/types";
 export var tendermint;
 (function (tendermint) {
     tendermint.abci = {
-        ..._115
+        ..._152
     };
     tendermint.crypto = {
-        ..._116,
-        ..._117
+        ..._153,
+        ..._154
     };
     let libs;
     (function (libs) {
         libs.bits = {
-            ..._118
+            ..._155
         };
     })(libs = tendermint.libs || (tendermint.libs = {}));
     tendermint.p2p = {
-        ..._119
+        ..._156
     };
     tendermint.types = {
-        ..._120,
-        ..._121,
-        ..._122,
-        ..._123,
-        ..._124
+        ..._157,
+        ..._158,
+        ..._159,
+        ..._160,
+        ..._161
     };
     tendermint.version = {
-        ..._125
+        ..._162
     };
 })(tendermint || (tendermint = {}));

@@ -141,9 +141,9 @@ export declare const createRPCQueryClient: ({ rpcEndpoint }: {
                 params(request?: import("./seichain/oracle/query").QueryParamsRequest): Promise<import("./seichain/oracle/query").QueryParamsResponse>;
             };
             tokenfactory: {
-                params(request?: import("./seichain/tokenfactory/query").QueryParamsRequest): Promise<import("./seichain/tokenfactory/query").QueryParamsResponse>;
-                denomAuthorityMetadata(request: import("./seichain/tokenfactory/query").QueryDenomAuthorityMetadataRequest): Promise<import("./seichain/tokenfactory/query").QueryDenomAuthorityMetadataResponse>;
-                denomsFromCreator(request: import("./seichain/tokenfactory/query").QueryDenomsFromCreatorRequest): Promise<import("./seichain/tokenfactory/query").QueryDenomsFromCreatorResponse>;
+                params(request?: import("../tokenfactory/query").QueryParamsRequest): Promise<import("../tokenfactory/query").QueryParamsResponse>;
+                denomAuthorityMetadata(request: import("../tokenfactory/query").QueryDenomAuthorityMetadataRequest): Promise<import("../tokenfactory/query").QueryDenomAuthorityMetadataResponse>;
+                denomsFromCreator(request: import("../tokenfactory/query").QueryDenomsFromCreatorRequest): Promise<import("../tokenfactory/query").QueryDenomsFromCreatorResponse>;
             };
         };
     };

@@ -40,43 +40,43 @@ import * as _40 from "./tx/v1beta1/tx";
 import * as _41 from "./upgrade/v1beta1/query";
 import * as _42 from "./upgrade/v1beta1/tx";
 import * as _43 from "./upgrade/v1beta1/upgrade";
-import * as _126 from "./authz/v1beta1/tx.amino";
-import * as _127 from "./bank/v1beta1/tx.amino";
-import * as _128 from "./distribution/v1beta1/tx.amino";
-import * as _129 from "./gov/v1beta1/tx.amino";
-import * as _130 from "./staking/v1beta1/tx.amino";
-import * as _131 from "./upgrade/v1beta1/tx.amino";
-import * as _132 from "./authz/v1beta1/tx.registry";
-import * as _133 from "./bank/v1beta1/tx.registry";
-import * as _134 from "./distribution/v1beta1/tx.registry";
-import * as _135 from "./gov/v1beta1/tx.registry";
-import * as _136 from "./staking/v1beta1/tx.registry";
-import * as _137 from "./upgrade/v1beta1/tx.registry";
-import * as _138 from "./auth/v1beta1/query.lcd";
-import * as _139 from "./authz/v1beta1/query.lcd";
-import * as _140 from "./bank/v1beta1/query.lcd";
-import * as _141 from "./distribution/v1beta1/query.lcd";
-import * as _142 from "./gov/v1beta1/query.lcd";
-import * as _143 from "./staking/v1beta1/query.lcd";
-import * as _144 from "./tx/v1beta1/service.lcd";
-import * as _145 from "./upgrade/v1beta1/query.lcd";
-import * as _146 from "./auth/v1beta1/query.rpc.Query";
-import * as _147 from "./authz/v1beta1/query.rpc.Query";
-import * as _148 from "./bank/v1beta1/query.rpc.Query";
-import * as _149 from "./distribution/v1beta1/query.rpc.Query";
-import * as _150 from "./gov/v1beta1/query.rpc.Query";
-import * as _151 from "./staking/v1beta1/query.rpc.Query";
-import * as _152 from "./tx/v1beta1/service.rpc.Service";
-import * as _153 from "./upgrade/v1beta1/query.rpc.Query";
-import * as _154 from "./authz/v1beta1/tx.rpc.msg";
-import * as _155 from "./bank/v1beta1/tx.rpc.msg";
-import * as _156 from "./distribution/v1beta1/tx.rpc.msg";
-import * as _157 from "./gov/v1beta1/tx.rpc.msg";
-import * as _158 from "./staking/v1beta1/tx.rpc.msg";
-import * as _159 from "./upgrade/v1beta1/tx.rpc.msg";
-import * as _204 from "./lcd";
-import * as _205 from "./rpc.query";
-import * as _206 from "./rpc.tx";
+import * as _163 from "./authz/v1beta1/tx.amino";
+import * as _164 from "./bank/v1beta1/tx.amino";
+import * as _165 from "./distribution/v1beta1/tx.amino";
+import * as _166 from "./gov/v1beta1/tx.amino";
+import * as _167 from "./staking/v1beta1/tx.amino";
+import * as _168 from "./upgrade/v1beta1/tx.amino";
+import * as _169 from "./authz/v1beta1/tx.registry";
+import * as _170 from "./bank/v1beta1/tx.registry";
+import * as _171 from "./distribution/v1beta1/tx.registry";
+import * as _172 from "./gov/v1beta1/tx.registry";
+import * as _173 from "./staking/v1beta1/tx.registry";
+import * as _174 from "./upgrade/v1beta1/tx.registry";
+import * as _175 from "./auth/v1beta1/query.lcd";
+import * as _176 from "./authz/v1beta1/query.lcd";
+import * as _177 from "./bank/v1beta1/query.lcd";
+import * as _178 from "./distribution/v1beta1/query.lcd";
+import * as _179 from "./gov/v1beta1/query.lcd";
+import * as _180 from "./staking/v1beta1/query.lcd";
+import * as _181 from "./tx/v1beta1/service.lcd";
+import * as _182 from "./upgrade/v1beta1/query.lcd";
+import * as _183 from "./auth/v1beta1/query.rpc.Query";
+import * as _184 from "./authz/v1beta1/query.rpc.Query";
+import * as _185 from "./bank/v1beta1/query.rpc.Query";
+import * as _186 from "./distribution/v1beta1/query.rpc.Query";
+import * as _187 from "./gov/v1beta1/query.rpc.Query";
+import * as _188 from "./staking/v1beta1/query.rpc.Query";
+import * as _189 from "./tx/v1beta1/service.rpc.Service";
+import * as _190 from "./upgrade/v1beta1/query.rpc.Query";
+import * as _191 from "./authz/v1beta1/tx.rpc.msg";
+import * as _192 from "./bank/v1beta1/tx.rpc.msg";
+import * as _193 from "./distribution/v1beta1/tx.rpc.msg";
+import * as _194 from "./gov/v1beta1/tx.rpc.msg";
+import * as _195 from "./staking/v1beta1/tx.rpc.msg";
+import * as _196 from "./upgrade/v1beta1/tx.rpc.msg";
+import * as _260 from "./lcd";
+import * as _261 from "./rpc.query";
+import * as _262 from "./rpc.tx";
 export var cosmos;
 (function (cosmos) {
     let auth;
@@ -85,8 +85,8 @@ export var cosmos;
             ..._2,
             ..._3,
             ..._4,
-            ..._138,
-            ..._146
+            ..._175,
+            ..._183
         };
     })(auth = cosmos.auth || (cosmos.auth = {}));
     let authz;
@@ -97,11 +97,11 @@ export var cosmos;
             ..._7,
             ..._8,
             ..._9,
-            ..._126,
-            ..._132,
-            ..._139,
-            ..._147,
-            ..._154
+            ..._163,
+            ..._169,
+            ..._176,
+            ..._184,
+            ..._191
         };
     })(authz = cosmos.authz || (cosmos.authz = {}));
     let bank;
@@ -112,11 +112,11 @@ export var cosmos;
             ..._12,
             ..._13,
             ..._14,
-            ..._127,
-            ..._133,
-            ..._140,
-            ..._148,
-            ..._155
+            ..._164,
+            ..._170,
+            ..._177,
+            ..._185,
+            ..._192
         };
     })(bank = cosmos.bank || (cosmos.bank = {}));
     let base;
@@ -177,11 +177,11 @@ export var cosmos;
             ..._26,
             ..._27,
             ..._28,
-            ..._128,
-            ..._134,
-            ..._141,
-            ..._149,
-            ..._156
+            ..._165,
+            ..._171,
+            ..._178,
+            ..._186,
+            ..._193
         };
     })(distribution = cosmos.distribution || (cosmos.distribution = {}));
     let gov;
@@ -191,11 +191,11 @@ export var cosmos;
             ..._30,
             ..._31,
             ..._32,
-            ..._129,
-            ..._135,
-            ..._142,
-            ..._150,
-            ..._157
+            ..._166,
+            ..._172,
+            ..._179,
+            ..._187,
+            ..._194
         };
     })(gov = cosmos.gov || (cosmos.gov = {}));
     let staking;
@@ -206,11 +206,11 @@ export var cosmos;
             ..._35,
             ..._36,
             ..._37,
-            ..._130,
-            ..._136,
-            ..._143,
-            ..._151,
-            ..._158
+            ..._167,
+            ..._173,
+            ..._180,
+            ..._188,
+            ..._195
         };
     })(staking = cosmos.staking || (cosmos.staking = {}));
     let tx;
@@ -224,8 +224,8 @@ export var cosmos;
         tx.v1beta1 = {
             ..._39,
             ..._40,
-            ..._144,
-            ..._152
+            ..._181,
+            ..._189
         };
     })(tx = cosmos.tx || (cosmos.tx = {}));
     let upgrade;
@@ -234,16 +234,16 @@ export var cosmos;
             ..._41,
             ..._42,
             ..._43,
-            ..._131,
-            ..._137,
-            ..._145,
-            ..._153,
-            ..._159
+            ..._168,
+            ..._174,
+            ..._182,
+            ..._190,
+            ..._196
         };
     })(upgrade = cosmos.upgrade || (cosmos.upgrade = {}));
     cosmos.ClientFactory = {
-        ..._204,
-        ..._205,
-        ..._206
+        ..._260,
+        ..._261,
+        ..._262
     };
 })(cosmos || (cosmos = {}));
