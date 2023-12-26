@@ -1,6 +1,6 @@
 import { Any } from "../../../google/protobuf/any";
 import { Coin } from "../../base/v1beta1/coin";
-import { WeightedVoteOption, TextProposal, voteOptionFromJSON, voteOptionToJSON } from "./gov";
+import { WeightedVoteOption, voteOptionFromJSON, voteOptionToJSON } from "./gov";
 import { Long, isSet } from "../../../helpers";
 import * as _m0 from "protobufjs/minimal";
 function createBaseMsgSubmitProposal() {
@@ -32,7 +32,7 @@ export const MsgSubmitProposal = {
             const tag = reader.uint32();
             switch (tag >>> 3) {
                 case 1:
-                    message.content = Content_InterfaceDecoder(reader);
+                    message.content = Any.decode(reader, reader.uint32());
                     break;
                 case 2:
                     message.initialDeposit.push(Coin.decode(reader, reader.uint32()));
@@ -76,7 +76,7 @@ export const MsgSubmitProposal = {
     fromAmino(object) {
         const message = createBaseMsgSubmitProposal();
         if (object.content !== undefined && object.content !== null) {
-            message.content = Content_FromAmino(object.content);
+            message.content = Any.fromAmino(object.content);
         }
         message.initialDeposit = object.initial_deposit?.map(e => Coin.fromAmino(e)) || [];
         if (object.proposer !== undefined && object.proposer !== null) {
@@ -86,7 +86,7 @@ export const MsgSubmitProposal = {
     },
     toAmino(message) {
         const obj = {};
-        obj.content = message.content ? Content_ToAmino(message.content) : undefined;
+        obj.content = message.content ? Any.toAmino(message.content) : undefined;
         if (message.initialDeposit) {
             obj.initial_deposit = message.initialDeposit.map(e => e ? Coin.toAmino(e) : undefined);
         }
@@ -721,37 +721,5 @@ export const MsgDepositResponse = {
             typeUrl: "/cosmos.gov.v1beta1.MsgDepositResponse",
             value: MsgDepositResponse.encode(message).finish()
         };
-    }
-};
-export const Content_InterfaceDecoder = (input) => {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
-    const data = Any.decode(reader, reader.uint32(), true);
-    switch (data.typeUrl) {
-        case "/cosmos.gov.v1beta1.TextProposal":
-            return TextProposal.decode(data.value, undefined, true);
-        default:
-            return data;
-    }
-};
-export const Content_FromAmino = (content) => {
-    switch (content.type) {
-        case "cosmos-sdk/TextProposal":
-            return Any.fromPartial({
-                typeUrl: "/cosmos.gov.v1beta1.TextProposal",
-                value: TextProposal.encode(TextProposal.fromPartial(TextProposal.fromAmino(content.value))).finish()
-            });
-        default:
-            return Any.fromAmino(content);
-    }
-};
-export const Content_ToAmino = (content) => {
-    switch (content.typeUrl) {
-        case "/cosmos.gov.v1beta1.TextProposal":
-            return {
-                type: "cosmos-sdk/TextProposal",
-                value: TextProposal.toAmino(TextProposal.decode(content.value, undefined))
-            };
-        default:
-            return Any.toAmino(content);
     }
 };

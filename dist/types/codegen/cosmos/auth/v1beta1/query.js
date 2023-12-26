@@ -1,6 +1,6 @@
 import { PageRequest, PageResponse } from "../../base/query/v1beta1/pagination";
 import { Any } from "../../../google/protobuf/any";
-import { Params, BaseAccount, ModuleAccount } from "./auth";
+import { Params } from "./auth";
 import * as _m0 from "protobufjs/minimal";
 import { isSet, bytesFromBase64, base64FromBytes } from "../../../helpers";
 function createBaseQueryAccountsRequest() {
@@ -107,7 +107,7 @@ export const QueryAccountsResponse = {
             const tag = reader.uint32();
             switch (tag >>> 3) {
                 case 1:
-                    message.accounts.push(Any(reader));
+                    message.accounts.push(Any.decode(reader, reader.uint32()));
                     break;
                 case 2:
                     message.pagination = PageResponse.decode(reader, reader.uint32());
@@ -144,7 +144,7 @@ export const QueryAccountsResponse = {
     },
     fromAmino(object) {
         const message = createBaseQueryAccountsResponse();
-        message.accounts = object.accounts?.map(e => AccountI_FromAmino(e)) || [];
+        message.accounts = object.accounts?.map(e => Any.fromAmino(e)) || [];
         if (object.pagination !== undefined && object.pagination !== null) {
             message.pagination = PageResponse.fromAmino(object.pagination);
         }
@@ -153,7 +153,7 @@ export const QueryAccountsResponse = {
     toAmino(message) {
         const obj = {};
         if (message.accounts) {
-            obj.accounts = message.accounts.map(e => e ? AccountI_ToAmino(e) : undefined);
+            obj.accounts = message.accounts.map(e => e ? Any.toAmino(e) : undefined);
         }
         else {
             obj.accounts = [];
@@ -425,7 +425,7 @@ export const QueryAccountResponse = {
             const tag = reader.uint32();
             switch (tag >>> 3) {
                 case 1:
-                    message.account = AccountI_InterfaceDecoder(reader);
+                    message.account = Any.decode(reader, reader.uint32());
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -452,13 +452,13 @@ export const QueryAccountResponse = {
     fromAmino(object) {
         const message = createBaseQueryAccountResponse();
         if (object.account !== undefined && object.account !== null) {
-            message.account = AccountI_FromAmino(object.account);
+            message.account = Any.fromAmino(object.account);
         }
         return message;
     },
     toAmino(message) {
         const obj = {};
-        obj.account = message.account ? AccountI_ToAmino(message.account) : undefined;
+        obj.account = message.account ? Any.toAmino(message.account) : undefined;
         return obj;
     },
     fromAminoMsg(object) {
@@ -567,7 +567,7 @@ export const QueryModuleAccountsResponse = {
             const tag = reader.uint32();
             switch (tag >>> 3) {
                 case 1:
-                    message.accounts.push(Any(reader));
+                    message.accounts.push(Any.decode(reader, reader.uint32()));
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -598,13 +598,13 @@ export const QueryModuleAccountsResponse = {
     },
     fromAmino(object) {
         const message = createBaseQueryModuleAccountsResponse();
-        message.accounts = object.accounts?.map(e => ModuleAccountI_FromAmino(e)) || [];
+        message.accounts = object.accounts?.map(e => Any.fromAmino(e)) || [];
         return message;
     },
     toAmino(message) {
         const obj = {};
         if (message.accounts) {
-            obj.accounts = message.accounts.map(e => e ? ModuleAccountI_ToAmino(e) : undefined);
+            obj.accounts = message.accounts.map(e => e ? Any.toAmino(e) : undefined);
         }
         else {
             obj.accounts = [];
@@ -1089,69 +1089,5 @@ export const AddressStringToBytesResponse = {
             typeUrl: "/cosmos.auth.v1beta1.AddressStringToBytesResponse",
             value: AddressStringToBytesResponse.encode(message).finish()
         };
-    }
-};
-export const AccountI_InterfaceDecoder = (input) => {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
-    const data = Any.decode(reader, reader.uint32(), true);
-    switch (data.typeUrl) {
-        case "/cosmos.auth.v1beta1.BaseAccount":
-            return BaseAccount.decode(data.value, undefined, true);
-        default:
-            return data;
-    }
-};
-export const AccountI_FromAmino = (content) => {
-    switch (content.type) {
-        case "cosmos-sdk/BaseAccount":
-            return Any.fromPartial({
-                typeUrl: "/cosmos.auth.v1beta1.BaseAccount",
-                value: BaseAccount.encode(BaseAccount.fromPartial(BaseAccount.fromAmino(content.value))).finish()
-            });
-        default:
-            return Any.fromAmino(content);
-    }
-};
-export const AccountI_ToAmino = (content) => {
-    switch (content.typeUrl) {
-        case "/cosmos.auth.v1beta1.BaseAccount":
-            return {
-                type: "cosmos-sdk/BaseAccount",
-                value: BaseAccount.toAmino(BaseAccount.decode(content.value, undefined))
-            };
-        default:
-            return Any.toAmino(content);
-    }
-};
-export const ModuleAccountI_InterfaceDecoder = (input) => {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
-    const data = Any.decode(reader, reader.uint32(), true);
-    switch (data.typeUrl) {
-        case "/cosmos.auth.v1beta1.ModuleAccount":
-            return ModuleAccount.decode(data.value, undefined, true);
-        default:
-            return data;
-    }
-};
-export const ModuleAccountI_FromAmino = (content) => {
-    switch (content.type) {
-        case "cosmos-sdk/ModuleAccount":
-            return Any.fromPartial({
-                typeUrl: "/cosmos.auth.v1beta1.ModuleAccount",
-                value: ModuleAccount.encode(ModuleAccount.fromPartial(ModuleAccount.fromAmino(content.value))).finish()
-            });
-        default:
-            return Any.fromAmino(content);
-    }
-};
-export const ModuleAccountI_ToAmino = (content) => {
-    switch (content.typeUrl) {
-        case "/cosmos.auth.v1beta1.ModuleAccount":
-            return {
-                type: "cosmos-sdk/ModuleAccount",
-                value: ModuleAccount.toAmino(ModuleAccount.decode(content.value, undefined))
-            };
-        default:
-            return Any.toAmino(content);
     }
 };

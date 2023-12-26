@@ -1,6 +1,5 @@
 import { Coin, CoinAmino, CoinSDKType } from "../../base/v1beta1/coin";
-import { Any, AnyProtoMsg, AnyAmino, AnySDKType } from "../../../google/protobuf/any";
-import { Duration, DurationAmino, DurationSDKType } from "../../../google/protobuf/duration";
+import { Any, AnyAmino, AnySDKType } from "../../../google/protobuf/any";
 import { Long } from "../../../helpers";
 import * as _m0 from "protobufjs/minimal";
 /** VoteOption enumerates the valid vote options for a given governance proposal. */
@@ -96,7 +95,6 @@ export interface WeightedVoteOptionSDKType {
  * manually updated in case of approval.
  */
 export interface TextProposal {
-    $typeUrl?: "/cosmos.gov.v1beta1.TextProposal";
     title: string;
     description: string;
 }
@@ -121,7 +119,6 @@ export interface TextProposalAminoMsg {
  * manually updated in case of approval.
  */
 export interface TextProposalSDKType {
-    $typeUrl?: "/cosmos.gov.v1beta1.TextProposal";
     title: string;
     description: string;
 }
@@ -163,7 +160,7 @@ export interface DepositSDKType {
 /** Proposal defines the core field members of a governance proposal. */
 export interface Proposal {
     proposalId: Long;
-    content?: (TextProposal & Any) | undefined;
+    content?: Any;
     status: ProposalStatus;
     /**
      * final_tally_result is the final tally result of the proposal. When
@@ -181,9 +178,6 @@ export interface ProposalProtoMsg {
     typeUrl: "/cosmos.gov.v1beta1.Proposal";
     value: Uint8Array;
 }
-export type ProposalEncoded = Omit<Proposal, "content"> & {
-    content?: TextProposalProtoMsg | AnyProtoMsg | undefined;
-};
 /** Proposal defines the core field members of a governance proposal. */
 export interface ProposalAmino {
     proposal_id?: string;
@@ -208,7 +202,7 @@ export interface ProposalAminoMsg {
 /** Proposal defines the core field members of a governance proposal. */
 export interface ProposalSDKType {
     proposal_id: Long;
-    content?: TextProposalSDKType | AnySDKType | undefined;
+    content?: AnySDKType;
     status: ProposalStatus;
     final_tally_result: TallyResultSDKType;
     submit_time: Date;
@@ -307,7 +301,7 @@ export interface DepositParams {
      * Maximum period for Atom holders to deposit on a proposal. Initial value: 2
      *  months.
      */
-    maxDepositPeriod: Duration;
+    maxDepositPeriod: string;
 }
 export interface DepositParamsProtoMsg {
     typeUrl: "/cosmos.gov.v1beta1.DepositParams";
@@ -321,7 +315,7 @@ export interface DepositParamsAmino {
      * Maximum period for Atom holders to deposit on a proposal. Initial value: 2
      *  months.
      */
-    max_deposit_period?: DurationAmino;
+    max_deposit_period?: string;
 }
 export interface DepositParamsAminoMsg {
     type: "cosmos-sdk/DepositParams";
@@ -330,12 +324,12 @@ export interface DepositParamsAminoMsg {
 /** DepositParams defines the params for deposits on governance proposals. */
 export interface DepositParamsSDKType {
     min_deposit: CoinSDKType[];
-    max_deposit_period: DurationSDKType;
+    max_deposit_period: string;
 }
 /** VotingParams defines the params for voting on governance proposals. */
 export interface VotingParams {
     /** Length of the voting period. */
-    votingPeriod: Duration;
+    votingPeriod: string;
 }
 export interface VotingParamsProtoMsg {
     typeUrl: "/cosmos.gov.v1beta1.VotingParams";
@@ -344,7 +338,7 @@ export interface VotingParamsProtoMsg {
 /** VotingParams defines the params for voting on governance proposals. */
 export interface VotingParamsAmino {
     /** Length of the voting period. */
-    voting_period?: DurationAmino;
+    voting_period?: string;
 }
 export interface VotingParamsAminoMsg {
     type: "cosmos-sdk/VotingParams";
@@ -352,7 +346,7 @@ export interface VotingParamsAminoMsg {
 }
 /** VotingParams defines the params for voting on governance proposals. */
 export interface VotingParamsSDKType {
-    voting_period: DurationSDKType;
+    voting_period: string;
 }
 /** TallyParams defines the params for tallying votes on governance proposals. */
 export interface TallyParams {
@@ -533,6 +527,3 @@ export declare const TallyParams: {
     toProto(message: TallyParams): Uint8Array;
     toProtoMsg(message: TallyParams): TallyParamsProtoMsg;
 };
-export declare const Content_InterfaceDecoder: (input: _m0.Reader | Uint8Array) => TextProposal | Any;
-export declare const Content_FromAmino: (content: AnyAmino) => Any;
-export declare const Content_ToAmino: (content: Any) => AnyAmino;

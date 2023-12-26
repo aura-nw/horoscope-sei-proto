@@ -1,38 +1,38 @@
-import * as _44 from "./wasm/v1/genesis";
-import * as _45 from "./wasm/v1/ibc";
-import * as _46 from "./wasm/v1/proposal";
-import * as _47 from "./wasm/v1/query";
-import * as _48 from "./wasm/v1/tx";
-import * as _49 from "./wasm/v1/types";
-import * as _197 from "./wasm/v1/tx.amino";
-import * as _198 from "./wasm/v1/tx.registry";
-import * as _199 from "./wasm/v1/query.lcd";
-import * as _200 from "./wasm/v1/query.rpc.Query";
-import * as _201 from "./wasm/v1/tx.rpc.msg";
-import * as _263 from "./lcd";
-import * as _264 from "./rpc.query";
-import * as _265 from "./rpc.tx";
+import * as _94 from "./wasm/v1/genesis";
+import * as _95 from "./wasm/v1/ibc";
+import * as _96 from "./wasm/v1/proposal";
+import * as _97 from "./wasm/v1/query";
+import * as _98 from "./wasm/v1/tx";
+import * as _99 from "./wasm/v1/types";
+import * as _294 from "./wasm/v1/tx.amino";
+import * as _295 from "./wasm/v1/tx.registry";
+import * as _296 from "./wasm/v1/query.lcd";
+import * as _297 from "./wasm/v1/query.rpc.Query";
+import * as _298 from "./wasm/v1/tx.rpc.msg";
+import * as _361 from "./lcd";
+import * as _362 from "./rpc.query";
+import * as _363 from "./rpc.tx";
 export var cosmwasm;
 (function (cosmwasm) {
     let wasm;
     (function (wasm) {
         wasm.v1 = {
-            ..._44,
-            ..._45,
-            ..._46,
-            ..._47,
-            ..._48,
-            ..._49,
-            ..._197,
-            ..._198,
-            ..._199,
-            ..._200,
-            ..._201
+            ..._94,
+            ..._95,
+            ..._96,
+            ..._97,
+            ..._98,
+            ..._99,
+            ..._294,
+            ..._295,
+            ..._296,
+            ..._297,
+            ..._298
         };
     })(wasm = cosmwasm.wasm || (cosmwasm.wasm = {}));
     cosmwasm.ClientFactory = {
-        ..._263,
-        ..._264,
-        ..._265
+        ..._361,
+        ..._362,
+        ..._363
     };
 })(cosmwasm || (cosmwasm = {}));

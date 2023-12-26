@@ -66,7 +66,7 @@ export const MsgCreateValidator = {
                     message.validatorAddress = reader.string();
                     break;
                 case 6:
-                    message.pubkey = Cosmos_cryptoPubKey_InterfaceDecoder(reader);
+                    message.pubkey = Any.decode(reader, reader.uint32());
                     break;
                 case 7:
                     message.value = Coin.decode(reader, reader.uint32());
@@ -971,18 +971,4 @@ export const MsgUndelegateResponse = {
             value: MsgUndelegateResponse.encode(message).finish()
         };
     }
-};
-export const Cosmos_cryptoPubKey_InterfaceDecoder = (input) => {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
-    const data = Any.decode(reader, reader.uint32(), true);
-    switch (data.typeUrl) {
-        default:
-            return data;
-    }
-};
-export const Cosmos_cryptoPubKey_FromAmino = (content) => {
-    return encodePubkey(content);
-};
-export const Cosmos_cryptoPubKey_ToAmino = (content) => {
-    return decodePubkey(content);
 };

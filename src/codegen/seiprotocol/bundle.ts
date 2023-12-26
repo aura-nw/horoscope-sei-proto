@@ -1,201 +1,127 @@
-import * as _50 from "../dex/asset_list";
-import * as _51 from "../dex/contract";
-import * as _52 from "../dex/deposit";
-import * as _53 from "../dex/enums";
-import * as _54 from "../dex/genesis";
-import * as _55 from "../dex/gov";
-import * as _56 from "../dex/long_book";
-import * as _57 from "../dex/match_result";
-import * as _58 from "../dex/order_entry";
-import * as _59 from "../dex/order";
-import * as _60 from "../dex/pair";
-import * as _61 from "../dex/params";
-import * as _62 from "../dex/price";
-import * as _63 from "../dex/query";
-import * as _64 from "../dex/settlement";
-import * as _65 from "../dex/short_book";
-import * as _66 from "../dex/tick_size";
-import * as _67 from "../dex/twap";
-import * as _68 from "../dex/tx";
-import * as _69 from "./seichain/dex/asset_list";
-import * as _70 from "./seichain/dex/contract";
-import * as _71 from "./seichain/dex/deposit";
-import * as _72 from "./seichain/dex/enums";
-import * as _73 from "./seichain/dex/genesis";
-import * as _74 from "./seichain/dex/gov";
-import * as _75 from "./seichain/dex/long_book";
-import * as _76 from "./seichain/dex/match_result";
-import * as _77 from "./seichain/dex/order_entry";
-import * as _78 from "./seichain/dex/order";
-import * as _79 from "./seichain/dex/pair";
-import * as _80 from "./seichain/dex/params";
-import * as _81 from "./seichain/dex/price";
-import * as _82 from "./seichain/dex/query";
-import * as _83 from "./seichain/dex/settlement";
-import * as _84 from "./seichain/dex/short_book";
-import * as _85 from "./seichain/dex/tick_size";
-import * as _86 from "./seichain/dex/twap";
-import * as _87 from "./seichain/dex/tx";
-import * as _88 from "../epoch/epoch";
-import * as _89 from "../epoch/genesis";
-import * as _90 from "../epoch/params";
-import * as _91 from "../epoch/query";
-import * as _92 from "../epoch/tx";
-import * as _93 from "./seichain/epoch/epoch";
-import * as _94 from "./seichain/epoch/genesis";
-import * as _95 from "./seichain/epoch/params";
-import * as _96 from "./seichain/epoch/query";
-import * as _97 from "./seichain/epoch/tx";
-import * as _98 from "../mint/v1beta1/genesis";
-import * as _99 from "../mint/v1beta1/gov";
-import * as _100 from "../mint/v1beta1/mint";
-import * as _101 from "../mint/v1beta1/query";
-import * as _102 from "./seichain/mint/v1beta1/genesis";
-import * as _103 from "./seichain/mint/v1beta1/gov";
-import * as _104 from "./seichain/mint/v1beta1/mint";
-import * as _105 from "./seichain/mint/v1beta1/query";
-import * as _106 from "../oracle/genesis";
-import * as _107 from "../oracle/oracle";
-import * as _108 from "../oracle/query";
-import * as _109 from "../oracle/tx";
-import * as _110 from "./seichain/oracle/genesis";
-import * as _111 from "./seichain/oracle/oracle";
-import * as _112 from "./seichain/oracle/query";
-import * as _113 from "./seichain/oracle/tx";
-import * as _114 from "./seichain/tokenfactory/authorityMetadata";
-import * as _115 from "./seichain/tokenfactory/genesis";
-import * as _116 from "./seichain/tokenfactory/params";
-import * as _117 from "./seichain/tokenfactory/query";
-import * as _118 from "./seichain/tokenfactory/tx";
-import * as _119 from "../tokenfactory/authorityMetadata";
-import * as _120 from "../tokenfactory/genesis";
-import * as _121 from "../tokenfactory/params";
-import * as _122 from "../tokenfactory/query";
-import * as _123 from "../tokenfactory/tx";
-import * as _202 from "../dex/tx.amino";
-import * as _203 from "../oracle/tx.amino";
-import * as _204 from "./seichain/dex/tx.amino";
-import * as _205 from "./seichain/oracle/tx.amino";
-import * as _206 from "./seichain/tokenfactory/tx.amino";
-import * as _207 from "../tokenfactory/tx.amino";
-import * as _208 from "../dex/tx.registry";
-import * as _209 from "../oracle/tx.registry";
-import * as _210 from "./seichain/dex/tx.registry";
-import * as _211 from "./seichain/oracle/tx.registry";
-import * as _212 from "./seichain/tokenfactory/tx.registry";
-import * as _213 from "../tokenfactory/tx.registry";
-import * as _214 from "../dex/query.lcd";
-import * as _215 from "../epoch/query.lcd";
-import * as _216 from "../mint/v1beta1/query.lcd";
-import * as _217 from "../oracle/query.lcd";
-import * as _218 from "./seichain/dex/query.lcd";
-import * as _219 from "./seichain/epoch/query.lcd";
-import * as _220 from "./seichain/mint/v1beta1/query.lcd";
-import * as _221 from "./seichain/oracle/query.lcd";
-import * as _222 from "./seichain/tokenfactory/query.lcd";
-import * as _223 from "../tokenfactory/query.lcd";
-import * as _224 from "../dex/query.rpc.Query";
-import * as _225 from "../epoch/query.rpc.Query";
-import * as _226 from "../mint/v1beta1/query.rpc.Query";
-import * as _227 from "../oracle/query.rpc.Query";
-import * as _228 from "./seichain/dex/query.rpc.Query";
-import * as _229 from "./seichain/epoch/query.rpc.Query";
-import * as _230 from "./seichain/mint/v1beta1/query.rpc.Query";
-import * as _231 from "./seichain/oracle/query.rpc.Query";
-import * as _232 from "./seichain/tokenfactory/query.rpc.Query";
-import * as _233 from "../tokenfactory/query.rpc.Query";
-import * as _234 from "../dex/tx.rpc.msg";
-import * as _235 from "../oracle/tx.rpc.msg";
-import * as _236 from "./seichain/dex/tx.rpc.msg";
-import * as _237 from "./seichain/oracle/tx.rpc.msg";
-import * as _238 from "./seichain/tokenfactory/tx.rpc.msg";
-import * as _239 from "../tokenfactory/tx.rpc.msg";
-import * as _266 from "./lcd";
-import * as _267 from "./rpc.query";
-import * as _268 from "./rpc.tx";
+import * as _100 from "../dex/asset_list";
+import * as _101 from "../dex/contract";
+import * as _102 from "../dex/deposit";
+import * as _103 from "../dex/enums";
+import * as _104 from "../dex/genesis";
+import * as _105 from "../dex/gov";
+import * as _106 from "../dex/long_book";
+import * as _107 from "../dex/match_result";
+import * as _108 from "../dex/order_entry";
+import * as _109 from "../dex/order";
+import * as _110 from "../dex/pair";
+import * as _111 from "../dex/params";
+import * as _112 from "../dex/price";
+import * as _113 from "../dex/query";
+import * as _114 from "../dex/settlement";
+import * as _115 from "../dex/short_book";
+import * as _116 from "../dex/tick_size";
+import * as _117 from "../dex/twap";
+import * as _118 from "../dex/tx";
+import * as _119 from "./seichain/dex/asset_list";
+import * as _120 from "./seichain/dex/contract";
+import * as _121 from "./seichain/dex/deposit";
+import * as _122 from "./seichain/dex/enums";
+import * as _123 from "./seichain/dex/genesis";
+import * as _124 from "./seichain/dex/gov";
+import * as _125 from "./seichain/dex/long_book";
+import * as _126 from "./seichain/dex/match_result";
+import * as _127 from "./seichain/dex/order_entry";
+import * as _128 from "./seichain/dex/order";
+import * as _129 from "./seichain/dex/pair";
+import * as _130 from "./seichain/dex/params";
+import * as _131 from "./seichain/dex/price";
+import * as _132 from "./seichain/dex/query";
+import * as _133 from "./seichain/dex/settlement";
+import * as _134 from "./seichain/dex/short_book";
+import * as _135 from "./seichain/dex/tick_size";
+import * as _136 from "./seichain/dex/twap";
+import * as _137 from "./seichain/dex/tx";
+import * as _138 from "../epoch/epoch";
+import * as _139 from "../epoch/genesis";
+import * as _140 from "../epoch/params";
+import * as _141 from "../epoch/query";
+import * as _142 from "../epoch/tx";
+import * as _143 from "./seichain/epoch/epoch";
+import * as _144 from "./seichain/epoch/genesis";
+import * as _145 from "./seichain/epoch/params";
+import * as _146 from "./seichain/epoch/query";
+import * as _147 from "./seichain/epoch/tx";
+import * as _148 from "../mint/v1beta1/genesis";
+import * as _149 from "../mint/v1beta1/gov";
+import * as _150 from "../mint/v1beta1/mint";
+import * as _151 from "../mint/v1beta1/query";
+import * as _152 from "./seichain/mint/v1beta1/genesis";
+import * as _153 from "./seichain/mint/v1beta1/gov";
+import * as _154 from "./seichain/mint/v1beta1/mint";
+import * as _155 from "./seichain/mint/v1beta1/query";
+import * as _156 from "../oracle/genesis";
+import * as _157 from "../oracle/oracle";
+import * as _158 from "../oracle/query";
+import * as _159 from "../oracle/tx";
+import * as _160 from "./seichain/oracle/genesis";
+import * as _161 from "./seichain/oracle/oracle";
+import * as _162 from "./seichain/oracle/query";
+import * as _163 from "./seichain/oracle/tx";
+import * as _164 from "./seichain/tokenfactory/authorityMetadata";
+import * as _165 from "./seichain/tokenfactory/genesis";
+import * as _166 from "./seichain/tokenfactory/params";
+import * as _167 from "./seichain/tokenfactory/query";
+import * as _168 from "./seichain/tokenfactory/tx";
+import * as _169 from "../tokenfactory/authorityMetadata";
+import * as _170 from "../tokenfactory/genesis";
+import * as _171 from "../tokenfactory/params";
+import * as _172 from "../tokenfactory/query";
+import * as _173 from "../tokenfactory/tx";
+import * as _299 from "../dex/tx.amino";
+import * as _300 from "../oracle/tx.amino";
+import * as _301 from "./seichain/dex/tx.amino";
+import * as _302 from "./seichain/oracle/tx.amino";
+import * as _303 from "./seichain/tokenfactory/tx.amino";
+import * as _304 from "../tokenfactory/tx.amino";
+import * as _305 from "../dex/tx.registry";
+import * as _306 from "../oracle/tx.registry";
+import * as _307 from "./seichain/dex/tx.registry";
+import * as _308 from "./seichain/oracle/tx.registry";
+import * as _309 from "./seichain/tokenfactory/tx.registry";
+import * as _310 from "../tokenfactory/tx.registry";
+import * as _311 from "../dex/query.lcd";
+import * as _312 from "../epoch/query.lcd";
+import * as _313 from "../mint/v1beta1/query.lcd";
+import * as _314 from "../oracle/query.lcd";
+import * as _315 from "./seichain/dex/query.lcd";
+import * as _316 from "./seichain/epoch/query.lcd";
+import * as _317 from "./seichain/mint/v1beta1/query.lcd";
+import * as _318 from "./seichain/oracle/query.lcd";
+import * as _319 from "./seichain/tokenfactory/query.lcd";
+import * as _320 from "../tokenfactory/query.lcd";
+import * as _321 from "../dex/query.rpc.Query";
+import * as _322 from "../epoch/query.rpc.Query";
+import * as _323 from "../mint/v1beta1/query.rpc.Query";
+import * as _324 from "../oracle/query.rpc.Query";
+import * as _325 from "./seichain/dex/query.rpc.Query";
+import * as _326 from "./seichain/epoch/query.rpc.Query";
+import * as _327 from "./seichain/mint/v1beta1/query.rpc.Query";
+import * as _328 from "./seichain/oracle/query.rpc.Query";
+import * as _329 from "./seichain/tokenfactory/query.rpc.Query";
+import * as _330 from "../tokenfactory/query.rpc.Query";
+import * as _331 from "../dex/tx.rpc.msg";
+import * as _332 from "../oracle/tx.rpc.msg";
+import * as _333 from "./seichain/dex/tx.rpc.msg";
+import * as _334 from "./seichain/oracle/tx.rpc.msg";
+import * as _335 from "./seichain/tokenfactory/tx.rpc.msg";
+import * as _336 from "../tokenfactory/tx.rpc.msg";
+import * as _364 from "./lcd";
+import * as _365 from "./rpc.query";
+import * as _366 from "./rpc.tx";
 export namespace seiprotocol {
   export namespace seichain {
     export const dex = {
-      ..._50,
-      ..._51,
-      ..._52,
-      ..._53,
-      ..._54,
-      ..._55,
-      ..._56,
-      ..._57,
-      ..._58,
-      ..._59,
-      ..._60,
-      ..._61,
-      ..._62,
-      ..._63,
-      ..._64,
-      ..._65,
-      ..._66,
-      ..._67,
-      ..._68,
-      ..._69,
-      ..._70,
-      ..._71,
-      ..._72,
-      ..._73,
-      ..._74,
-      ..._75,
-      ..._76,
-      ..._77,
-      ..._78,
-      ..._79,
-      ..._80,
-      ..._81,
-      ..._82,
-      ..._83,
-      ..._84,
-      ..._85,
-      ..._86,
-      ..._87,
-      ..._202,
-      ..._204,
-      ..._208,
-      ..._210,
-      ..._214,
-      ..._218,
-      ..._224,
-      ..._228,
-      ..._234,
-      ..._236
-    };
-    export const epoch = {
-      ..._88,
-      ..._89,
-      ..._90,
-      ..._91,
-      ..._92,
-      ..._93,
-      ..._94,
-      ..._95,
-      ..._96,
-      ..._97,
-      ..._215,
-      ..._219,
-      ..._225,
-      ..._229
-    };
-    export const mint = {
-      ..._98,
-      ..._99,
       ..._100,
       ..._101,
       ..._102,
       ..._103,
       ..._104,
       ..._105,
-      ..._216,
-      ..._220,
-      ..._226,
-      ..._230
-    };
-    export const oracle = {
       ..._106,
       ..._107,
       ..._108,
@@ -204,18 +130,6 @@ export namespace seiprotocol {
       ..._111,
       ..._112,
       ..._113,
-      ..._203,
-      ..._205,
-      ..._209,
-      ..._211,
-      ..._217,
-      ..._221,
-      ..._227,
-      ..._231,
-      ..._235,
-      ..._237
-    };
-    export const tokenfactory = {
       ..._114,
       ..._115,
       ..._116,
@@ -226,21 +140,107 @@ export namespace seiprotocol {
       ..._121,
       ..._122,
       ..._123,
-      ..._206,
-      ..._207,
-      ..._212,
-      ..._213,
-      ..._222,
-      ..._223,
-      ..._232,
-      ..._233,
-      ..._238,
-      ..._239
+      ..._124,
+      ..._125,
+      ..._126,
+      ..._127,
+      ..._128,
+      ..._129,
+      ..._130,
+      ..._131,
+      ..._132,
+      ..._133,
+      ..._134,
+      ..._135,
+      ..._136,
+      ..._137,
+      ..._299,
+      ..._301,
+      ..._305,
+      ..._307,
+      ..._311,
+      ..._315,
+      ..._321,
+      ..._325,
+      ..._331,
+      ..._333
+    };
+    export const epoch = {
+      ..._138,
+      ..._139,
+      ..._140,
+      ..._141,
+      ..._142,
+      ..._143,
+      ..._144,
+      ..._145,
+      ..._146,
+      ..._147,
+      ..._312,
+      ..._316,
+      ..._322,
+      ..._326
+    };
+    export const mint = {
+      ..._148,
+      ..._149,
+      ..._150,
+      ..._151,
+      ..._152,
+      ..._153,
+      ..._154,
+      ..._155,
+      ..._313,
+      ..._317,
+      ..._323,
+      ..._327
+    };
+    export const oracle = {
+      ..._156,
+      ..._157,
+      ..._158,
+      ..._159,
+      ..._160,
+      ..._161,
+      ..._162,
+      ..._163,
+      ..._300,
+      ..._302,
+      ..._306,
+      ..._308,
+      ..._314,
+      ..._318,
+      ..._324,
+      ..._328,
+      ..._332,
+      ..._334
+    };
+    export const tokenfactory = {
+      ..._164,
+      ..._165,
+      ..._166,
+      ..._167,
+      ..._168,
+      ..._169,
+      ..._170,
+      ..._171,
+      ..._172,
+      ..._173,
+      ..._303,
+      ..._304,
+      ..._309,
+      ..._310,
+      ..._319,
+      ..._320,
+      ..._329,
+      ..._330,
+      ..._335,
+      ..._336
     };
   }
   export const ClientFactory = {
-    ..._266,
-    ..._267,
-    ..._268
+    ..._364,
+    ..._365,
+    ..._366
   };
 }

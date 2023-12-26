@@ -1,6 +1,6 @@
 import { Timestamp } from "../../../google/protobuf/timestamp";
 import { Duration } from "../../../google/protobuf/duration";
-import { Long, toTimestamp, fromTimestamp, isSet, fromJsonTimestamp } from "../../../helpers";
+import { Long, toTimestamp, toDuration, fromTimestamp, fromDuration, isSet, fromJsonTimestamp } from "../../../helpers";
 import * as _m0 from "protobufjs/minimal";
 function createBaseEpoch() {
     return {
@@ -18,7 +18,7 @@ export const Epoch = {
             Timestamp.encode(toTimestamp(message.genesisTime), writer.uint32(10).fork()).ldelim();
         }
         if (message.epochDuration !== undefined) {
-            Duration.encode(message.epochDuration, writer.uint32(18).fork()).ldelim();
+            Duration.encode(toDuration(message.epochDuration), writer.uint32(18).fork()).ldelim();
         }
         if (!message.currentEpoch.isZero()) {
             writer.uint32(24).uint64(message.currentEpoch);
@@ -42,7 +42,7 @@ export const Epoch = {
                     message.genesisTime = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
                     break;
                 case 2:
-                    message.epochDuration = Duration.decode(reader, reader.uint32());
+                    message.epochDuration = fromDuration(Duration.decode(reader, reader.uint32()));
                     break;
                 case 3:
                     message.currentEpoch = reader.uint64();
@@ -63,7 +63,7 @@ export const Epoch = {
     fromJSON(object) {
         return {
             genesisTime: isSet(object.genesisTime) ? fromJsonTimestamp(object.genesisTime) : undefined,
-            epochDuration: isSet(object.epochDuration) ? Duration.fromJSON(object.epochDuration) : undefined,
+            epochDuration: isSet(object.epochDuration) ? String(object.epochDuration) : undefined,
             currentEpoch: isSet(object.currentEpoch) ? Long.fromValue(object.currentEpoch) : Long.UZERO,
             currentEpochStartTime: isSet(object.currentEpochStartTime) ? fromJsonTimestamp(object.currentEpochStartTime) : undefined,
             currentEpochHeight: isSet(object.currentEpochHeight) ? Long.fromValue(object.currentEpochHeight) : Long.ZERO
@@ -72,7 +72,7 @@ export const Epoch = {
     toJSON(message) {
         const obj = {};
         message.genesisTime !== undefined && (obj.genesisTime = message.genesisTime.toISOString());
-        message.epochDuration !== undefined && (obj.epochDuration = message.epochDuration ? Duration.toJSON(message.epochDuration) : undefined);
+        message.epochDuration !== undefined && (obj.epochDuration = message.epochDuration);
         message.currentEpoch !== undefined && (obj.currentEpoch = (message.currentEpoch || Long.UZERO).toString());
         message.currentEpochStartTime !== undefined && (obj.currentEpochStartTime = message.currentEpochStartTime.toISOString());
         message.currentEpochHeight !== undefined && (obj.currentEpochHeight = (message.currentEpochHeight || Long.ZERO).toString());
@@ -81,7 +81,7 @@ export const Epoch = {
     fromPartial(object) {
         const message = createBaseEpoch();
         message.genesisTime = object.genesisTime ?? undefined;
-        message.epochDuration = object.epochDuration !== undefined && object.epochDuration !== null ? Duration.fromPartial(object.epochDuration) : undefined;
+        message.epochDuration = object.epochDuration ?? undefined;
         message.currentEpoch = object.currentEpoch !== undefined && object.currentEpoch !== null ? Long.fromValue(object.currentEpoch) : Long.UZERO;
         message.currentEpochStartTime = object.currentEpochStartTime ?? undefined;
         message.currentEpochHeight = object.currentEpochHeight !== undefined && object.currentEpochHeight !== null ? Long.fromValue(object.currentEpochHeight) : Long.ZERO;

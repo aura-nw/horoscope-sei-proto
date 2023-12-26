@@ -1,4 +1,4 @@
-import { Any, AnyProtoMsg, AnyAmino, AnySDKType } from "../../../google/protobuf/any";
+import { Any, AnyAmino, AnySDKType } from "../../../google/protobuf/any";
 import { Long, isSet, bytesFromBase64, base64FromBytes } from "../../../helpers";
 import * as _m0 from "protobufjs/minimal";
 import { toUtf8, fromUtf8 } from "@cosmjs/encoding";
@@ -222,19 +222,12 @@ export interface ContractInfo {
    * Extension is an extension point to store custom metadata within the
    * persistence model.
    */
-  extension?: (Any) | undefined;
+  extension?: Any;
 }
 export interface ContractInfoProtoMsg {
   typeUrl: "/cosmwasm.wasm.v1.ContractInfo";
   value: Uint8Array;
 }
-export type ContractInfoEncoded = Omit<ContractInfo, "extension"> & {
-  /**
-   * Extension is an extension point to store custom metadata within the
-   * persistence model.
-   */
-  extension?: AnyProtoMsg | undefined;
-};
 /** ContractInfo stores a WASM contract instance */
 export interface ContractInfoAmino {
   /** CodeID is the reference to the stored Wasm code */
@@ -270,7 +263,7 @@ export interface ContractInfoSDKType {
   label: string;
   created?: AbsoluteTxPositionSDKType;
   ibc_port_id: string;
-  extension?: AnySDKType | undefined;
+  extension?: AnySDKType;
 }
 /** ContractCodeHistoryEntry metadata to a contract. */
 export interface ContractCodeHistoryEntry {
@@ -793,7 +786,7 @@ export const ContractInfo = {
       writer.uint32(50).string(message.ibcPortId);
     }
     if (message.extension !== undefined) {
-      Any.encode((message.extension as Any), writer.uint32(58).fork()).ldelim();
+      Any.encode(message.extension, writer.uint32(58).fork()).ldelim();
     }
     return writer;
   },
@@ -823,7 +816,7 @@ export const ContractInfo = {
           message.ibcPortId = reader.string();
           break;
         case 7:
-          message.extension = (ContractInfoExtension_InterfaceDecoder(reader) as Any);
+          message.extension = Any.decode(reader, reader.uint32());
           break;
         default:
           reader.skipType(tag & 7);
@@ -886,7 +879,7 @@ export const ContractInfo = {
       message.ibcPortId = object.ibc_port_id;
     }
     if (object.extension !== undefined && object.extension !== null) {
-      message.extension = ContractInfoExtension_FromAmino(object.extension);
+      message.extension = Any.fromAmino(object.extension);
     }
     return message;
   },
@@ -898,7 +891,7 @@ export const ContractInfo = {
     obj.label = message.label;
     obj.created = message.created ? AbsoluteTxPosition.toAmino(message.created) : undefined;
     obj.ibc_port_id = message.ibcPortId;
-    obj.extension = message.extension ? ContractInfoExtension_ToAmino((message.extension as Any)) : undefined;
+    obj.extension = message.extension ? Any.toAmino(message.extension) : undefined;
     return obj;
   },
   fromAminoMsg(object: ContractInfoAminoMsg): ContractInfo {
@@ -1229,18 +1222,4 @@ export const Model = {
       value: Model.encode(message).finish()
     };
   }
-};
-export const ContractInfoExtension_InterfaceDecoder = (input: _m0.Reader | Uint8Array): Any => {
-  const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
-  const data = Any.decode(reader, reader.uint32(), true);
-  switch (data.typeUrl) {
-    default:
-      return data;
-  }
-};
-export const ContractInfoExtension_FromAmino = (content: AnyAmino) => {
-  return Any.fromAmino(content);
-};
-export const ContractInfoExtension_ToAmino = (content: Any) => {
-  return Any.toAmino(content);
 };

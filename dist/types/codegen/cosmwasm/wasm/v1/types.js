@@ -551,7 +551,7 @@ export const ContractInfo = {
                     message.ibcPortId = reader.string();
                     break;
                 case 7:
-                    message.extension = ContractInfoExtension_InterfaceDecoder(reader);
+                    message.extension = Any.decode(reader, reader.uint32());
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -614,7 +614,7 @@ export const ContractInfo = {
             message.ibcPortId = object.ibc_port_id;
         }
         if (object.extension !== undefined && object.extension !== null) {
-            message.extension = ContractInfoExtension_FromAmino(object.extension);
+            message.extension = Any.fromAmino(object.extension);
         }
         return message;
     },
@@ -626,7 +626,7 @@ export const ContractInfo = {
         obj.label = message.label;
         obj.created = message.created ? AbsoluteTxPosition.toAmino(message.created) : undefined;
         obj.ibc_port_id = message.ibcPortId;
-        obj.extension = message.extension ? ContractInfoExtension_ToAmino(message.extension) : undefined;
+        obj.extension = message.extension ? Any.toAmino(message.extension) : undefined;
         return obj;
     },
     fromAminoMsg(object) {
@@ -957,18 +957,4 @@ export const Model = {
             value: Model.encode(message).finish()
         };
     }
-};
-export const ContractInfoExtension_InterfaceDecoder = (input) => {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
-    const data = Any.decode(reader, reader.uint32(), true);
-    switch (data.typeUrl) {
-        default:
-            return data;
-    }
-};
-export const ContractInfoExtension_FromAmino = (content) => {
-    return Any.fromAmino(content);
-};
-export const ContractInfoExtension_ToAmino = (content) => {
-    return Any.toAmino(content);
 };

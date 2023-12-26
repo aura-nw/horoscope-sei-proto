@@ -26,7 +26,6 @@ export declare function authorizationTypeToJSON(object: AuthorizationType): stri
  * Since: cosmos-sdk 0.43
  */
 export interface StakeAuthorization {
-    $typeUrl?: "/cosmos.staking.v1beta1.StakeAuthorization";
     /**
      * max_tokens specifies the maximum amount of tokens can be delegate to a validator. If it is
      * empty, there is no spend limit and any amount of coins can be delegated.
@@ -77,7 +76,6 @@ export interface StakeAuthorizationAminoMsg {
  * Since: cosmos-sdk 0.43
  */
 export interface StakeAuthorizationSDKType {
-    $typeUrl?: "/cosmos.staking.v1beta1.StakeAuthorization";
     max_tokens?: CoinSDKType;
     allow_list?: StakeAuthorization_ValidatorsSDKType;
     deny_list?: StakeAuthorization_ValidatorsSDKType;

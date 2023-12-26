@@ -768,7 +768,6 @@ export const FeePool = {
 };
 function createBaseCommunityPoolSpendProposal() {
     return {
-        $typeUrl: "/cosmos.distribution.v1beta1.CommunityPoolSpendProposal",
         title: "",
         description: "",
         recipient: "",
@@ -1106,7 +1105,6 @@ export const DelegationDelegatorReward = {
 };
 function createBaseCommunityPoolSpendProposalWithDeposit() {
     return {
-        $typeUrl: "/cosmos.distribution.v1beta1.CommunityPoolSpendProposalWithDeposit",
         title: "",
         description: "",
         recipient: "",

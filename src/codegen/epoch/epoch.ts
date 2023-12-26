@@ -1,10 +1,10 @@
 import { Timestamp } from "../google/protobuf/timestamp";
-import { Duration, DurationAmino, DurationSDKType } from "../google/protobuf/duration";
-import { Long, toTimestamp, fromTimestamp, isSet, fromJsonTimestamp } from "../helpers";
+import { Duration } from "../google/protobuf/duration";
+import { Long, toTimestamp, toDuration, fromTimestamp, fromDuration, isSet, fromJsonTimestamp } from "../helpers";
 import * as _m0 from "protobufjs/minimal";
 export interface Epoch {
   genesisTime: Date;
-  epochDuration: Duration;
+  epochDuration: string;
   currentEpoch: Long;
   currentEpochStartTime: Date;
   currentEpochHeight: Long;
@@ -15,7 +15,7 @@ export interface EpochProtoMsg {
 }
 export interface EpochAmino {
   genesis_time?: string;
-  epoch_duration?: DurationAmino;
+  epoch_duration?: string;
   current_epoch?: string;
   current_epoch_start_time?: string;
   current_epoch_height?: string;
@@ -26,7 +26,7 @@ export interface EpochAminoMsg {
 }
 export interface EpochSDKType {
   genesis_time: Date;
-  epoch_duration: DurationSDKType;
+  epoch_duration: string;
   current_epoch: Long;
   current_epoch_start_time: Date;
   current_epoch_height: Long;
@@ -47,7 +47,7 @@ export const Epoch = {
       Timestamp.encode(toTimestamp(message.genesisTime), writer.uint32(10).fork()).ldelim();
     }
     if (message.epochDuration !== undefined) {
-      Duration.encode(message.epochDuration, writer.uint32(18).fork()).ldelim();
+      Duration.encode(toDuration(message.epochDuration), writer.uint32(18).fork()).ldelim();
     }
     if (!message.currentEpoch.isZero()) {
       writer.uint32(24).uint64(message.currentEpoch);
@@ -71,7 +71,7 @@ export const Epoch = {
           message.genesisTime = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
           break;
         case 2:
-          message.epochDuration = Duration.decode(reader, reader.uint32());
+          message.epochDuration = fromDuration(Duration.decode(reader, reader.uint32()));
           break;
         case 3:
           message.currentEpoch = (reader.uint64() as Long);
@@ -92,7 +92,7 @@ export const Epoch = {
   fromJSON(object: any): Epoch {
     return {
       genesisTime: isSet(object.genesisTime) ? fromJsonTimestamp(object.genesisTime) : undefined,
-      epochDuration: isSet(object.epochDuration) ? Duration.fromJSON(object.epochDuration) : undefined,
+      epochDuration: isSet(object.epochDuration) ? String(object.epochDuration) : undefined,
       currentEpoch: isSet(object.currentEpoch) ? Long.fromValue(object.currentEpoch) : Long.UZERO,
       currentEpochStartTime: isSet(object.currentEpochStartTime) ? fromJsonTimestamp(object.currentEpochStartTime) : undefined,
       currentEpochHeight: isSet(object.currentEpochHeight) ? Long.fromValue(object.currentEpochHeight) : Long.ZERO
@@ -101,7 +101,7 @@ export const Epoch = {
   toJSON(message: Epoch): unknown {
     const obj: any = {};
     message.genesisTime !== undefined && (obj.genesisTime = message.genesisTime.toISOString());
-    message.epochDuration !== undefined && (obj.epochDuration = message.epochDuration ? Duration.toJSON(message.epochDuration) : undefined);
+    message.epochDuration !== undefined && (obj.epochDuration = message.epochDuration);
     message.currentEpoch !== undefined && (obj.currentEpoch = (message.currentEpoch || Long.UZERO).toString());
     message.currentEpochStartTime !== undefined && (obj.currentEpochStartTime = message.currentEpochStartTime.toISOString());
     message.currentEpochHeight !== undefined && (obj.currentEpochHeight = (message.currentEpochHeight || Long.ZERO).toString());
@@ -110,7 +110,7 @@ export const Epoch = {
   fromPartial(object: Partial<Epoch>): Epoch {
     const message = createBaseEpoch();
     message.genesisTime = object.genesisTime ?? undefined;
-    message.epochDuration = object.epochDuration !== undefined && object.epochDuration !== null ? Duration.fromPartial(object.epochDuration) : undefined;
+    message.epochDuration = object.epochDuration ?? undefined;
     message.currentEpoch = object.currentEpoch !== undefined && object.currentEpoch !== null ? Long.fromValue(object.currentEpoch) : Long.UZERO;
     message.currentEpochStartTime = object.currentEpochStartTime ?? undefined;
     message.currentEpochHeight = object.currentEpochHeight !== undefined && object.currentEpochHeight !== null ? Long.fromValue(object.currentEpochHeight) : Long.ZERO;

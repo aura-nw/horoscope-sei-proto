@@ -1,15 +1,21 @@
-import * as _125 from "./protobuf/any";
-import * as _126 from "./protobuf/descriptor";
-import * as _127 from "./protobuf/duration";
-import * as _128 from "./protobuf/empty";
-import * as _129 from "./protobuf/timestamp";
+import * as _175 from "./api/annotations";
+import * as _176 from "./api/http";
+import * as _177 from "./protobuf/any";
+import * as _178 from "./protobuf/descriptor";
+import * as _179 from "./protobuf/duration";
+import * as _180 from "./protobuf/empty";
+import * as _181 from "./protobuf/timestamp";
 export var google;
 (function (google) {
+    google.api = {
+        ..._175,
+        ..._176
+    };
     google.protobuf = {
-        ..._125,
-        ..._126,
-        ..._127,
-        ..._128,
-        ..._129
+        ..._177,
+        ..._178,
+        ..._179,
+        ..._180,
+        ..._181
     };
 })(google || (google = {}));

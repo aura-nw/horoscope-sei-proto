@@ -3,7 +3,6 @@ import { Long, isSet } from "../../../helpers";
 import * as _m0 from "protobufjs/minimal";
 function createBaseBaseAccount() {
     return {
-        $typeUrl: "/cosmos.auth.v1beta1.BaseAccount",
         address: "",
         pubKey: undefined,
         accountNumber: Long.UZERO,
@@ -125,7 +124,6 @@ export const BaseAccount = {
 };
 function createBaseModuleAccount() {
     return {
-        $typeUrl: "/cosmos.auth.v1beta1.ModuleAccount",
         baseAccount: undefined,
         name: "",
         permissions: []

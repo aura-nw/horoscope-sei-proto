@@ -2,7 +2,6 @@ import { Coin } from "../../base/v1beta1/coin";
 import * as _m0 from "protobufjs/minimal";
 function createBaseSendAuthorization() {
     return {
-        $typeUrl: "/cosmos.bank.v1beta1.SendAuthorization",
         spendLimit: []
     };
 }

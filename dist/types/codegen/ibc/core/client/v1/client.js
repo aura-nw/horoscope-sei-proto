@@ -291,7 +291,6 @@ export const ClientConsensusStates = {
 };
 function createBaseClientUpdateProposal() {
     return {
-        $typeUrl: "/ibc.core.client.v1.ClientUpdateProposal",
         title: "",
         description: "",
         subjectClientId: "",
@@ -413,7 +412,6 @@ export const ClientUpdateProposal = {
 };
 function createBaseUpgradeProposal() {
     return {
-        $typeUrl: "/ibc.core.client.v1.UpgradeProposal",
         title: "",
         description: "",
         plan: Plan.fromPartial({}),

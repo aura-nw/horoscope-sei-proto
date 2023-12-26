@@ -1,10 +1,8 @@
 import { Header, HeaderAmino, HeaderSDKType } from "../../../tendermint/types/types";
-import { Any, AnyProtoMsg, AnyAmino, AnySDKType } from "../../../google/protobuf/any";
-import { Duration, DurationAmino, DurationSDKType } from "../../../google/protobuf/duration";
+import { Any, AnyAmino, AnySDKType } from "../../../google/protobuf/any";
 import { Coin, CoinAmino, CoinSDKType } from "../../base/v1beta1/coin";
 import { Long } from "../../../helpers";
 import * as _m0 from "protobufjs/minimal";
-import { Pubkey } from "@cosmjs/amino";
 /** BondStatus is the status of a validator. */
 export declare enum BondStatus {
     /** BOND_STATUS_UNSPECIFIED - UNSPECIFIED defines an invalid validator status. */
@@ -183,7 +181,7 @@ export interface Validator {
     /** operator_address defines the address of the validator's operator; bech encoded in JSON. */
     operatorAddress: string;
     /** consensus_pubkey is the consensus public key of the validator, as a Protobuf Any. */
-    consensusPubkey?: (Any) | undefined;
+    consensusPubkey?: Any;
     /** jailed defined whether the validator has been jailed from bonded status or not. */
     jailed: boolean;
     /** status is the validator status (bonded/unbonding/unbonded). */
@@ -207,9 +205,6 @@ export interface ValidatorProtoMsg {
     typeUrl: "/cosmos.staking.v1beta1.Validator";
     value: Uint8Array;
 }
-export type ValidatorEncoded = Omit<Validator, "consensusPubkey"> & {
-    /** consensus_pubkey is the consensus public key of the validator, as a Protobuf Any. */ consensusPubkey?: AnyProtoMsg | undefined;
-};
 /**
  * Validator defines a validator, together with the total amount of the
  * Validator's bond shares and their exchange rate to coins. Slashing results in
@@ -260,7 +255,7 @@ export interface ValidatorAminoMsg {
  */
 export interface ValidatorSDKType {
     operator_address: string;
-    consensus_pubkey?: AnySDKType | undefined;
+    consensus_pubkey?: AnySDKType;
     jailed: boolean;
     status: BondStatus;
     tokens: string;
@@ -615,7 +610,7 @@ export interface RedelegationSDKType {
 /** Params defines the parameters for the staking module. */
 export interface Params {
     /** unbonding_time is the time duration of unbonding. */
-    unbondingTime: Duration;
+    unbondingTime: string;
     /** max_validators is the maximum number of validators. */
     maxValidators: number;
     /** max_entries is the max entries for either unbonding delegation or redelegation (per pair/trio). */
@@ -634,7 +629,7 @@ export interface ParamsProtoMsg {
 /** Params defines the parameters for the staking module. */
 export interface ParamsAmino {
     /** unbonding_time is the time duration of unbonding. */
-    unbonding_time?: DurationAmino;
+    unbonding_time?: string;
     /** max_validators is the maximum number of validators. */
     max_validators?: number;
     /** max_entries is the max entries for either unbonding delegation or redelegation (per pair/trio). */
@@ -652,7 +647,7 @@ export interface ParamsAminoMsg {
 }
 /** Params defines the parameters for the staking module. */
 export interface ParamsSDKType {
-    unbonding_time: DurationSDKType;
+    unbonding_time: string;
     max_validators: number;
     max_entries: number;
     historical_entries: number;
@@ -1093,6 +1088,3 @@ export declare const Pool: {
     toProto(message: Pool): Uint8Array;
     toProtoMsg(message: Pool): PoolProtoMsg;
 };
-export declare const Cosmos_cryptoPubKey_InterfaceDecoder: (input: _m0.Reader | Uint8Array) => Any;
-export declare const Cosmos_cryptoPubKey_FromAmino: (content: AnyAmino) => import("cosmjs-types/google/protobuf/any").Any;
-export declare const Cosmos_cryptoPubKey_ToAmino: (content: Any) => Pubkey | null;

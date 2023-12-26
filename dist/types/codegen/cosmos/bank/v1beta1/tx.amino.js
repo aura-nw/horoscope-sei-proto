@@ -1,4 +1,3 @@
-//@ts-nocheck
 import { MsgSend, MsgMultiSend } from "./tx";
 export const AminoConverter = {
     "/cosmos.bank.v1beta1.MsgSend": {

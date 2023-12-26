@@ -7,7 +7,6 @@ import * as _m0 from "protobufjs/minimal";
  * Since: cosmos-sdk 0.43
  */
 export interface SendAuthorization {
-  $typeUrl?: "/cosmos.bank.v1beta1.SendAuthorization";
   spendLimit: Coin[];
 }
 export interface SendAuthorizationProtoMsg {
@@ -34,12 +33,10 @@ export interface SendAuthorizationAminoMsg {
  * Since: cosmos-sdk 0.43
  */
 export interface SendAuthorizationSDKType {
-  $typeUrl?: "/cosmos.bank.v1beta1.SendAuthorization";
   spend_limit: CoinSDKType[];
 }
 function createBaseSendAuthorization(): SendAuthorization {
   return {
-    $typeUrl: "/cosmos.bank.v1beta1.SendAuthorization",
     spendLimit: []
   };
 }

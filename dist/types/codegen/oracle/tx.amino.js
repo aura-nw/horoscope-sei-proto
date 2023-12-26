@@ -1,4 +1,3 @@
-//@ts-nocheck
 import { MsgAggregateExchangeRateVote, MsgDelegateFeedConsent } from "./tx";
 export const AminoConverter = {
     "/seiprotocol.seichain.oracle.MsgAggregateExchangeRateVote": {

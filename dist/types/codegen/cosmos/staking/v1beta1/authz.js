@@ -57,7 +57,6 @@ export function authorizationTypeToJSON(object) {
 }
 function createBaseStakeAuthorization() {
     return {
-        $typeUrl: "/cosmos.staking.v1beta1.StakeAuthorization",
         maxTokens: undefined,
         allowList: undefined,
         denyList: undefined,

@@ -1,6 +1,6 @@
 {
   "name": "@horoscope-v2/sei-js-proto",
-  "version": "3.1.5",
+  "version": "3.1.7",
   "description": "Aura javascript library, generate from telescope",
   "author": "Aura Network",
   "homepage": "https://github.com/aura-nw/horoscope-v2-sei-proto#readme",

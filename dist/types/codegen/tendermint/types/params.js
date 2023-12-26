@@ -1,5 +1,5 @@
 import { Duration } from "../../google/protobuf/duration";
-import { Long, isSet } from "../../helpers";
+import { Long, isSet, toDuration, fromDuration } from "../../helpers";
 import * as _m0 from "protobufjs/minimal";
 function createBaseConsensusParams() {
     return {
@@ -231,7 +231,7 @@ export const EvidenceParams = {
             writer.uint32(8).int64(message.maxAgeNumBlocks);
         }
         if (message.maxAgeDuration !== undefined) {
-            Duration.encode(message.maxAgeDuration, writer.uint32(18).fork()).ldelim();
+            Duration.encode(toDuration(message.maxAgeDuration), writer.uint32(18).fork()).ldelim();
         }
         if (!message.maxBytes.isZero()) {
             writer.uint32(24).int64(message.maxBytes);
@@ -249,7 +249,7 @@ export const EvidenceParams = {
                     message.maxAgeNumBlocks = reader.int64();
                     break;
                 case 2:
-                    message.maxAgeDuration = Duration.decode(reader, reader.uint32());
+                    message.maxAgeDuration = fromDuration(Duration.decode(reader, reader.uint32()));
                     break;
                 case 3:
                     message.maxBytes = reader.int64();
@@ -264,21 +264,21 @@ export const EvidenceParams = {
     fromJSON(object) {
         return {
             maxAgeNumBlocks: isSet(object.maxAgeNumBlocks) ? Long.fromValue(object.maxAgeNumBlocks) : Long.ZERO,
-            maxAgeDuration: isSet(object.maxAgeDuration) ? Duration.fromJSON(object.maxAgeDuration) : undefined,
+            maxAgeDuration: isSet(object.maxAgeDuration) ? String(object.maxAgeDuration) : undefined,
             maxBytes: isSet(object.maxBytes) ? Long.fromValue(object.maxBytes) : Long.ZERO
         };
     },
     toJSON(message) {
         const obj = {};
         message.maxAgeNumBlocks !== undefined && (obj.maxAgeNumBlocks = (message.maxAgeNumBlocks || Long.ZERO).toString());
-        message.maxAgeDuration !== undefined && (obj.maxAgeDuration = message.maxAgeDuration ? Duration.toJSON(message.maxAgeDuration) : undefined);
+        message.maxAgeDuration !== undefined && (obj.maxAgeDuration = message.maxAgeDuration);
         message.maxBytes !== undefined && (obj.maxBytes = (message.maxBytes || Long.ZERO).toString());
         return obj;
     },
     fromPartial(object) {
         const message = createBaseEvidenceParams();
         message.maxAgeNumBlocks = object.maxAgeNumBlocks !== undefined && object.maxAgeNumBlocks !== null ? Long.fromValue(object.maxAgeNumBlocks) : Long.ZERO;
-        message.maxAgeDuration = object.maxAgeDuration !== undefined && object.maxAgeDuration !== null ? Duration.fromPartial(object.maxAgeDuration) : undefined;
+        message.maxAgeDuration = object.maxAgeDuration ?? undefined;
         message.maxBytes = object.maxBytes !== undefined && object.maxBytes !== null ? Long.fromValue(object.maxBytes) : Long.ZERO;
         return message;
     },

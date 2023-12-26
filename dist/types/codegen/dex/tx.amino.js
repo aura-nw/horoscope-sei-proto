@@ -1,4 +1,3 @@
-//@ts-nocheck
 import { MsgPlaceOrders, MsgCancelOrders, MsgRegisterContract, MsgContractDepositRent, MsgUnregisterContract, MsgRegisterPairs, MsgUpdatePriceTickSize, MsgUpdateQuantityTickSize, MsgUnsuspendContract } from "./tx";
 export const AminoConverter = {
     "/seiprotocol.seichain.dex.MsgPlaceOrders": {

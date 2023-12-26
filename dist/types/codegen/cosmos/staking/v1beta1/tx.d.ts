@@ -1,8 +1,7 @@
 import { Description, DescriptionAmino, DescriptionSDKType, CommissionRates, CommissionRatesAmino, CommissionRatesSDKType } from "./staking";
-import { Any, AnyProtoMsg, AnyAmino, AnySDKType } from "../../../google/protobuf/any";
+import { Any, AnyAmino, AnySDKType } from "../../../google/protobuf/any";
 import { Coin, CoinAmino, CoinSDKType } from "../../base/v1beta1/coin";
 import * as _m0 from "protobufjs/minimal";
-import { Pubkey } from "@cosmjs/amino";
 /** MsgCreateValidator defines a SDK message for creating a new validator. */
 export interface MsgCreateValidator {
     description: Description;
@@ -10,16 +9,13 @@ export interface MsgCreateValidator {
     minSelfDelegation: string;
     delegatorAddress: string;
     validatorAddress: string;
-    pubkey?: (Any) | undefined;
+    pubkey?: Any;
     value: Coin;
 }
 export interface MsgCreateValidatorProtoMsg {
     typeUrl: "/cosmos.staking.v1beta1.MsgCreateValidator";
     value: Uint8Array;
 }
-export type MsgCreateValidatorEncoded = Omit<MsgCreateValidator, "pubkey"> & {
-    pubkey?: AnyProtoMsg | undefined;
-};
 /** MsgCreateValidator defines a SDK message for creating a new validator. */
 export interface MsgCreateValidatorAmino {
     description?: DescriptionAmino;
@@ -41,7 +37,7 @@ export interface MsgCreateValidatorSDKType {
     min_self_delegation: string;
     delegator_address: string;
     validator_address: string;
-    pubkey?: AnySDKType | undefined;
+    pubkey?: AnySDKType;
     value: CoinSDKType;
 }
 /** MsgCreateValidatorResponse defines the Msg/CreateValidator response type. */
@@ -434,6 +430,3 @@ export declare const MsgUndelegateResponse: {
     toProto(message: MsgUndelegateResponse): Uint8Array;
     toProtoMsg(message: MsgUndelegateResponse): MsgUndelegateResponseProtoMsg;
 };
-export declare const Cosmos_cryptoPubKey_InterfaceDecoder: (input: _m0.Reader | Uint8Array) => Any;
-export declare const Cosmos_cryptoPubKey_FromAmino: (content: AnyAmino) => import("cosmjs-types/google/protobuf/any").Any;
-export declare const Cosmos_cryptoPubKey_ToAmino: (content: Any) => Pubkey | null;

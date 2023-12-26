@@ -1,5 +1,5 @@
 import { Grant, GrantAmino, GrantSDKType } from "./authz";
-import { Any, AnyProtoMsg, AnyAmino, AnySDKType } from "../../../google/protobuf/any";
+import { Any, AnyAmino, AnySDKType } from "../../../google/protobuf/any";
 import * as _m0 from "protobufjs/minimal";
 /**
  * MsgGrant is a request type for Grant method. It declares authorization to the grantee
@@ -68,20 +68,12 @@ export interface MsgExec {
      * The x/authz will try to find a grant matching (msg.signers[0], grantee, MsgTypeURL(msg))
      * triple and validate it.
      */
-    msgs: (Any)[] | Any[];
+    msgs: Any[];
 }
 export interface MsgExecProtoMsg {
     typeUrl: "/cosmos.authz.v1beta1.MsgExec";
     value: Uint8Array;
 }
-export type MsgExecEncoded = Omit<MsgExec, "msgs"> & {
-    /**
-     * Authorization Msg requests to execute. Each msg must implement Authorization interface
-     * The x/authz will try to find a grant matching (msg.signers[0], grantee, MsgTypeURL(msg))
-     * triple and validate it.
-     */
-    msgs: (AnyProtoMsg)[];
-};
 /**
  * MsgExec attempts to execute the provided messages using
  * authorizations granted to the grantee. Each message should have only
@@ -107,7 +99,7 @@ export interface MsgExecAminoMsg {
  */
 export interface MsgExecSDKType {
     grantee: string;
-    msgs: (AnySDKType)[];
+    msgs: AnySDKType[];
 }
 /** MsgGrantResponse defines the Msg/MsgGrant response type. */
 export interface MsgGrantResponse {
@@ -268,9 +260,3 @@ export declare const MsgRevokeResponse: {
     toProto(message: MsgRevokeResponse): Uint8Array;
     toProtoMsg(message: MsgRevokeResponse): MsgRevokeResponseProtoMsg;
 };
-export declare const Sdk_Msg_InterfaceDecoder: (input: _m0.Reader | Uint8Array) => Any;
-export declare const Sdk_Msg_FromAmino: (content: AnyAmino) => Any;
-export declare const Sdk_Msg_ToAmino: (content: Any) => AnyAmino;
-export declare const Authz_Authorization_InterfaceDecoder: (input: _m0.Reader | Uint8Array) => Any;
-export declare const Authz_Authorization_FromAmino: (content: AnyAmino) => Any;
-export declare const Authz_Authorization_ToAmino: (content: Any) => AnyAmino;

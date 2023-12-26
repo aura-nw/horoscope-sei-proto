@@ -139,7 +139,6 @@ export const Plan = {
 };
 function createBaseSoftwareUpgradeProposal() {
     return {
-        $typeUrl: "/cosmos.upgrade.v1beta1.SoftwareUpgradeProposal",
         title: "",
         description: "",
         plan: Plan.fromPartial({})
@@ -247,7 +246,6 @@ export const SoftwareUpgradeProposal = {
 };
 function createBaseCancelSoftwareUpgradeProposal() {
     return {
-        $typeUrl: "/cosmos.upgrade.v1beta1.CancelSoftwareUpgradeProposal",
         title: "",
         description: ""
     };

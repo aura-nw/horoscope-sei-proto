@@ -1,4 +1,4 @@
-import { Any, AnyProtoMsg, AnyAmino, AnySDKType } from "../../../google/protobuf/any";
+import { Any, AnyAmino, AnySDKType } from "../../../google/protobuf/any";
 import { Long } from "../../../helpers";
 import * as _m0 from "protobufjs/minimal";
 /** AccessType permission types */
@@ -155,19 +155,12 @@ export interface ContractInfo {
      * Extension is an extension point to store custom metadata within the
      * persistence model.
      */
-    extension?: (Any) | undefined;
+    extension?: Any;
 }
 export interface ContractInfoProtoMsg {
     typeUrl: "/cosmwasm.wasm.v1.ContractInfo";
     value: Uint8Array;
 }
-export type ContractInfoEncoded = Omit<ContractInfo, "extension"> & {
-    /**
-     * Extension is an extension point to store custom metadata within the
-     * persistence model.
-     */
-    extension?: AnyProtoMsg | undefined;
-};
 /** ContractInfo stores a WASM contract instance */
 export interface ContractInfoAmino {
     /** CodeID is the reference to the stored Wasm code */
@@ -203,7 +196,7 @@ export interface ContractInfoSDKType {
     label: string;
     created?: AbsoluteTxPositionSDKType;
     ibc_port_id: string;
-    extension?: AnySDKType | undefined;
+    extension?: AnySDKType;
 }
 /** ContractCodeHistoryEntry metadata to a contract. */
 export interface ContractCodeHistoryEntry {
@@ -427,6 +420,3 @@ export declare const Model: {
     toProto(message: Model): Uint8Array;
     toProtoMsg(message: Model): ModelProtoMsg;
 };
-export declare const ContractInfoExtension_InterfaceDecoder: (input: _m0.Reader | Uint8Array) => Any;
-export declare const ContractInfoExtension_FromAmino: (content: AnyAmino) => Any;
-export declare const ContractInfoExtension_ToAmino: (content: Any) => AnyAmino;

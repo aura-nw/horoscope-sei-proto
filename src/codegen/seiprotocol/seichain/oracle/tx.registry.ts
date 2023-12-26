@@ -1,4 +1,3 @@
-//@ts-nocheck
 import { GeneratedType, Registry } from "@cosmjs/proto-signing";
 import { MsgAggregateExchangeRateVote, MsgDelegateFeedConsent } from "./tx";
 export const registry: ReadonlyArray<[string, GeneratedType]> = [["/seiprotocol.seichain.oracle.MsgAggregateExchangeRateVote", MsgAggregateExchangeRateVote], ["/seiprotocol.seichain.oracle.MsgDelegateFeedConsent", MsgDelegateFeedConsent]];

@@ -224,7 +224,7 @@ export const MsgExec = {
                     message.grantee = reader.string();
                     break;
                 case 2:
-                    message.msgs.push(Any(reader));
+                    message.msgs.push(Any.decode(reader, reader.uint32()));
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -261,14 +261,14 @@ export const MsgExec = {
         if (object.grantee !== undefined && object.grantee !== null) {
             message.grantee = object.grantee;
         }
-        message.msgs = object.msgs?.map(e => Sdk_MsgauthzAuthorization_FromAmino(e)) || [];
+        message.msgs = object.msgs?.map(e => Any.fromAmino(e)) || [];
         return message;
     },
     toAmino(message) {
         const obj = {};
         obj.grantee = message.grantee;
         if (message.msgs) {
-            obj.msgs = message.msgs.map(e => e ? Sdk_MsgauthzAuthorization_ToAmino(e) : undefined);
+            obj.msgs = message.msgs.map(e => e ? Any.toAmino(e) : undefined);
         }
         else {
             obj.msgs = [];
@@ -529,32 +529,4 @@ export const MsgRevokeResponse = {
             value: MsgRevokeResponse.encode(message).finish()
         };
     }
-};
-export const Sdk_Msg_InterfaceDecoder = (input) => {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
-    const data = Any.decode(reader, reader.uint32(), true);
-    switch (data.typeUrl) {
-        default:
-            return data;
-    }
-};
-export const Sdk_Msg_FromAmino = (content) => {
-    return Any.fromAmino(content);
-};
-export const Sdk_Msg_ToAmino = (content) => {
-    return Any.toAmino(content);
-};
-export const Authz_Authorization_InterfaceDecoder = (input) => {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
-    const data = Any.decode(reader, reader.uint32(), true);
-    switch (data.typeUrl) {
-        default:
-            return data;
-    }
-};
-export const Authz_Authorization_FromAmino = (content) => {
-    return Any.fromAmino(content);
-};
-export const Authz_Authorization_ToAmino = (content) => {
-    return Any.toAmino(content);
 };

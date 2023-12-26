@@ -3,7 +3,7 @@ import { Timestamp } from "../../../google/protobuf/timestamp";
 import { Any } from "../../../google/protobuf/any";
 import { Duration } from "../../../google/protobuf/duration";
 import { Coin } from "../../base/v1beta1/coin";
-import { Long, isSet, toTimestamp, fromTimestamp, fromJsonTimestamp } from "../../../helpers";
+import { Long, isSet, toTimestamp, fromTimestamp, fromJsonTimestamp, toDuration, fromDuration } from "../../../helpers";
 import * as _m0 from "protobufjs/minimal";
 import { Decimal } from "@cosmjs/math";
 import { encodePubkey, decodePubkey } from "@cosmjs/proto-signing";
@@ -557,7 +557,7 @@ export const Validator = {
                     message.operatorAddress = reader.string();
                     break;
                 case 2:
-                    message.consensusPubkey = Cosmos_cryptoPubKey_InterfaceDecoder(reader);
+                    message.consensusPubkey = Any.decode(reader, reader.uint32());
                     break;
                 case 3:
                     message.jailed = reader.bool();
@@ -1780,7 +1780,7 @@ export const Params = {
     typeUrl: "/cosmos.staking.v1beta1.Params",
     encode(message, writer = _m0.Writer.create()) {
         if (message.unbondingTime !== undefined) {
-            Duration.encode(message.unbondingTime, writer.uint32(10).fork()).ldelim();
+            Duration.encode(toDuration(message.unbondingTime), writer.uint32(10).fork()).ldelim();
         }
         if (message.maxValidators !== 0) {
             writer.uint32(16).uint32(message.maxValidators);
@@ -1807,7 +1807,7 @@ export const Params = {
             const tag = reader.uint32();
             switch (tag >>> 3) {
                 case 1:
-                    message.unbondingTime = Duration.decode(reader, reader.uint32());
+                    message.unbondingTime = fromDuration(Duration.decode(reader, reader.uint32()));
                     break;
                 case 2:
                     message.maxValidators = reader.uint32();
@@ -1833,7 +1833,7 @@ export const Params = {
     },
     fromJSON(object) {
         return {
-            unbondingTime: isSet(object.unbondingTime) ? Duration.fromJSON(object.unbondingTime) : undefined,
+            unbondingTime: isSet(object.unbondingTime) ? String(object.unbondingTime) : undefined,
             maxValidators: isSet(object.maxValidators) ? Number(object.maxValidators) : 0,
             maxEntries: isSet(object.maxEntries) ? Number(object.maxEntries) : 0,
             historicalEntries: isSet(object.historicalEntries) ? Number(object.historicalEntries) : 0,
@@ -1843,7 +1843,7 @@ export const Params = {
     },
     toJSON(message) {
         const obj = {};
-        message.unbondingTime !== undefined && (obj.unbondingTime = message.unbondingTime ? Duration.toJSON(message.unbondingTime) : undefined);
+        message.unbondingTime !== undefined && (obj.unbondingTime = message.unbondingTime);
         message.maxValidators !== undefined && (obj.maxValidators = Math.round(message.maxValidators));
         message.maxEntries !== undefined && (obj.maxEntries = Math.round(message.maxEntries));
         message.historicalEntries !== undefined && (obj.historicalEntries = Math.round(message.historicalEntries));
@@ -1853,7 +1853,7 @@ export const Params = {
     },
     fromPartial(object) {
         const message = createBaseParams();
-        message.unbondingTime = object.unbondingTime !== undefined && object.unbondingTime !== null ? Duration.fromPartial(object.unbondingTime) : undefined;
+        message.unbondingTime = object.unbondingTime ?? undefined;
         message.maxValidators = object.maxValidators ?? 0;
         message.maxEntries = object.maxEntries ?? 0;
         message.historicalEntries = object.historicalEntries ?? 0;
@@ -2294,18 +2294,4 @@ export const Pool = {
             value: Pool.encode(message).finish()
         };
     }
-};
-export const Cosmos_cryptoPubKey_InterfaceDecoder = (input) => {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
-    const data = Any.decode(reader, reader.uint32(), true);
-    switch (data.typeUrl) {
-        default:
-            return data;
-    }
-};
-export const Cosmos_cryptoPubKey_FromAmino = (content) => {
-    return encodePubkey(content);
-};
-export const Cosmos_cryptoPubKey_ToAmino = (content) => {
-    return decodePubkey(content);
 };

@@ -399,7 +399,6 @@ export const Output = {
 };
 function createBaseSupply() {
     return {
-        $typeUrl: "/cosmos.bank.v1beta1.Supply",
         total: []
     };
 }

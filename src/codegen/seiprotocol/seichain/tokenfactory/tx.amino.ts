@@ -1,4 +1,3 @@
-//@ts-nocheck
 import { MsgCreateDenom, MsgMint, MsgBurn, MsgChangeAdmin } from "./tx";
 export const AminoConverter = {
   "/seiprotocol.seichain.tokenfactory.MsgCreateDenom": {

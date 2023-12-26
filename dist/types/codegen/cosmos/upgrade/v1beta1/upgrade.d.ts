@@ -101,7 +101,6 @@ export interface PlanSDKType {
  */
 /** @deprecated */
 export interface SoftwareUpgradeProposal {
-    $typeUrl?: "/cosmos.upgrade.v1beta1.SoftwareUpgradeProposal";
     title: string;
     description: string;
     plan: Plan;
@@ -134,7 +133,6 @@ export interface SoftwareUpgradeProposalAminoMsg {
  */
 /** @deprecated */
 export interface SoftwareUpgradeProposalSDKType {
-    $typeUrl?: "/cosmos.upgrade.v1beta1.SoftwareUpgradeProposal";
     title: string;
     description: string;
     plan: PlanSDKType;
@@ -147,7 +145,6 @@ export interface SoftwareUpgradeProposalSDKType {
  */
 /** @deprecated */
 export interface CancelSoftwareUpgradeProposal {
-    $typeUrl?: "/cosmos.upgrade.v1beta1.CancelSoftwareUpgradeProposal";
     title: string;
     description: string;
 }
@@ -178,7 +175,6 @@ export interface CancelSoftwareUpgradeProposalAminoMsg {
  */
 /** @deprecated */
 export interface CancelSoftwareUpgradeProposalSDKType {
-    $typeUrl?: "/cosmos.upgrade.v1beta1.CancelSoftwareUpgradeProposal";
     title: string;
     description: string;
 }
