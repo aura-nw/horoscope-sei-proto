@@ -5,6 +5,7 @@ export interface ParameterChangeProposal {
   title: string;
   description: string;
   changes: ParamChange[];
+  isExpedited: boolean;
 }
 export interface ParameterChangeProposalProtoMsg {
   typeUrl: "/cosmos.params.v1beta1.ParameterChangeProposal";
@@ -15,6 +16,7 @@ export interface ParameterChangeProposalAmino {
   title?: string;
   description?: string;
   changes?: ParamChangeAmino[];
+  is_expedited?: boolean;
 }
 export interface ParameterChangeProposalAminoMsg {
   type: "cosmos-sdk/ParameterChangeProposal";
@@ -25,6 +27,7 @@ export interface ParameterChangeProposalSDKType {
   title: string;
   description: string;
   changes: ParamChangeSDKType[];
+  is_expedited: boolean;
 }
 /**
  * ParamChange defines an individual parameter change, for use in
@@ -65,7 +68,8 @@ function createBaseParameterChangeProposal(): ParameterChangeProposal {
   return {
     title: "",
     description: "",
-    changes: []
+    changes: [],
+    isExpedited: false
   };
 }
 export const ParameterChangeProposal = {
@@ -79,6 +83,9 @@ export const ParameterChangeProposal = {
     }
     for (const v of message.changes) {
       ParamChange.encode(v!, writer.uint32(26).fork()).ldelim();
+    }
+    if (message.isExpedited === true) {
+      writer.uint32(32).bool(message.isExpedited);
     }
     return writer;
   },
@@ -98,6 +105,9 @@ export const ParameterChangeProposal = {
         case 3:
           message.changes.push(ParamChange.decode(reader, reader.uint32()));
           break;
+        case 4:
+          message.isExpedited = reader.bool();
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -109,7 +119,8 @@ export const ParameterChangeProposal = {
     return {
       title: isSet(object.title) ? String(object.title) : "",
       description: isSet(object.description) ? String(object.description) : "",
-      changes: Array.isArray(object?.changes) ? object.changes.map((e: any) => ParamChange.fromJSON(e)) : []
+      changes: Array.isArray(object?.changes) ? object.changes.map((e: any) => ParamChange.fromJSON(e)) : [],
+      isExpedited: isSet(object.isExpedited) ? Boolean(object.isExpedited) : false
     };
   },
   toJSON(message: ParameterChangeProposal): unknown {
@@ -121,6 +132,7 @@ export const ParameterChangeProposal = {
     } else {
       obj.changes = [];
     }
+    message.isExpedited !== undefined && (obj.isExpedited = message.isExpedited);
     return obj;
   },
   fromPartial(object: Partial<ParameterChangeProposal>): ParameterChangeProposal {
@@ -128,6 +140,7 @@ export const ParameterChangeProposal = {
     message.title = object.title ?? "";
     message.description = object.description ?? "";
     message.changes = object.changes?.map(e => ParamChange.fromPartial(e)) || [];
+    message.isExpedited = object.isExpedited ?? false;
     return message;
   },
   fromAmino(object: ParameterChangeProposalAmino): ParameterChangeProposal {
@@ -139,6 +152,9 @@ export const ParameterChangeProposal = {
       message.description = object.description;
     }
     message.changes = object.changes?.map(e => ParamChange.fromAmino(e)) || [];
+    if (object.is_expedited !== undefined && object.is_expedited !== null) {
+      message.isExpedited = object.is_expedited;
+    }
     return message;
   },
   toAmino(message: ParameterChangeProposal): ParameterChangeProposalAmino {
@@ -150,6 +166,7 @@ export const ParameterChangeProposal = {
     } else {
       obj.changes = [];
     }
+    obj.is_expedited = message.isExpedited;
     return obj;
   },
   fromAminoMsg(object: ParameterChangeProposalAminoMsg): ParameterChangeProposal {

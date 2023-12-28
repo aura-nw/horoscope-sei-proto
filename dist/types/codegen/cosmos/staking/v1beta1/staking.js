@@ -1773,7 +1773,9 @@ function createBaseParams() {
         maxEntries: 0,
         historicalEntries: 0,
         bondDenom: "",
-        minCommissionRate: ""
+        minCommissionRate: "",
+        maxVotingPowerRatio: "",
+        maxVotingPowerEnforcementThreshold: ""
     };
 }
 export const Params = {
@@ -1796,6 +1798,12 @@ export const Params = {
         }
         if (message.minCommissionRate !== "") {
             writer.uint32(50).string(Decimal.fromUserInput(message.minCommissionRate, 18).atomics);
+        }
+        if (message.maxVotingPowerRatio !== "") {
+            writer.uint32(58).string(Decimal.fromUserInput(message.maxVotingPowerRatio, 18).atomics);
+        }
+        if (message.maxVotingPowerEnforcementThreshold !== "") {
+            writer.uint32(66).string(message.maxVotingPowerEnforcementThreshold);
         }
         return writer;
     },
@@ -1824,6 +1832,12 @@ export const Params = {
                 case 6:
                     message.minCommissionRate = Decimal.fromAtomics(reader.string(), 18).toString();
                     break;
+                case 7:
+                    message.maxVotingPowerRatio = Decimal.fromAtomics(reader.string(), 18).toString();
+                    break;
+                case 8:
+                    message.maxVotingPowerEnforcementThreshold = reader.string();
+                    break;
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -1838,7 +1852,9 @@ export const Params = {
             maxEntries: isSet(object.maxEntries) ? Number(object.maxEntries) : 0,
             historicalEntries: isSet(object.historicalEntries) ? Number(object.historicalEntries) : 0,
             bondDenom: isSet(object.bondDenom) ? String(object.bondDenom) : "",
-            minCommissionRate: isSet(object.minCommissionRate) ? String(object.minCommissionRate) : ""
+            minCommissionRate: isSet(object.minCommissionRate) ? String(object.minCommissionRate) : "",
+            maxVotingPowerRatio: isSet(object.maxVotingPowerRatio) ? String(object.maxVotingPowerRatio) : "",
+            maxVotingPowerEnforcementThreshold: isSet(object.maxVotingPowerEnforcementThreshold) ? String(object.maxVotingPowerEnforcementThreshold) : ""
         };
     },
     toJSON(message) {
@@ -1849,6 +1865,8 @@ export const Params = {
         message.historicalEntries !== undefined && (obj.historicalEntries = Math.round(message.historicalEntries));
         message.bondDenom !== undefined && (obj.bondDenom = message.bondDenom);
         message.minCommissionRate !== undefined && (obj.minCommissionRate = message.minCommissionRate);
+        message.maxVotingPowerRatio !== undefined && (obj.maxVotingPowerRatio = message.maxVotingPowerRatio);
+        message.maxVotingPowerEnforcementThreshold !== undefined && (obj.maxVotingPowerEnforcementThreshold = message.maxVotingPowerEnforcementThreshold);
         return obj;
     },
     fromPartial(object) {
@@ -1859,6 +1877,8 @@ export const Params = {
         message.historicalEntries = object.historicalEntries ?? 0;
         message.bondDenom = object.bondDenom ?? "";
         message.minCommissionRate = object.minCommissionRate ?? "";
+        message.maxVotingPowerRatio = object.maxVotingPowerRatio ?? "";
+        message.maxVotingPowerEnforcementThreshold = object.maxVotingPowerEnforcementThreshold ?? "";
         return message;
     },
     fromAmino(object) {
@@ -1881,6 +1901,12 @@ export const Params = {
         if (object.min_commission_rate !== undefined && object.min_commission_rate !== null) {
             message.minCommissionRate = object.min_commission_rate;
         }
+        if (object.max_voting_power_ratio !== undefined && object.max_voting_power_ratio !== null) {
+            message.maxVotingPowerRatio = object.max_voting_power_ratio;
+        }
+        if (object.max_voting_power_enforcement_threshold !== undefined && object.max_voting_power_enforcement_threshold !== null) {
+            message.maxVotingPowerEnforcementThreshold = object.max_voting_power_enforcement_threshold;
+        }
         return message;
     },
     toAmino(message) {
@@ -1891,6 +1917,8 @@ export const Params = {
         obj.historical_entries = message.historicalEntries;
         obj.bond_denom = message.bondDenom;
         obj.min_commission_rate = message.minCommissionRate;
+        obj.max_voting_power_ratio = message.maxVotingPowerRatio;
+        obj.max_voting_power_enforcement_threshold = message.maxVotingPowerEnforcementThreshold;
         return obj;
     },
     fromAminoMsg(object) {

@@ -5,6 +5,9 @@ export const createRPCQueryClient = async ({ rpcEndpoint }) => {
     const client = new QueryClient(tmClient);
     return {
         cosmos: {
+            accesscontrol_x: {
+                v1beta1: (await import("./accesscontrol_x/query.rpc.Query")).createRpcQueryExtension(client)
+            },
             app: {
                 v1alpha1: (await import("./app/v1alpha1/query.rpc.Query")).createRpcQueryExtension(client)
             },

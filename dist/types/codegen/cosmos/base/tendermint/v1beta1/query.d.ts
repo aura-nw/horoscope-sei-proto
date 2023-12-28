@@ -274,27 +274,27 @@ export interface GetNodeInfoRequestAminoMsg {
 /** GetNodeInfoRequest is the request type for the Query/GetNodeInfo RPC method. */
 export interface GetNodeInfoRequestSDKType {
 }
-/** GetNodeInfoResponse is the response type for the Query/GetNodeInfo RPC method. */
+/** GetNodeInfoResponse is the request type for the Query/GetNodeInfo RPC method. */
 export interface GetNodeInfoResponse {
-    nodeInfo?: NodeInfo;
+    defaultNodeInfo?: NodeInfo;
     applicationVersion?: VersionInfo;
 }
 export interface GetNodeInfoResponseProtoMsg {
     typeUrl: "/cosmos.base.tendermint.v1beta1.GetNodeInfoResponse";
     value: Uint8Array;
 }
-/** GetNodeInfoResponse is the response type for the Query/GetNodeInfo RPC method. */
+/** GetNodeInfoResponse is the request type for the Query/GetNodeInfo RPC method. */
 export interface GetNodeInfoResponseAmino {
-    node_info?: NodeInfoAmino;
+    default_node_info?: NodeInfoAmino;
     application_version?: VersionInfoAmino;
 }
 export interface GetNodeInfoResponseAminoMsg {
     type: "cosmos-sdk/GetNodeInfoResponse";
     value: GetNodeInfoResponseAmino;
 }
-/** GetNodeInfoResponse is the response type for the Query/GetNodeInfo RPC method. */
+/** GetNodeInfoResponse is the request type for the Query/GetNodeInfo RPC method. */
 export interface GetNodeInfoResponseSDKType {
-    node_info?: NodeInfoSDKType;
+    default_node_info?: NodeInfoSDKType;
     application_version?: VersionInfoSDKType;
 }
 /** VersionInfo is the type for the GetNodeInfoResponse message. */

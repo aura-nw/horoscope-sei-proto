@@ -251,16 +251,11 @@ export const MsgWithdrawDelegatorReward = {
     }
 };
 function createBaseMsgWithdrawDelegatorRewardResponse() {
-    return {
-        amount: []
-    };
+    return {};
 }
 export const MsgWithdrawDelegatorRewardResponse = {
     typeUrl: "/cosmos.distribution.v1beta1.MsgWithdrawDelegatorRewardResponse",
-    encode(message, writer = _m0.Writer.create()) {
-        for (const v of message.amount) {
-            Coin.encode(v, writer.uint32(10).fork()).ldelim();
-        }
+    encode(_, writer = _m0.Writer.create()) {
         return writer;
     },
     decode(input, length) {
@@ -270,9 +265,6 @@ export const MsgWithdrawDelegatorRewardResponse = {
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
-                case 1:
-                    message.amount.push(Coin.decode(reader, reader.uint32()));
-                    break;
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -280,39 +272,23 @@ export const MsgWithdrawDelegatorRewardResponse = {
         }
         return message;
     },
-    fromJSON(object) {
-        return {
-            amount: Array.isArray(object?.amount) ? object.amount.map((e) => Coin.fromJSON(e)) : []
-        };
+    fromJSON(_) {
+        return {};
     },
-    toJSON(message) {
+    toJSON(_) {
         const obj = {};
-        if (message.amount) {
-            obj.amount = message.amount.map(e => e ? Coin.toJSON(e) : undefined);
-        }
-        else {
-            obj.amount = [];
-        }
         return obj;
     },
-    fromPartial(object) {
+    fromPartial(_) {
         const message = createBaseMsgWithdrawDelegatorRewardResponse();
-        message.amount = object.amount?.map(e => Coin.fromPartial(e)) || [];
         return message;
     },
-    fromAmino(object) {
+    fromAmino(_) {
         const message = createBaseMsgWithdrawDelegatorRewardResponse();
-        message.amount = object.amount?.map(e => Coin.fromAmino(e)) || [];
         return message;
     },
-    toAmino(message) {
+    toAmino(_) {
         const obj = {};
-        if (message.amount) {
-            obj.amount = message.amount.map(e => e ? Coin.toAmino(e) : undefined);
-        }
-        else {
-            obj.amount = [];
-        }
         return obj;
     },
     fromAminoMsg(object) {
@@ -417,16 +393,11 @@ export const MsgWithdrawValidatorCommission = {
     }
 };
 function createBaseMsgWithdrawValidatorCommissionResponse() {
-    return {
-        amount: []
-    };
+    return {};
 }
 export const MsgWithdrawValidatorCommissionResponse = {
     typeUrl: "/cosmos.distribution.v1beta1.MsgWithdrawValidatorCommissionResponse",
-    encode(message, writer = _m0.Writer.create()) {
-        for (const v of message.amount) {
-            Coin.encode(v, writer.uint32(10).fork()).ldelim();
-        }
+    encode(_, writer = _m0.Writer.create()) {
         return writer;
     },
     decode(input, length) {
@@ -436,9 +407,6 @@ export const MsgWithdrawValidatorCommissionResponse = {
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
-                case 1:
-                    message.amount.push(Coin.decode(reader, reader.uint32()));
-                    break;
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -446,39 +414,23 @@ export const MsgWithdrawValidatorCommissionResponse = {
         }
         return message;
     },
-    fromJSON(object) {
-        return {
-            amount: Array.isArray(object?.amount) ? object.amount.map((e) => Coin.fromJSON(e)) : []
-        };
+    fromJSON(_) {
+        return {};
     },
-    toJSON(message) {
+    toJSON(_) {
         const obj = {};
-        if (message.amount) {
-            obj.amount = message.amount.map(e => e ? Coin.toJSON(e) : undefined);
-        }
-        else {
-            obj.amount = [];
-        }
         return obj;
     },
-    fromPartial(object) {
+    fromPartial(_) {
         const message = createBaseMsgWithdrawValidatorCommissionResponse();
-        message.amount = object.amount?.map(e => Coin.fromPartial(e)) || [];
         return message;
     },
-    fromAmino(object) {
+    fromAmino(_) {
         const message = createBaseMsgWithdrawValidatorCommissionResponse();
-        message.amount = object.amount?.map(e => Coin.fromAmino(e)) || [];
         return message;
     },
-    toAmino(message) {
+    toAmino(_) {
         const obj = {};
-        if (message.amount) {
-            obj.amount = message.amount.map(e => e ? Coin.toAmino(e) : undefined);
-        }
-        else {
-            obj.amount = [];
-        }
         return obj;
     },
     fromAminoMsg(object) {

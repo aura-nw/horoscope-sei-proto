@@ -2,6 +2,9 @@ export declare const createLCDClient: ({ restEndpoint }: {
     restEndpoint: string;
 }) => Promise<{
     cosmos: {
+        accesscontrol_x: {
+            v1beta1: import("./accesscontrol_x/query.lcd").LCDQueryClient;
+        };
         auth: {
             v1beta1: import("./auth/v1beta1/query.lcd").LCDQueryClient;
         };

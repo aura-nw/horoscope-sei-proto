@@ -60,8 +60,6 @@ export interface SnapshotItem {
     iavl?: SnapshotIAVLItem;
     extension?: SnapshotExtensionMeta;
     extensionPayload?: SnapshotExtensionPayload;
-    kv?: SnapshotKVItem;
-    schema?: SnapshotSchema;
 }
 export interface SnapshotItemProtoMsg {
     typeUrl: "/cosmos.base.snapshots.v1beta1.SnapshotItem";
@@ -73,8 +71,6 @@ export interface SnapshotItemAmino {
     iavl?: SnapshotIAVLItemAmino;
     extension?: SnapshotExtensionMetaAmino;
     extension_payload?: SnapshotExtensionPayloadAmino;
-    kv?: SnapshotKVItemAmino;
-    schema?: SnapshotSchemaAmino;
 }
 export interface SnapshotItemAminoMsg {
     type: "cosmos-sdk/SnapshotItem";
@@ -86,8 +82,6 @@ export interface SnapshotItemSDKType {
     iavl?: SnapshotIAVLItemSDKType;
     extension?: SnapshotExtensionMetaSDKType;
     extension_payload?: SnapshotExtensionPayloadSDKType;
-    kv?: SnapshotKVItemSDKType;
-    schema?: SnapshotSchemaSDKType;
 }
 /** SnapshotStoreItem contains metadata about a snapshotted store. */
 export interface SnapshotStoreItem {
@@ -184,49 +178,6 @@ export interface SnapshotExtensionPayloadAminoMsg {
 /** SnapshotExtensionPayload contains payloads of an external snapshotter. */
 export interface SnapshotExtensionPayloadSDKType {
     payload: Uint8Array;
-}
-/** SnapshotKVItem is an exported Key/Value Pair */
-export interface SnapshotKVItem {
-    key: Uint8Array;
-    value: Uint8Array;
-}
-export interface SnapshotKVItemProtoMsg {
-    typeUrl: "/cosmos.base.snapshots.v1beta1.SnapshotKVItem";
-    value: Uint8Array;
-}
-/** SnapshotKVItem is an exported Key/Value Pair */
-export interface SnapshotKVItemAmino {
-    key?: string;
-    value?: string;
-}
-export interface SnapshotKVItemAminoMsg {
-    type: "cosmos-sdk/SnapshotKVItem";
-    value: SnapshotKVItemAmino;
-}
-/** SnapshotKVItem is an exported Key/Value Pair */
-export interface SnapshotKVItemSDKType {
-    key: Uint8Array;
-    value: Uint8Array;
-}
-/** SnapshotSchema is an exported schema of smt store */
-export interface SnapshotSchema {
-    keys: Uint8Array[];
-}
-export interface SnapshotSchemaProtoMsg {
-    typeUrl: "/cosmos.base.snapshots.v1beta1.SnapshotSchema";
-    value: Uint8Array;
-}
-/** SnapshotSchema is an exported schema of smt store */
-export interface SnapshotSchemaAmino {
-    keys?: string[];
-}
-export interface SnapshotSchemaAminoMsg {
-    type: "cosmos-sdk/SnapshotSchema";
-    value: SnapshotSchemaAmino;
-}
-/** SnapshotSchema is an exported schema of smt store */
-export interface SnapshotSchemaSDKType {
-    keys: Uint8Array[];
 }
 export declare const Snapshot: {
     typeUrl: string;
@@ -332,34 +283,4 @@ export declare const SnapshotExtensionPayload: {
     fromProtoMsg(message: SnapshotExtensionPayloadProtoMsg): SnapshotExtensionPayload;
     toProto(message: SnapshotExtensionPayload): Uint8Array;
     toProtoMsg(message: SnapshotExtensionPayload): SnapshotExtensionPayloadProtoMsg;
-};
-export declare const SnapshotKVItem: {
-    typeUrl: string;
-    encode(message: SnapshotKVItem, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): SnapshotKVItem;
-    fromJSON(object: any): SnapshotKVItem;
-    toJSON(message: SnapshotKVItem): unknown;
-    fromPartial(object: Partial<SnapshotKVItem>): SnapshotKVItem;
-    fromAmino(object: SnapshotKVItemAmino): SnapshotKVItem;
-    toAmino(message: SnapshotKVItem): SnapshotKVItemAmino;
-    fromAminoMsg(object: SnapshotKVItemAminoMsg): SnapshotKVItem;
-    toAminoMsg(message: SnapshotKVItem): SnapshotKVItemAminoMsg;
-    fromProtoMsg(message: SnapshotKVItemProtoMsg): SnapshotKVItem;
-    toProto(message: SnapshotKVItem): Uint8Array;
-    toProtoMsg(message: SnapshotKVItem): SnapshotKVItemProtoMsg;
-};
-export declare const SnapshotSchema: {
-    typeUrl: string;
-    encode(message: SnapshotSchema, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): SnapshotSchema;
-    fromJSON(object: any): SnapshotSchema;
-    toJSON(message: SnapshotSchema): unknown;
-    fromPartial(object: Partial<SnapshotSchema>): SnapshotSchema;
-    fromAmino(object: SnapshotSchemaAmino): SnapshotSchema;
-    toAmino(message: SnapshotSchema): SnapshotSchemaAmino;
-    fromAminoMsg(object: SnapshotSchemaAminoMsg): SnapshotSchema;
-    toAminoMsg(message: SnapshotSchema): SnapshotSchemaAminoMsg;
-    fromProtoMsg(message: SnapshotSchemaProtoMsg): SnapshotSchema;
-    toProto(message: SnapshotSchema): Uint8Array;
-    toProtoMsg(message: SnapshotSchema): SnapshotSchemaProtoMsg;
 };

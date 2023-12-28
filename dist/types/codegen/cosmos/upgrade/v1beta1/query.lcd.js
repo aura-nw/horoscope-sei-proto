@@ -5,7 +5,6 @@ export class LCDQueryClient {
         this.appliedPlan = this.appliedPlan.bind(this);
         this.upgradedConsensusState = this.upgradedConsensusState.bind(this);
         this.moduleVersions = this.moduleVersions.bind(this);
-        this.authority = this.authority.bind(this);
     }
     /* CurrentPlan queries the current upgrade plan. */
     async currentPlan(_params = {}) {
@@ -39,10 +38,5 @@ export class LCDQueryClient {
         }
         const endpoint = `cosmos/upgrade/v1beta1/module_versions`;
         return await this.req.get(endpoint, options);
-    }
-    /* Returns the account with authority to conduct upgrades */
-    async authority(_params = {}) {
-        const endpoint = `cosmos/upgrade/v1beta1/authority`;
-        return await this.req.get(endpoint);
     }
 }

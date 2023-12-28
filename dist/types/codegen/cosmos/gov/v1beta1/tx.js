@@ -7,7 +7,8 @@ function createBaseMsgSubmitProposal() {
     return {
         content: undefined,
         initialDeposit: [],
-        proposer: ""
+        proposer: "",
+        isExpedited: false
     };
 }
 export const MsgSubmitProposal = {
@@ -21,6 +22,9 @@ export const MsgSubmitProposal = {
         }
         if (message.proposer !== "") {
             writer.uint32(26).string(message.proposer);
+        }
+        if (message.isExpedited === true) {
+            writer.uint32(32).bool(message.isExpedited);
         }
         return writer;
     },
@@ -40,6 +44,9 @@ export const MsgSubmitProposal = {
                 case 3:
                     message.proposer = reader.string();
                     break;
+                case 4:
+                    message.isExpedited = reader.bool();
+                    break;
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -51,7 +58,8 @@ export const MsgSubmitProposal = {
         return {
             content: isSet(object.content) ? Any.fromJSON(object.content) : undefined,
             initialDeposit: Array.isArray(object?.initialDeposit) ? object.initialDeposit.map((e) => Coin.fromJSON(e)) : [],
-            proposer: isSet(object.proposer) ? String(object.proposer) : ""
+            proposer: isSet(object.proposer) ? String(object.proposer) : "",
+            isExpedited: isSet(object.isExpedited) ? Boolean(object.isExpedited) : false
         };
     },
     toJSON(message) {
@@ -64,6 +72,7 @@ export const MsgSubmitProposal = {
             obj.initialDeposit = [];
         }
         message.proposer !== undefined && (obj.proposer = message.proposer);
+        message.isExpedited !== undefined && (obj.isExpedited = message.isExpedited);
         return obj;
     },
     fromPartial(object) {
@@ -71,6 +80,7 @@ export const MsgSubmitProposal = {
         message.content = object.content !== undefined && object.content !== null ? Any.fromPartial(object.content) : undefined;
         message.initialDeposit = object.initialDeposit?.map(e => Coin.fromPartial(e)) || [];
         message.proposer = object.proposer ?? "";
+        message.isExpedited = object.isExpedited ?? false;
         return message;
     },
     fromAmino(object) {
@@ -81,6 +91,9 @@ export const MsgSubmitProposal = {
         message.initialDeposit = object.initial_deposit?.map(e => Coin.fromAmino(e)) || [];
         if (object.proposer !== undefined && object.proposer !== null) {
             message.proposer = object.proposer;
+        }
+        if (object.is_expedited !== undefined && object.is_expedited !== null) {
+            message.isExpedited = object.is_expedited;
         }
         return message;
     },
@@ -94,6 +107,7 @@ export const MsgSubmitProposal = {
             obj.initial_deposit = [];
         }
         obj.proposer = message.proposer;
+        obj.is_expedited = message.isExpedited;
         return obj;
     },
     fromAminoMsg(object) {

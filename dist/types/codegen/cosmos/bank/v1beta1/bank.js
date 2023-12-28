@@ -606,9 +606,7 @@ function createBaseMetadata() {
         base: "",
         display: "",
         name: "",
-        symbol: "",
-        uri: "",
-        uriHash: ""
+        symbol: ""
     };
 }
 export const Metadata = {
@@ -631,12 +629,6 @@ export const Metadata = {
         }
         if (message.symbol !== "") {
             writer.uint32(50).string(message.symbol);
-        }
-        if (message.uri !== "") {
-            writer.uint32(58).string(message.uri);
-        }
-        if (message.uriHash !== "") {
-            writer.uint32(66).string(message.uriHash);
         }
         return writer;
     },
@@ -665,12 +657,6 @@ export const Metadata = {
                 case 6:
                     message.symbol = reader.string();
                     break;
-                case 7:
-                    message.uri = reader.string();
-                    break;
-                case 8:
-                    message.uriHash = reader.string();
-                    break;
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -685,9 +671,7 @@ export const Metadata = {
             base: isSet(object.base) ? String(object.base) : "",
             display: isSet(object.display) ? String(object.display) : "",
             name: isSet(object.name) ? String(object.name) : "",
-            symbol: isSet(object.symbol) ? String(object.symbol) : "",
-            uri: isSet(object.uri) ? String(object.uri) : "",
-            uriHash: isSet(object.uriHash) ? String(object.uriHash) : ""
+            symbol: isSet(object.symbol) ? String(object.symbol) : ""
         };
     },
     toJSON(message) {
@@ -703,8 +687,6 @@ export const Metadata = {
         message.display !== undefined && (obj.display = message.display);
         message.name !== undefined && (obj.name = message.name);
         message.symbol !== undefined && (obj.symbol = message.symbol);
-        message.uri !== undefined && (obj.uri = message.uri);
-        message.uriHash !== undefined && (obj.uriHash = message.uriHash);
         return obj;
     },
     fromPartial(object) {
@@ -715,8 +697,6 @@ export const Metadata = {
         message.display = object.display ?? "";
         message.name = object.name ?? "";
         message.symbol = object.symbol ?? "";
-        message.uri = object.uri ?? "";
-        message.uriHash = object.uriHash ?? "";
         return message;
     },
     fromAmino(object) {
@@ -737,12 +717,6 @@ export const Metadata = {
         if (object.symbol !== undefined && object.symbol !== null) {
             message.symbol = object.symbol;
         }
-        if (object.uri !== undefined && object.uri !== null) {
-            message.uri = object.uri;
-        }
-        if (object.uri_hash !== undefined && object.uri_hash !== null) {
-            message.uriHash = object.uri_hash;
-        }
         return message;
     },
     toAmino(message) {
@@ -758,8 +732,6 @@ export const Metadata = {
         obj.display = message.display;
         obj.name = message.name;
         obj.symbol = message.symbol;
-        obj.uri = message.uri;
-        obj.uri_hash = message.uriHash;
         return obj;
     },
     fromAminoMsg(object) {

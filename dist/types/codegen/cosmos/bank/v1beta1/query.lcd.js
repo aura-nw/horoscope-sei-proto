@@ -10,7 +10,6 @@ export class LCDQueryClient {
         this.params = this.params.bind(this);
         this.denomMetadata = this.denomMetadata.bind(this);
         this.denomsMetadata = this.denomsMetadata.bind(this);
-        this.denomOwners = this.denomOwners.bind(this);
     }
     /* Balance queries the balance of a single coin for a single account. */
     async balance(params) {
@@ -61,14 +60,8 @@ export class LCDQueryClient {
     }
     /* SupplyOf queries the supply of a single coin. */
     async supplyOf(params) {
-        const options = {
-            params: {}
-        };
-        if (typeof params?.denom !== "undefined") {
-            options.params.denom = params.denom;
-        }
-        const endpoint = `cosmos/bank/v1beta1/supply/by_denom`;
-        return await this.req.get(endpoint, options);
+        const endpoint = `cosmos/bank/v1beta1/supply/${params.denom}`;
+        return await this.req.get(endpoint);
     }
     /* Params queries the parameters of x/bank module. */
     async params(_params = {}) {
@@ -80,8 +73,7 @@ export class LCDQueryClient {
         const endpoint = `cosmos/bank/v1beta1/denoms_metadata/${params.denom}`;
         return await this.req.get(endpoint);
     }
-    /* DenomsMetadata queries the client metadata for all registered coin
-     denominations. */
+    /* DenomsMetadata queries the client metadata for all registered coin denominations. */
     async denomsMetadata(params = {
         pagination: undefined
     }) {
@@ -92,18 +84,6 @@ export class LCDQueryClient {
             setPaginationParams(options, params.pagination);
         }
         const endpoint = `cosmos/bank/v1beta1/denoms_metadata`;
-        return await this.req.get(endpoint, options);
-    }
-    /* DenomOwners queries for all account addresses that own a particular token
-     denomination. */
-    async denomOwners(params) {
-        const options = {
-            params: {}
-        };
-        if (typeof params?.pagination !== "undefined") {
-            setPaginationParams(options, params.pagination);
-        }
-        const endpoint = `cosmos/bank/v1beta1/denom_owners/${params.denom}`;
         return await this.req.get(endpoint, options);
     }
 }

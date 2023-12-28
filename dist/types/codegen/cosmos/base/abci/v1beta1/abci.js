@@ -671,8 +671,7 @@ function createBaseResult() {
     return {
         data: new Uint8Array(),
         log: "",
-        events: [],
-        msgResponses: []
+        events: []
     };
 }
 export const Result = {
@@ -686,9 +685,6 @@ export const Result = {
         }
         for (const v of message.events) {
             Event.encode(v, writer.uint32(26).fork()).ldelim();
-        }
-        for (const v of message.msgResponses) {
-            Any.encode(v, writer.uint32(34).fork()).ldelim();
         }
         return writer;
     },
@@ -708,9 +704,6 @@ export const Result = {
                 case 3:
                     message.events.push(Event.decode(reader, reader.uint32()));
                     break;
-                case 4:
-                    message.msgResponses.push(Any.decode(reader, reader.uint32()));
-                    break;
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -722,8 +715,7 @@ export const Result = {
         return {
             data: isSet(object.data) ? bytesFromBase64(object.data) : new Uint8Array(),
             log: isSet(object.log) ? String(object.log) : "",
-            events: Array.isArray(object?.events) ? object.events.map((e) => Event.fromJSON(e)) : [],
-            msgResponses: Array.isArray(object?.msgResponses) ? object.msgResponses.map((e) => Any.fromJSON(e)) : []
+            events: Array.isArray(object?.events) ? object.events.map((e) => Event.fromJSON(e)) : []
         };
     },
     toJSON(message) {
@@ -736,12 +728,6 @@ export const Result = {
         else {
             obj.events = [];
         }
-        if (message.msgResponses) {
-            obj.msgResponses = message.msgResponses.map(e => e ? Any.toJSON(e) : undefined);
-        }
-        else {
-            obj.msgResponses = [];
-        }
         return obj;
     },
     fromPartial(object) {
@@ -749,7 +735,6 @@ export const Result = {
         message.data = object.data ?? new Uint8Array();
         message.log = object.log ?? "";
         message.events = object.events?.map(e => Event.fromPartial(e)) || [];
-        message.msgResponses = object.msgResponses?.map(e => Any.fromPartial(e)) || [];
         return message;
     },
     fromAmino(object) {
@@ -761,7 +746,6 @@ export const Result = {
             message.log = object.log;
         }
         message.events = object.events?.map(e => Event.fromAmino(e)) || [];
-        message.msgResponses = object.msg_responses?.map(e => Any.fromAmino(e)) || [];
         return message;
     },
     toAmino(message) {
@@ -773,12 +757,6 @@ export const Result = {
         }
         else {
             obj.events = [];
-        }
-        if (message.msgResponses) {
-            obj.msg_responses = message.msgResponses.map(e => e ? Any.toAmino(e) : undefined);
-        }
-        else {
-            obj.msg_responses = [];
         }
         return obj;
     },
@@ -992,8 +970,7 @@ export const MsgData = {
 };
 function createBaseTxMsgData() {
     return {
-        data: [],
-        msgResponses: []
+        data: []
     };
 }
 export const TxMsgData = {
@@ -1001,9 +978,6 @@ export const TxMsgData = {
     encode(message, writer = _m0.Writer.create()) {
         for (const v of message.data) {
             MsgData.encode(v, writer.uint32(10).fork()).ldelim();
-        }
-        for (const v of message.msgResponses) {
-            Any.encode(v, writer.uint32(18).fork()).ldelim();
         }
         return writer;
     },
@@ -1017,9 +991,6 @@ export const TxMsgData = {
                 case 1:
                     message.data.push(MsgData.decode(reader, reader.uint32()));
                     break;
-                case 2:
-                    message.msgResponses.push(Any.decode(reader, reader.uint32()));
-                    break;
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -1029,8 +1000,7 @@ export const TxMsgData = {
     },
     fromJSON(object) {
         return {
-            data: Array.isArray(object?.data) ? object.data.map((e) => MsgData.fromJSON(e)) : [],
-            msgResponses: Array.isArray(object?.msgResponses) ? object.msgResponses.map((e) => Any.fromJSON(e)) : []
+            data: Array.isArray(object?.data) ? object.data.map((e) => MsgData.fromJSON(e)) : []
         };
     },
     toJSON(message) {
@@ -1041,24 +1011,16 @@ export const TxMsgData = {
         else {
             obj.data = [];
         }
-        if (message.msgResponses) {
-            obj.msgResponses = message.msgResponses.map(e => e ? Any.toJSON(e) : undefined);
-        }
-        else {
-            obj.msgResponses = [];
-        }
         return obj;
     },
     fromPartial(object) {
         const message = createBaseTxMsgData();
         message.data = object.data?.map(e => MsgData.fromPartial(e)) || [];
-        message.msgResponses = object.msgResponses?.map(e => Any.fromPartial(e)) || [];
         return message;
     },
     fromAmino(object) {
         const message = createBaseTxMsgData();
         message.data = object.data?.map(e => MsgData.fromAmino(e)) || [];
-        message.msgResponses = object.msg_responses?.map(e => Any.fromAmino(e)) || [];
         return message;
     },
     toAmino(message) {
@@ -1068,12 +1030,6 @@ export const TxMsgData = {
         }
         else {
             obj.data = [];
-        }
-        if (message.msgResponses) {
-            obj.msg_responses = message.msgResponses.map(e => e ? Any.toAmino(e) : undefined);
-        }
-        else {
-            obj.msg_responses = [];
         }
         return obj;
     },

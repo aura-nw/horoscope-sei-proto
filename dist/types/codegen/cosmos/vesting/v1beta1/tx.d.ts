@@ -1,5 +1,4 @@
 import { Coin, CoinAmino, CoinSDKType } from "../../base/v1beta1/coin";
-import { Period, PeriodAmino, PeriodSDKType } from "./vesting";
 import { Long } from "../../../helpers";
 import * as _m0 from "protobufjs/minimal";
 /**
@@ -12,6 +11,7 @@ export interface MsgCreateVestingAccount {
     amount: Coin[];
     endTime: Long;
     delayed: boolean;
+    admin: string;
 }
 export interface MsgCreateVestingAccountProtoMsg {
     typeUrl: "/cosmos.vesting.v1beta1.MsgCreateVestingAccount";
@@ -27,6 +27,7 @@ export interface MsgCreateVestingAccountAmino {
     amount?: CoinAmino[];
     end_time?: string;
     delayed?: boolean;
+    admin?: string;
 }
 export interface MsgCreateVestingAccountAminoMsg {
     type: "cosmos-sdk/MsgCreateVestingAccount";
@@ -42,6 +43,7 @@ export interface MsgCreateVestingAccountSDKType {
     amount: CoinSDKType[];
     end_time: Long;
     delayed: boolean;
+    admin: string;
 }
 /** MsgCreateVestingAccountResponse defines the Msg/CreateVestingAccount response type. */
 export interface MsgCreateVestingAccountResponse {
@@ -59,122 +61,6 @@ export interface MsgCreateVestingAccountResponseAminoMsg {
 }
 /** MsgCreateVestingAccountResponse defines the Msg/CreateVestingAccount response type. */
 export interface MsgCreateVestingAccountResponseSDKType {
-}
-/**
- * MsgCreatePermanentLockedAccount defines a message that enables creating a permanent
- * locked account.
- */
-export interface MsgCreatePermanentLockedAccount {
-    fromAddress: string;
-    toAddress: string;
-    amount: Coin[];
-}
-export interface MsgCreatePermanentLockedAccountProtoMsg {
-    typeUrl: "/cosmos.vesting.v1beta1.MsgCreatePermanentLockedAccount";
-    value: Uint8Array;
-}
-/**
- * MsgCreatePermanentLockedAccount defines a message that enables creating a permanent
- * locked account.
- */
-export interface MsgCreatePermanentLockedAccountAmino {
-    from_address?: string;
-    to_address?: string;
-    amount?: CoinAmino[];
-}
-export interface MsgCreatePermanentLockedAccountAminoMsg {
-    type: "cosmos-sdk/MsgCreatePermanentLockedAccount";
-    value: MsgCreatePermanentLockedAccountAmino;
-}
-/**
- * MsgCreatePermanentLockedAccount defines a message that enables creating a permanent
- * locked account.
- */
-export interface MsgCreatePermanentLockedAccountSDKType {
-    from_address: string;
-    to_address: string;
-    amount: CoinSDKType[];
-}
-/** MsgCreatePermanentLockedAccountResponse defines the Msg/CreatePermanentLockedAccount response type. */
-export interface MsgCreatePermanentLockedAccountResponse {
-}
-export interface MsgCreatePermanentLockedAccountResponseProtoMsg {
-    typeUrl: "/cosmos.vesting.v1beta1.MsgCreatePermanentLockedAccountResponse";
-    value: Uint8Array;
-}
-/** MsgCreatePermanentLockedAccountResponse defines the Msg/CreatePermanentLockedAccount response type. */
-export interface MsgCreatePermanentLockedAccountResponseAmino {
-}
-export interface MsgCreatePermanentLockedAccountResponseAminoMsg {
-    type: "cosmos-sdk/MsgCreatePermanentLockedAccountResponse";
-    value: MsgCreatePermanentLockedAccountResponseAmino;
-}
-/** MsgCreatePermanentLockedAccountResponse defines the Msg/CreatePermanentLockedAccount response type. */
-export interface MsgCreatePermanentLockedAccountResponseSDKType {
-}
-/**
- * MsgCreateVestingAccount defines a message that enables creating a vesting
- * account.
- */
-export interface MsgCreatePeriodicVestingAccount {
-    fromAddress: string;
-    toAddress: string;
-    startTime: Long;
-    vestingPeriods: Period[];
-}
-export interface MsgCreatePeriodicVestingAccountProtoMsg {
-    typeUrl: "/cosmos.vesting.v1beta1.MsgCreatePeriodicVestingAccount";
-    value: Uint8Array;
-}
-/**
- * MsgCreateVestingAccount defines a message that enables creating a vesting
- * account.
- */
-export interface MsgCreatePeriodicVestingAccountAmino {
-    from_address?: string;
-    to_address?: string;
-    start_time?: string;
-    vesting_periods?: PeriodAmino[];
-}
-export interface MsgCreatePeriodicVestingAccountAminoMsg {
-    type: "cosmos-sdk/MsgCreatePeriodicVestingAccount";
-    value: MsgCreatePeriodicVestingAccountAmino;
-}
-/**
- * MsgCreateVestingAccount defines a message that enables creating a vesting
- * account.
- */
-export interface MsgCreatePeriodicVestingAccountSDKType {
-    from_address: string;
-    to_address: string;
-    start_time: Long;
-    vesting_periods: PeriodSDKType[];
-}
-/**
- * MsgCreateVestingAccountResponse defines the Msg/CreatePeriodicVestingAccount
- * response type.
- */
-export interface MsgCreatePeriodicVestingAccountResponse {
-}
-export interface MsgCreatePeriodicVestingAccountResponseProtoMsg {
-    typeUrl: "/cosmos.vesting.v1beta1.MsgCreatePeriodicVestingAccountResponse";
-    value: Uint8Array;
-}
-/**
- * MsgCreateVestingAccountResponse defines the Msg/CreatePeriodicVestingAccount
- * response type.
- */
-export interface MsgCreatePeriodicVestingAccountResponseAmino {
-}
-export interface MsgCreatePeriodicVestingAccountResponseAminoMsg {
-    type: "cosmos-sdk/MsgCreatePeriodicVestingAccountResponse";
-    value: MsgCreatePeriodicVestingAccountResponseAmino;
-}
-/**
- * MsgCreateVestingAccountResponse defines the Msg/CreatePeriodicVestingAccount
- * response type.
- */
-export interface MsgCreatePeriodicVestingAccountResponseSDKType {
 }
 export declare const MsgCreateVestingAccount: {
     typeUrl: string;
@@ -205,64 +91,4 @@ export declare const MsgCreateVestingAccountResponse: {
     fromProtoMsg(message: MsgCreateVestingAccountResponseProtoMsg): MsgCreateVestingAccountResponse;
     toProto(message: MsgCreateVestingAccountResponse): Uint8Array;
     toProtoMsg(message: MsgCreateVestingAccountResponse): MsgCreateVestingAccountResponseProtoMsg;
-};
-export declare const MsgCreatePermanentLockedAccount: {
-    typeUrl: string;
-    encode(message: MsgCreatePermanentLockedAccount, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): MsgCreatePermanentLockedAccount;
-    fromJSON(object: any): MsgCreatePermanentLockedAccount;
-    toJSON(message: MsgCreatePermanentLockedAccount): unknown;
-    fromPartial(object: Partial<MsgCreatePermanentLockedAccount>): MsgCreatePermanentLockedAccount;
-    fromAmino(object: MsgCreatePermanentLockedAccountAmino): MsgCreatePermanentLockedAccount;
-    toAmino(message: MsgCreatePermanentLockedAccount): MsgCreatePermanentLockedAccountAmino;
-    fromAminoMsg(object: MsgCreatePermanentLockedAccountAminoMsg): MsgCreatePermanentLockedAccount;
-    toAminoMsg(message: MsgCreatePermanentLockedAccount): MsgCreatePermanentLockedAccountAminoMsg;
-    fromProtoMsg(message: MsgCreatePermanentLockedAccountProtoMsg): MsgCreatePermanentLockedAccount;
-    toProto(message: MsgCreatePermanentLockedAccount): Uint8Array;
-    toProtoMsg(message: MsgCreatePermanentLockedAccount): MsgCreatePermanentLockedAccountProtoMsg;
-};
-export declare const MsgCreatePermanentLockedAccountResponse: {
-    typeUrl: string;
-    encode(_: MsgCreatePermanentLockedAccountResponse, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): MsgCreatePermanentLockedAccountResponse;
-    fromJSON(_: any): MsgCreatePermanentLockedAccountResponse;
-    toJSON(_: MsgCreatePermanentLockedAccountResponse): unknown;
-    fromPartial(_: Partial<MsgCreatePermanentLockedAccountResponse>): MsgCreatePermanentLockedAccountResponse;
-    fromAmino(_: MsgCreatePermanentLockedAccountResponseAmino): MsgCreatePermanentLockedAccountResponse;
-    toAmino(_: MsgCreatePermanentLockedAccountResponse): MsgCreatePermanentLockedAccountResponseAmino;
-    fromAminoMsg(object: MsgCreatePermanentLockedAccountResponseAminoMsg): MsgCreatePermanentLockedAccountResponse;
-    toAminoMsg(message: MsgCreatePermanentLockedAccountResponse): MsgCreatePermanentLockedAccountResponseAminoMsg;
-    fromProtoMsg(message: MsgCreatePermanentLockedAccountResponseProtoMsg): MsgCreatePermanentLockedAccountResponse;
-    toProto(message: MsgCreatePermanentLockedAccountResponse): Uint8Array;
-    toProtoMsg(message: MsgCreatePermanentLockedAccountResponse): MsgCreatePermanentLockedAccountResponseProtoMsg;
-};
-export declare const MsgCreatePeriodicVestingAccount: {
-    typeUrl: string;
-    encode(message: MsgCreatePeriodicVestingAccount, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): MsgCreatePeriodicVestingAccount;
-    fromJSON(object: any): MsgCreatePeriodicVestingAccount;
-    toJSON(message: MsgCreatePeriodicVestingAccount): unknown;
-    fromPartial(object: Partial<MsgCreatePeriodicVestingAccount>): MsgCreatePeriodicVestingAccount;
-    fromAmino(object: MsgCreatePeriodicVestingAccountAmino): MsgCreatePeriodicVestingAccount;
-    toAmino(message: MsgCreatePeriodicVestingAccount): MsgCreatePeriodicVestingAccountAmino;
-    fromAminoMsg(object: MsgCreatePeriodicVestingAccountAminoMsg): MsgCreatePeriodicVestingAccount;
-    toAminoMsg(message: MsgCreatePeriodicVestingAccount): MsgCreatePeriodicVestingAccountAminoMsg;
-    fromProtoMsg(message: MsgCreatePeriodicVestingAccountProtoMsg): MsgCreatePeriodicVestingAccount;
-    toProto(message: MsgCreatePeriodicVestingAccount): Uint8Array;
-    toProtoMsg(message: MsgCreatePeriodicVestingAccount): MsgCreatePeriodicVestingAccountProtoMsg;
-};
-export declare const MsgCreatePeriodicVestingAccountResponse: {
-    typeUrl: string;
-    encode(_: MsgCreatePeriodicVestingAccountResponse, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): MsgCreatePeriodicVestingAccountResponse;
-    fromJSON(_: any): MsgCreatePeriodicVestingAccountResponse;
-    toJSON(_: MsgCreatePeriodicVestingAccountResponse): unknown;
-    fromPartial(_: Partial<MsgCreatePeriodicVestingAccountResponse>): MsgCreatePeriodicVestingAccountResponse;
-    fromAmino(_: MsgCreatePeriodicVestingAccountResponseAmino): MsgCreatePeriodicVestingAccountResponse;
-    toAmino(_: MsgCreatePeriodicVestingAccountResponse): MsgCreatePeriodicVestingAccountResponseAmino;
-    fromAminoMsg(object: MsgCreatePeriodicVestingAccountResponseAminoMsg): MsgCreatePeriodicVestingAccountResponse;
-    toAminoMsg(message: MsgCreatePeriodicVestingAccountResponse): MsgCreatePeriodicVestingAccountResponseAminoMsg;
-    fromProtoMsg(message: MsgCreatePeriodicVestingAccountResponseProtoMsg): MsgCreatePeriodicVestingAccountResponse;
-    toProto(message: MsgCreatePeriodicVestingAccountResponse): Uint8Array;
-    toProtoMsg(message: MsgCreatePeriodicVestingAccountResponse): MsgCreatePeriodicVestingAccountResponseProtoMsg;
 };

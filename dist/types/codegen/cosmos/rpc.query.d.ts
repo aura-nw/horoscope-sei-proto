@@ -3,6 +3,15 @@ export declare const createRPCQueryClient: ({ rpcEndpoint }: {
     rpcEndpoint: string | HttpEndpoint;
 }) => Promise<{
     cosmos: {
+        accesscontrol_x: {
+            v1beta1: {
+                params(request?: import("./accesscontrol_x/query").QueryParamsRequest): Promise<import("./accesscontrol_x/query").QueryParamsResponse>;
+                resourceDependencyMappingFromMessageKey(request: import("./accesscontrol_x/query").ResourceDependencyMappingFromMessageKeyRequest): Promise<import("./accesscontrol_x/query").ResourceDependencyMappingFromMessageKeyResponse>;
+                listResourceDependencyMapping(request?: import("./accesscontrol_x/query").ListResourceDependencyMappingRequest): Promise<import("./accesscontrol_x/query").ListResourceDependencyMappingResponse>;
+                wasmDependencyMapping(request: import("./accesscontrol_x/query").WasmDependencyMappingRequest): Promise<import("./accesscontrol_x/query").WasmDependencyMappingResponse>;
+                listWasmDependencyMapping(request?: import("./accesscontrol_x/query").ListWasmDependencyMappingRequest): Promise<import("./accesscontrol_x/query").ListWasmDependencyMappingResponse>;
+            };
+        };
         app: {
             v1alpha1: {
                 config(request?: import("./app/v1alpha1/query").QueryConfigRequest): Promise<import("./app/v1alpha1/query").QueryConfigResponse>;
@@ -13,10 +22,7 @@ export declare const createRPCQueryClient: ({ rpcEndpoint }: {
                 accounts(request?: import("./auth/v1beta1/query").QueryAccountsRequest): Promise<import("./auth/v1beta1/query").QueryAccountsResponse>;
                 account(request: import("./auth/v1beta1/query").QueryAccountRequest): Promise<import("./auth/v1beta1/query").QueryAccountResponse>;
                 params(request?: import("./auth/v1beta1/query").QueryParamsRequest): Promise<import("./auth/v1beta1/query").QueryParamsResponse>;
-                moduleAccounts(request?: import("./auth/v1beta1/query").QueryModuleAccountsRequest): Promise<import("./auth/v1beta1/query").QueryModuleAccountsResponse>;
-                bech32Prefix(request?: import("./auth/v1beta1/query").Bech32PrefixRequest): Promise<import("./auth/v1beta1/query").Bech32PrefixResponse>;
-                addressBytesToString(request: import("./auth/v1beta1/query").AddressBytesToStringRequest): Promise<import("./auth/v1beta1/query").AddressBytesToStringResponse>;
-                addressStringToBytes(request: import("./auth/v1beta1/query").AddressStringToBytesRequest): Promise<import("./auth/v1beta1/query").AddressStringToBytesResponse>;
+                nextAccountNumber(request?: import("./auth/v1beta1/query").QueryNextAccountNumberRequest): Promise<import("./auth/v1beta1/query").QueryNextAccountNumberResponse>;
             };
         };
         authz: {
@@ -36,7 +42,6 @@ export declare const createRPCQueryClient: ({ rpcEndpoint }: {
                 params(request?: import("./bank/v1beta1/query").QueryParamsRequest): Promise<import("./bank/v1beta1/query").QueryParamsResponse>;
                 denomMetadata(request: import("./bank/v1beta1/query").QueryDenomMetadataRequest): Promise<import("./bank/v1beta1/query").QueryDenomMetadataResponse>;
                 denomsMetadata(request?: import("./bank/v1beta1/query").QueryDenomsMetadataRequest): Promise<import("./bank/v1beta1/query").QueryDenomsMetadataResponse>;
-                denomOwners(request: import("./bank/v1beta1/query").QueryDenomOwnersRequest): Promise<import("./bank/v1beta1/query").QueryDenomOwnersResponse>;
             };
         };
         base: {
@@ -137,7 +142,6 @@ export declare const createRPCQueryClient: ({ rpcEndpoint }: {
         params: {
             v1beta1: {
                 params(request: import("./params/v1beta1/query").QueryParamsRequest): Promise<import("./params/v1beta1/query").QueryParamsResponse>;
-                subspaces(request?: import("./params/v1beta1/query").QuerySubspacesRequest): Promise<import("./params/v1beta1/query").QuerySubspacesResponse>;
             };
         };
         slashing: {
@@ -180,7 +184,6 @@ export declare const createRPCQueryClient: ({ rpcEndpoint }: {
                 appliedPlan(request: import("./upgrade/v1beta1/query").QueryAppliedPlanRequest): Promise<import("./upgrade/v1beta1/query").QueryAppliedPlanResponse>;
                 upgradedConsensusState(request: import("./upgrade/v1beta1/query").QueryUpgradedConsensusStateRequest): Promise<import("./upgrade/v1beta1/query").QueryUpgradedConsensusStateResponse>;
                 moduleVersions(request: import("./upgrade/v1beta1/query").QueryModuleVersionsRequest): Promise<import("./upgrade/v1beta1/query").QueryModuleVersionsResponse>;
-                authority(request?: import("./upgrade/v1beta1/query").QueryAuthorityRequest): Promise<import("./upgrade/v1beta1/query").QueryAuthorityResponse>;
             };
         };
     };

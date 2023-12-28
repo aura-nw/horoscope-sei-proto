@@ -97,6 +97,7 @@ export interface WeightedVoteOptionSDKType {
 export interface TextProposal {
     title: string;
     description: string;
+    isExpedited: boolean;
 }
 export interface TextProposalProtoMsg {
     typeUrl: "/cosmos.gov.v1beta1.TextProposal";
@@ -109,6 +110,7 @@ export interface TextProposalProtoMsg {
 export interface TextProposalAmino {
     title?: string;
     description?: string;
+    is_expedited?: boolean;
 }
 export interface TextProposalAminoMsg {
     type: "cosmos-sdk/TextProposal";
@@ -121,6 +123,7 @@ export interface TextProposalAminoMsg {
 export interface TextProposalSDKType {
     title: string;
     description: string;
+    is_expedited: boolean;
 }
 /**
  * Deposit defines an amount deposited by an account address to an active
@@ -162,17 +165,13 @@ export interface Proposal {
     proposalId: Long;
     content?: Any;
     status: ProposalStatus;
-    /**
-     * final_tally_result is the final tally result of the proposal. When
-     * querying a proposal via gRPC, this field is not populated until the
-     * proposal's voting period has ended.
-     */
     finalTallyResult: TallyResult;
     submitTime: Date;
     depositEndTime: Date;
     totalDeposit: Coin[];
     votingStartTime: Date;
     votingEndTime: Date;
+    isExpedited: boolean;
 }
 export interface ProposalProtoMsg {
     typeUrl: "/cosmos.gov.v1beta1.Proposal";
@@ -183,17 +182,13 @@ export interface ProposalAmino {
     proposal_id?: string;
     content?: AnyAmino;
     status?: ProposalStatus;
-    /**
-     * final_tally_result is the final tally result of the proposal. When
-     * querying a proposal via gRPC, this field is not populated until the
-     * proposal's voting period has ended.
-     */
     final_tally_result?: TallyResultAmino;
     submit_time?: string;
     deposit_end_time?: string;
     total_deposit?: CoinAmino[];
     voting_start_time?: string;
     voting_end_time?: string;
+    is_expedited?: boolean;
 }
 export interface ProposalAminoMsg {
     type: "cosmos-sdk/Proposal";
@@ -210,6 +205,7 @@ export interface ProposalSDKType {
     total_deposit: CoinSDKType[];
     voting_start_time: Date;
     voting_end_time: Date;
+    is_expedited: boolean;
 }
 /** TallyResult defines a standard tally for a governance proposal. */
 export interface TallyResult {
@@ -302,6 +298,8 @@ export interface DepositParams {
      *  months.
      */
     maxDepositPeriod: string;
+    /** Minimum deposit for a expedited proposal to enter voting period. */
+    minExpeditedDeposit: Coin[];
 }
 export interface DepositParamsProtoMsg {
     typeUrl: "/cosmos.gov.v1beta1.DepositParams";
@@ -316,6 +314,8 @@ export interface DepositParamsAmino {
      *  months.
      */
     max_deposit_period?: string;
+    /** Minimum deposit for a expedited proposal to enter voting period. */
+    min_expedited_deposit?: CoinAmino[];
 }
 export interface DepositParamsAminoMsg {
     type: "cosmos-sdk/DepositParams";
@@ -325,11 +325,14 @@ export interface DepositParamsAminoMsg {
 export interface DepositParamsSDKType {
     min_deposit: CoinSDKType[];
     max_deposit_period: string;
+    min_expedited_deposit: CoinSDKType[];
 }
 /** VotingParams defines the params for voting on governance proposals. */
 export interface VotingParams {
     /** Length of the voting period. */
     votingPeriod: string;
+    /** Length of the expedited voting period. */
+    expeditedVotingPeriod: string;
 }
 export interface VotingParamsProtoMsg {
     typeUrl: "/cosmos.gov.v1beta1.VotingParams";
@@ -339,6 +342,8 @@ export interface VotingParamsProtoMsg {
 export interface VotingParamsAmino {
     /** Length of the voting period. */
     voting_period?: string;
+    /** Length of the expedited voting period. */
+    expedited_voting_period?: string;
 }
 export interface VotingParamsAminoMsg {
     type: "cosmos-sdk/VotingParams";
@@ -347,6 +352,7 @@ export interface VotingParamsAminoMsg {
 /** VotingParams defines the params for voting on governance proposals. */
 export interface VotingParamsSDKType {
     voting_period: string;
+    expedited_voting_period: string;
 }
 /** TallyParams defines the params for tallying votes on governance proposals. */
 export interface TallyParams {
@@ -362,6 +368,10 @@ export interface TallyParams {
      *  vetoed. Default value: 1/3.
      */
     vetoThreshold: Uint8Array;
+    /** Minimum percentage of total stake needed to vote for expedited proposal to be valid */
+    expeditedQuorum: Uint8Array;
+    /** Minimum proportion of Yes votes for an expedited proposal to pass. Default value: 0.67. */
+    expeditedThreshold: Uint8Array;
 }
 export interface TallyParamsProtoMsg {
     typeUrl: "/cosmos.gov.v1beta1.TallyParams";
@@ -381,6 +391,10 @@ export interface TallyParamsAmino {
      *  vetoed. Default value: 1/3.
      */
     veto_threshold?: string;
+    /** Minimum percentage of total stake needed to vote for expedited proposal to be valid */
+    expedited_quorum?: string;
+    /** Minimum proportion of Yes votes for an expedited proposal to pass. Default value: 0.67. */
+    expedited_threshold?: string;
 }
 export interface TallyParamsAminoMsg {
     type: "cosmos-sdk/TallyParams";
@@ -391,6 +405,8 @@ export interface TallyParamsSDKType {
     quorum: Uint8Array;
     threshold: Uint8Array;
     veto_threshold: Uint8Array;
+    expedited_quorum: Uint8Array;
+    expedited_threshold: Uint8Array;
 }
 export declare const WeightedVoteOption: {
     typeUrl: string;

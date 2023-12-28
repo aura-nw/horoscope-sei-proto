@@ -237,7 +237,8 @@ export const WeightedVoteOption = {
 function createBaseTextProposal() {
     return {
         title: "",
-        description: ""
+        description: "",
+        isExpedited: false
     };
 }
 export const TextProposal = {
@@ -248,6 +249,9 @@ export const TextProposal = {
         }
         if (message.description !== "") {
             writer.uint32(18).string(message.description);
+        }
+        if (message.isExpedited === true) {
+            writer.uint32(24).bool(message.isExpedited);
         }
         return writer;
     },
@@ -264,6 +268,9 @@ export const TextProposal = {
                 case 2:
                     message.description = reader.string();
                     break;
+                case 3:
+                    message.isExpedited = reader.bool();
+                    break;
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -274,19 +281,22 @@ export const TextProposal = {
     fromJSON(object) {
         return {
             title: isSet(object.title) ? String(object.title) : "",
-            description: isSet(object.description) ? String(object.description) : ""
+            description: isSet(object.description) ? String(object.description) : "",
+            isExpedited: isSet(object.isExpedited) ? Boolean(object.isExpedited) : false
         };
     },
     toJSON(message) {
         const obj = {};
         message.title !== undefined && (obj.title = message.title);
         message.description !== undefined && (obj.description = message.description);
+        message.isExpedited !== undefined && (obj.isExpedited = message.isExpedited);
         return obj;
     },
     fromPartial(object) {
         const message = createBaseTextProposal();
         message.title = object.title ?? "";
         message.description = object.description ?? "";
+        message.isExpedited = object.isExpedited ?? false;
         return message;
     },
     fromAmino(object) {
@@ -297,12 +307,16 @@ export const TextProposal = {
         if (object.description !== undefined && object.description !== null) {
             message.description = object.description;
         }
+        if (object.is_expedited !== undefined && object.is_expedited !== null) {
+            message.isExpedited = object.is_expedited;
+        }
         return message;
     },
     toAmino(message) {
         const obj = {};
         obj.title = message.title;
         obj.description = message.description;
+        obj.is_expedited = message.isExpedited;
         return obj;
     },
     fromAminoMsg(object) {
@@ -452,7 +466,8 @@ function createBaseProposal() {
         depositEndTime: new Date(),
         totalDeposit: [],
         votingStartTime: new Date(),
-        votingEndTime: new Date()
+        votingEndTime: new Date(),
+        isExpedited: false
     };
 }
 export const Proposal = {
@@ -484,6 +499,9 @@ export const Proposal = {
         }
         if (message.votingEndTime !== undefined) {
             Timestamp.encode(toTimestamp(message.votingEndTime), writer.uint32(74).fork()).ldelim();
+        }
+        if (message.isExpedited === true) {
+            writer.uint32(80).bool(message.isExpedited);
         }
         return writer;
     },
@@ -521,6 +539,9 @@ export const Proposal = {
                 case 9:
                     message.votingEndTime = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
                     break;
+                case 10:
+                    message.isExpedited = reader.bool();
+                    break;
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -538,7 +559,8 @@ export const Proposal = {
             depositEndTime: isSet(object.depositEndTime) ? fromJsonTimestamp(object.depositEndTime) : undefined,
             totalDeposit: Array.isArray(object?.totalDeposit) ? object.totalDeposit.map((e) => Coin.fromJSON(e)) : [],
             votingStartTime: isSet(object.votingStartTime) ? fromJsonTimestamp(object.votingStartTime) : undefined,
-            votingEndTime: isSet(object.votingEndTime) ? fromJsonTimestamp(object.votingEndTime) : undefined
+            votingEndTime: isSet(object.votingEndTime) ? fromJsonTimestamp(object.votingEndTime) : undefined,
+            isExpedited: isSet(object.isExpedited) ? Boolean(object.isExpedited) : false
         };
     },
     toJSON(message) {
@@ -557,6 +579,7 @@ export const Proposal = {
         }
         message.votingStartTime !== undefined && (obj.votingStartTime = message.votingStartTime.toISOString());
         message.votingEndTime !== undefined && (obj.votingEndTime = message.votingEndTime.toISOString());
+        message.isExpedited !== undefined && (obj.isExpedited = message.isExpedited);
         return obj;
     },
     fromPartial(object) {
@@ -570,6 +593,7 @@ export const Proposal = {
         message.totalDeposit = object.totalDeposit?.map(e => Coin.fromPartial(e)) || [];
         message.votingStartTime = object.votingStartTime ?? undefined;
         message.votingEndTime = object.votingEndTime ?? undefined;
+        message.isExpedited = object.isExpedited ?? false;
         return message;
     },
     fromAmino(object) {
@@ -599,6 +623,9 @@ export const Proposal = {
         if (object.voting_end_time !== undefined && object.voting_end_time !== null) {
             message.votingEndTime = fromTimestamp(Timestamp.fromAmino(object.voting_end_time));
         }
+        if (object.is_expedited !== undefined && object.is_expedited !== null) {
+            message.isExpedited = object.is_expedited;
+        }
         return message;
     },
     toAmino(message) {
@@ -617,6 +644,7 @@ export const Proposal = {
         }
         obj.voting_start_time = message.votingStartTime ? Timestamp.toAmino(toTimestamp(message.votingStartTime)) : undefined;
         obj.voting_end_time = message.votingEndTime ? Timestamp.toAmino(toTimestamp(message.votingEndTime)) : undefined;
+        obj.is_expedited = message.isExpedited;
         return obj;
     },
     fromAminoMsg(object) {
@@ -894,7 +922,8 @@ export const Vote = {
 function createBaseDepositParams() {
     return {
         minDeposit: [],
-        maxDepositPeriod: Duration.fromPartial({})
+        maxDepositPeriod: Duration.fromPartial({}),
+        minExpeditedDeposit: []
     };
 }
 export const DepositParams = {
@@ -905,6 +934,9 @@ export const DepositParams = {
         }
         if (message.maxDepositPeriod !== undefined) {
             Duration.encode(toDuration(message.maxDepositPeriod), writer.uint32(18).fork()).ldelim();
+        }
+        for (const v of message.minExpeditedDeposit) {
+            Coin.encode(v, writer.uint32(26).fork()).ldelim();
         }
         return writer;
     },
@@ -921,6 +953,9 @@ export const DepositParams = {
                 case 2:
                     message.maxDepositPeriod = fromDuration(Duration.decode(reader, reader.uint32()));
                     break;
+                case 3:
+                    message.minExpeditedDeposit.push(Coin.decode(reader, reader.uint32()));
+                    break;
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -931,7 +966,8 @@ export const DepositParams = {
     fromJSON(object) {
         return {
             minDeposit: Array.isArray(object?.minDeposit) ? object.minDeposit.map((e) => Coin.fromJSON(e)) : [],
-            maxDepositPeriod: isSet(object.maxDepositPeriod) ? String(object.maxDepositPeriod) : undefined
+            maxDepositPeriod: isSet(object.maxDepositPeriod) ? String(object.maxDepositPeriod) : undefined,
+            minExpeditedDeposit: Array.isArray(object?.minExpeditedDeposit) ? object.minExpeditedDeposit.map((e) => Coin.fromJSON(e)) : []
         };
     },
     toJSON(message) {
@@ -943,12 +979,19 @@ export const DepositParams = {
             obj.minDeposit = [];
         }
         message.maxDepositPeriod !== undefined && (obj.maxDepositPeriod = message.maxDepositPeriod);
+        if (message.minExpeditedDeposit) {
+            obj.minExpeditedDeposit = message.minExpeditedDeposit.map(e => e ? Coin.toJSON(e) : undefined);
+        }
+        else {
+            obj.minExpeditedDeposit = [];
+        }
         return obj;
     },
     fromPartial(object) {
         const message = createBaseDepositParams();
         message.minDeposit = object.minDeposit?.map(e => Coin.fromPartial(e)) || [];
         message.maxDepositPeriod = object.maxDepositPeriod ?? undefined;
+        message.minExpeditedDeposit = object.minExpeditedDeposit?.map(e => Coin.fromPartial(e)) || [];
         return message;
     },
     fromAmino(object) {
@@ -957,6 +1000,7 @@ export const DepositParams = {
         if (object.max_deposit_period !== undefined && object.max_deposit_period !== null) {
             message.maxDepositPeriod = Duration.fromAmino(object.max_deposit_period);
         }
+        message.minExpeditedDeposit = object.min_expedited_deposit?.map(e => Coin.fromAmino(e)) || [];
         return message;
     },
     toAmino(message) {
@@ -968,6 +1012,12 @@ export const DepositParams = {
             obj.min_deposit = [];
         }
         obj.max_deposit_period = message.maxDepositPeriod ? Duration.toAmino(message.maxDepositPeriod) : undefined;
+        if (message.minExpeditedDeposit) {
+            obj.min_expedited_deposit = message.minExpeditedDeposit.map(e => e ? Coin.toAmino(e) : undefined);
+        }
+        else {
+            obj.min_expedited_deposit = [];
+        }
         return obj;
     },
     fromAminoMsg(object) {
@@ -994,7 +1044,8 @@ export const DepositParams = {
 };
 function createBaseVotingParams() {
     return {
-        votingPeriod: Duration.fromPartial({})
+        votingPeriod: Duration.fromPartial({}),
+        expeditedVotingPeriod: Duration.fromPartial({})
     };
 }
 export const VotingParams = {
@@ -1002,6 +1053,9 @@ export const VotingParams = {
     encode(message, writer = _m0.Writer.create()) {
         if (message.votingPeriod !== undefined) {
             Duration.encode(toDuration(message.votingPeriod), writer.uint32(10).fork()).ldelim();
+        }
+        if (message.expeditedVotingPeriod !== undefined) {
+            Duration.encode(toDuration(message.expeditedVotingPeriod), writer.uint32(18).fork()).ldelim();
         }
         return writer;
     },
@@ -1015,6 +1069,9 @@ export const VotingParams = {
                 case 1:
                     message.votingPeriod = fromDuration(Duration.decode(reader, reader.uint32()));
                     break;
+                case 2:
+                    message.expeditedVotingPeriod = fromDuration(Duration.decode(reader, reader.uint32()));
+                    break;
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -1024,17 +1081,20 @@ export const VotingParams = {
     },
     fromJSON(object) {
         return {
-            votingPeriod: isSet(object.votingPeriod) ? String(object.votingPeriod) : undefined
+            votingPeriod: isSet(object.votingPeriod) ? String(object.votingPeriod) : undefined,
+            expeditedVotingPeriod: isSet(object.expeditedVotingPeriod) ? String(object.expeditedVotingPeriod) : undefined
         };
     },
     toJSON(message) {
         const obj = {};
         message.votingPeriod !== undefined && (obj.votingPeriod = message.votingPeriod);
+        message.expeditedVotingPeriod !== undefined && (obj.expeditedVotingPeriod = message.expeditedVotingPeriod);
         return obj;
     },
     fromPartial(object) {
         const message = createBaseVotingParams();
         message.votingPeriod = object.votingPeriod ?? undefined;
+        message.expeditedVotingPeriod = object.expeditedVotingPeriod ?? undefined;
         return message;
     },
     fromAmino(object) {
@@ -1042,11 +1102,15 @@ export const VotingParams = {
         if (object.voting_period !== undefined && object.voting_period !== null) {
             message.votingPeriod = Duration.fromAmino(object.voting_period);
         }
+        if (object.expedited_voting_period !== undefined && object.expedited_voting_period !== null) {
+            message.expeditedVotingPeriod = Duration.fromAmino(object.expedited_voting_period);
+        }
         return message;
     },
     toAmino(message) {
         const obj = {};
         obj.voting_period = message.votingPeriod ? Duration.toAmino(message.votingPeriod) : undefined;
+        obj.expedited_voting_period = message.expeditedVotingPeriod ? Duration.toAmino(message.expeditedVotingPeriod) : undefined;
         return obj;
     },
     fromAminoMsg(object) {
@@ -1075,7 +1139,9 @@ function createBaseTallyParams() {
     return {
         quorum: new Uint8Array(),
         threshold: new Uint8Array(),
-        vetoThreshold: new Uint8Array()
+        vetoThreshold: new Uint8Array(),
+        expeditedQuorum: new Uint8Array(),
+        expeditedThreshold: new Uint8Array()
     };
 }
 export const TallyParams = {
@@ -1089,6 +1155,12 @@ export const TallyParams = {
         }
         if (message.vetoThreshold.length !== 0) {
             writer.uint32(26).bytes(message.vetoThreshold);
+        }
+        if (message.expeditedQuorum.length !== 0) {
+            writer.uint32(34).bytes(message.expeditedQuorum);
+        }
+        if (message.expeditedThreshold.length !== 0) {
+            writer.uint32(42).bytes(message.expeditedThreshold);
         }
         return writer;
     },
@@ -1108,6 +1180,12 @@ export const TallyParams = {
                 case 3:
                     message.vetoThreshold = reader.bytes();
                     break;
+                case 4:
+                    message.expeditedQuorum = reader.bytes();
+                    break;
+                case 5:
+                    message.expeditedThreshold = reader.bytes();
+                    break;
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -1119,7 +1197,9 @@ export const TallyParams = {
         return {
             quorum: isSet(object.quorum) ? bytesFromBase64(object.quorum) : new Uint8Array(),
             threshold: isSet(object.threshold) ? bytesFromBase64(object.threshold) : new Uint8Array(),
-            vetoThreshold: isSet(object.vetoThreshold) ? bytesFromBase64(object.vetoThreshold) : new Uint8Array()
+            vetoThreshold: isSet(object.vetoThreshold) ? bytesFromBase64(object.vetoThreshold) : new Uint8Array(),
+            expeditedQuorum: isSet(object.expeditedQuorum) ? bytesFromBase64(object.expeditedQuorum) : new Uint8Array(),
+            expeditedThreshold: isSet(object.expeditedThreshold) ? bytesFromBase64(object.expeditedThreshold) : new Uint8Array()
         };
     },
     toJSON(message) {
@@ -1127,6 +1207,8 @@ export const TallyParams = {
         message.quorum !== undefined && (obj.quorum = base64FromBytes(message.quorum !== undefined ? message.quorum : new Uint8Array()));
         message.threshold !== undefined && (obj.threshold = base64FromBytes(message.threshold !== undefined ? message.threshold : new Uint8Array()));
         message.vetoThreshold !== undefined && (obj.vetoThreshold = base64FromBytes(message.vetoThreshold !== undefined ? message.vetoThreshold : new Uint8Array()));
+        message.expeditedQuorum !== undefined && (obj.expeditedQuorum = base64FromBytes(message.expeditedQuorum !== undefined ? message.expeditedQuorum : new Uint8Array()));
+        message.expeditedThreshold !== undefined && (obj.expeditedThreshold = base64FromBytes(message.expeditedThreshold !== undefined ? message.expeditedThreshold : new Uint8Array()));
         return obj;
     },
     fromPartial(object) {
@@ -1134,6 +1216,8 @@ export const TallyParams = {
         message.quorum = object.quorum ?? new Uint8Array();
         message.threshold = object.threshold ?? new Uint8Array();
         message.vetoThreshold = object.vetoThreshold ?? new Uint8Array();
+        message.expeditedQuorum = object.expeditedQuorum ?? new Uint8Array();
+        message.expeditedThreshold = object.expeditedThreshold ?? new Uint8Array();
         return message;
     },
     fromAmino(object) {
@@ -1147,6 +1231,12 @@ export const TallyParams = {
         if (object.veto_threshold !== undefined && object.veto_threshold !== null) {
             message.vetoThreshold = bytesFromBase64(object.veto_threshold);
         }
+        if (object.expedited_quorum !== undefined && object.expedited_quorum !== null) {
+            message.expeditedQuorum = bytesFromBase64(object.expedited_quorum);
+        }
+        if (object.expedited_threshold !== undefined && object.expedited_threshold !== null) {
+            message.expeditedThreshold = bytesFromBase64(object.expedited_threshold);
+        }
         return message;
     },
     toAmino(message) {
@@ -1154,6 +1244,8 @@ export const TallyParams = {
         obj.quorum = message.quorum ? base64FromBytes(message.quorum) : undefined;
         obj.threshold = message.threshold ? base64FromBytes(message.threshold) : undefined;
         obj.veto_threshold = message.vetoThreshold ? base64FromBytes(message.vetoThreshold) : undefined;
+        obj.expedited_quorum = message.expeditedQuorum ? base64FromBytes(message.expeditedQuorum) : undefined;
+        obj.expedited_threshold = message.expeditedThreshold ? base64FromBytes(message.expeditedThreshold) : undefined;
         return obj;
     },
     fromAminoMsg(object) {

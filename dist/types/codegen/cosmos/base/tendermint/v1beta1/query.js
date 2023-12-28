@@ -1063,15 +1063,15 @@ export const GetNodeInfoRequest = {
 };
 function createBaseGetNodeInfoResponse() {
     return {
-        nodeInfo: undefined,
+        defaultNodeInfo: undefined,
         applicationVersion: undefined
     };
 }
 export const GetNodeInfoResponse = {
     typeUrl: "/cosmos.base.tendermint.v1beta1.GetNodeInfoResponse",
     encode(message, writer = _m0.Writer.create()) {
-        if (message.nodeInfo !== undefined) {
-            NodeInfo.encode(message.nodeInfo, writer.uint32(10).fork()).ldelim();
+        if (message.defaultNodeInfo !== undefined) {
+            NodeInfo.encode(message.defaultNodeInfo, writer.uint32(10).fork()).ldelim();
         }
         if (message.applicationVersion !== undefined) {
             VersionInfo.encode(message.applicationVersion, writer.uint32(18).fork()).ldelim();
@@ -1086,7 +1086,7 @@ export const GetNodeInfoResponse = {
             const tag = reader.uint32();
             switch (tag >>> 3) {
                 case 1:
-                    message.nodeInfo = NodeInfo.decode(reader, reader.uint32());
+                    message.defaultNodeInfo = NodeInfo.decode(reader, reader.uint32());
                     break;
                 case 2:
                     message.applicationVersion = VersionInfo.decode(reader, reader.uint32());
@@ -1100,26 +1100,26 @@ export const GetNodeInfoResponse = {
     },
     fromJSON(object) {
         return {
-            nodeInfo: isSet(object.nodeInfo) ? NodeInfo.fromJSON(object.nodeInfo) : undefined,
+            defaultNodeInfo: isSet(object.defaultNodeInfo) ? NodeInfo.fromJSON(object.defaultNodeInfo) : undefined,
             applicationVersion: isSet(object.applicationVersion) ? VersionInfo.fromJSON(object.applicationVersion) : undefined
         };
     },
     toJSON(message) {
         const obj = {};
-        message.nodeInfo !== undefined && (obj.nodeInfo = message.nodeInfo ? NodeInfo.toJSON(message.nodeInfo) : undefined);
+        message.defaultNodeInfo !== undefined && (obj.defaultNodeInfo = message.defaultNodeInfo ? NodeInfo.toJSON(message.defaultNodeInfo) : undefined);
         message.applicationVersion !== undefined && (obj.applicationVersion = message.applicationVersion ? VersionInfo.toJSON(message.applicationVersion) : undefined);
         return obj;
     },
     fromPartial(object) {
         const message = createBaseGetNodeInfoResponse();
-        message.nodeInfo = object.nodeInfo !== undefined && object.nodeInfo !== null ? NodeInfo.fromPartial(object.nodeInfo) : undefined;
+        message.defaultNodeInfo = object.defaultNodeInfo !== undefined && object.defaultNodeInfo !== null ? NodeInfo.fromPartial(object.defaultNodeInfo) : undefined;
         message.applicationVersion = object.applicationVersion !== undefined && object.applicationVersion !== null ? VersionInfo.fromPartial(object.applicationVersion) : undefined;
         return message;
     },
     fromAmino(object) {
         const message = createBaseGetNodeInfoResponse();
-        if (object.node_info !== undefined && object.node_info !== null) {
-            message.nodeInfo = NodeInfo.fromAmino(object.node_info);
+        if (object.default_node_info !== undefined && object.default_node_info !== null) {
+            message.defaultNodeInfo = NodeInfo.fromAmino(object.default_node_info);
         }
         if (object.application_version !== undefined && object.application_version !== null) {
             message.applicationVersion = VersionInfo.fromAmino(object.application_version);
@@ -1128,7 +1128,7 @@ export const GetNodeInfoResponse = {
     },
     toAmino(message) {
         const obj = {};
-        obj.node_info = message.nodeInfo ? NodeInfo.toAmino(message.nodeInfo) : undefined;
+        obj.default_node_info = message.defaultNodeInfo ? NodeInfo.toAmino(message.defaultNodeInfo) : undefined;
         obj.application_version = message.applicationVersion ? VersionInfo.toAmino(message.applicationVersion) : undefined;
         return obj;
     },

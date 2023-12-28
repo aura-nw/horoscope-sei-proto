@@ -96,10 +96,7 @@ export interface PlanSDKType {
 /**
  * SoftwareUpgradeProposal is a gov Content type for initiating a software
  * upgrade.
- * Deprecated: This legacy proposal is deprecated in favor of Msg-based gov
- * proposals, see MsgSoftwareUpgrade.
  */
-/** @deprecated */
 export interface SoftwareUpgradeProposal {
     title: string;
     description: string;
@@ -112,10 +109,7 @@ export interface SoftwareUpgradeProposalProtoMsg {
 /**
  * SoftwareUpgradeProposal is a gov Content type for initiating a software
  * upgrade.
- * Deprecated: This legacy proposal is deprecated in favor of Msg-based gov
- * proposals, see MsgSoftwareUpgrade.
  */
-/** @deprecated */
 export interface SoftwareUpgradeProposalAmino {
     title?: string;
     description?: string;
@@ -128,10 +122,7 @@ export interface SoftwareUpgradeProposalAminoMsg {
 /**
  * SoftwareUpgradeProposal is a gov Content type for initiating a software
  * upgrade.
- * Deprecated: This legacy proposal is deprecated in favor of Msg-based gov
- * proposals, see MsgSoftwareUpgrade.
  */
-/** @deprecated */
 export interface SoftwareUpgradeProposalSDKType {
     title: string;
     description: string;
@@ -140,10 +131,7 @@ export interface SoftwareUpgradeProposalSDKType {
 /**
  * CancelSoftwareUpgradeProposal is a gov Content type for cancelling a software
  * upgrade.
- * Deprecated: This legacy proposal is deprecated in favor of Msg-based gov
- * proposals, see MsgCancelUpgrade.
  */
-/** @deprecated */
 export interface CancelSoftwareUpgradeProposal {
     title: string;
     description: string;
@@ -155,10 +143,7 @@ export interface CancelSoftwareUpgradeProposalProtoMsg {
 /**
  * CancelSoftwareUpgradeProposal is a gov Content type for cancelling a software
  * upgrade.
- * Deprecated: This legacy proposal is deprecated in favor of Msg-based gov
- * proposals, see MsgCancelUpgrade.
  */
-/** @deprecated */
 export interface CancelSoftwareUpgradeProposalAmino {
     title?: string;
     description?: string;
@@ -170,10 +155,7 @@ export interface CancelSoftwareUpgradeProposalAminoMsg {
 /**
  * CancelSoftwareUpgradeProposal is a gov Content type for cancelling a software
  * upgrade.
- * Deprecated: This legacy proposal is deprecated in favor of Msg-based gov
- * proposals, see MsgCancelUpgrade.
  */
-/** @deprecated */
 export interface CancelSoftwareUpgradeProposalSDKType {
     title: string;
     description: string;

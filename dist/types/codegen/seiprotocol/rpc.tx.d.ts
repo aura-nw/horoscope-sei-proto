@@ -3,6 +3,9 @@ export declare const createRPCMsgClient: ({ rpc }: {
     rpc: Rpc;
 }) => Promise<{
     cosmos: {
+        accesscontrol_x: {
+            v1beta1: import("../cosmos/accesscontrol_x/tx.rpc.msg").MsgClientImpl;
+        };
         authz: {
             v1beta1: import("../cosmos/authz/v1beta1/tx.rpc.msg").MsgClientImpl;
         };

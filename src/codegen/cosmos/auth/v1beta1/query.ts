@@ -1,8 +1,8 @@
 import { PageRequest, PageRequestAmino, PageRequestSDKType, PageResponse, PageResponseAmino, PageResponseSDKType } from "../../base/query/v1beta1/pagination";
 import { Any, AnyAmino, AnySDKType } from "../../../google/protobuf/any";
 import { Params, ParamsAmino, ParamsSDKType } from "./auth";
+import { Long, isSet } from "../../../helpers";
 import * as _m0 from "protobufjs/minimal";
-import { isSet, bytesFromBase64, base64FromBytes } from "../../../helpers";
 /**
  * QueryAccountsRequest is the request type for the Query/Accounts RPC method.
  * 
@@ -98,42 +98,6 @@ export interface QueryAccountRequestAminoMsg {
 export interface QueryAccountRequestSDKType {
   address: string;
 }
-/** QueryModuleAccountsRequest is the request type for the Query/ModuleAccounts RPC method. */
-export interface QueryModuleAccountsRequest {}
-export interface QueryModuleAccountsRequestProtoMsg {
-  typeUrl: "/cosmos.auth.v1beta1.QueryModuleAccountsRequest";
-  value: Uint8Array;
-}
-/** QueryModuleAccountsRequest is the request type for the Query/ModuleAccounts RPC method. */
-export interface QueryModuleAccountsRequestAmino {}
-export interface QueryModuleAccountsRequestAminoMsg {
-  type: "cosmos-sdk/QueryModuleAccountsRequest";
-  value: QueryModuleAccountsRequestAmino;
-}
-/** QueryModuleAccountsRequest is the request type for the Query/ModuleAccounts RPC method. */
-export interface QueryModuleAccountsRequestSDKType {}
-/** QueryParamsResponse is the response type for the Query/Params RPC method. */
-export interface QueryParamsResponse {
-  /** params defines the parameters of the module. */
-  params: Params;
-}
-export interface QueryParamsResponseProtoMsg {
-  typeUrl: "/cosmos.auth.v1beta1.QueryParamsResponse";
-  value: Uint8Array;
-}
-/** QueryParamsResponse is the response type for the Query/Params RPC method. */
-export interface QueryParamsResponseAmino {
-  /** params defines the parameters of the module. */
-  params?: ParamsAmino;
-}
-export interface QueryParamsResponseAminoMsg {
-  type: "cosmos-sdk/QueryParamsResponse";
-  value: QueryParamsResponseAmino;
-}
-/** QueryParamsResponse is the response type for the Query/Params RPC method. */
-export interface QueryParamsResponseSDKType {
-  params: ParamsSDKType;
-}
 /** QueryAccountResponse is the response type for the Query/Account RPC method. */
 export interface QueryAccountResponse {
   /** account defines the account of the corresponding address. */
@@ -170,139 +134,63 @@ export interface QueryParamsRequestAminoMsg {
 }
 /** QueryParamsRequest is the request type for the Query/Params RPC method. */
 export interface QueryParamsRequestSDKType {}
-/** QueryModuleAccountsResponse is the response type for the Query/ModuleAccounts RPC method. */
-export interface QueryModuleAccountsResponse {
-  accounts: Any[];
+/** QueryParamsResponse is the response type for the Query/Params RPC method. */
+export interface QueryParamsResponse {
+  /** params defines the parameters of the module. */
+  params: Params;
 }
-export interface QueryModuleAccountsResponseProtoMsg {
-  typeUrl: "/cosmos.auth.v1beta1.QueryModuleAccountsResponse";
+export interface QueryParamsResponseProtoMsg {
+  typeUrl: "/cosmos.auth.v1beta1.QueryParamsResponse";
   value: Uint8Array;
 }
-/** QueryModuleAccountsResponse is the response type for the Query/ModuleAccounts RPC method. */
-export interface QueryModuleAccountsResponseAmino {
-  accounts?: AnyAmino[];
+/** QueryParamsResponse is the response type for the Query/Params RPC method. */
+export interface QueryParamsResponseAmino {
+  /** params defines the parameters of the module. */
+  params?: ParamsAmino;
 }
-export interface QueryModuleAccountsResponseAminoMsg {
-  type: "cosmos-sdk/QueryModuleAccountsResponse";
-  value: QueryModuleAccountsResponseAmino;
+export interface QueryParamsResponseAminoMsg {
+  type: "cosmos-sdk/QueryParamsResponse";
+  value: QueryParamsResponseAmino;
 }
-/** QueryModuleAccountsResponse is the response type for the Query/ModuleAccounts RPC method. */
-export interface QueryModuleAccountsResponseSDKType {
-  accounts: AnySDKType[];
+/** QueryParamsResponse is the response type for the Query/Params RPC method. */
+export interface QueryParamsResponseSDKType {
+  params: ParamsSDKType;
 }
-/** Bech32PrefixRequest is the request type for Bech32Prefix rpc method */
-export interface Bech32PrefixRequest {}
-export interface Bech32PrefixRequestProtoMsg {
-  typeUrl: "/cosmos.auth.v1beta1.Bech32PrefixRequest";
+/** QueryNextAccountRequest is the request type for the Query/NextAccountNumber RPC method. */
+export interface QueryNextAccountNumberRequest {}
+export interface QueryNextAccountNumberRequestProtoMsg {
+  typeUrl: "/cosmos.auth.v1beta1.QueryNextAccountNumberRequest";
   value: Uint8Array;
 }
-/** Bech32PrefixRequest is the request type for Bech32Prefix rpc method */
-export interface Bech32PrefixRequestAmino {}
-export interface Bech32PrefixRequestAminoMsg {
-  type: "cosmos-sdk/Bech32PrefixRequest";
-  value: Bech32PrefixRequestAmino;
+/** QueryNextAccountRequest is the request type for the Query/NextAccountNumber RPC method. */
+export interface QueryNextAccountNumberRequestAmino {}
+export interface QueryNextAccountNumberRequestAminoMsg {
+  type: "cosmos-sdk/QueryNextAccountNumberRequest";
+  value: QueryNextAccountNumberRequestAmino;
 }
-/** Bech32PrefixRequest is the request type for Bech32Prefix rpc method */
-export interface Bech32PrefixRequestSDKType {}
-/** Bech32PrefixResponse is the response type for Bech32Prefix rpc method */
-export interface Bech32PrefixResponse {
-  bech32Prefix: string;
+/** QueryNextAccountRequest is the request type for the Query/NextAccountNumber RPC method. */
+export interface QueryNextAccountNumberRequestSDKType {}
+/** QueryNextAccountResponse is the response type for the Query/NextAccountNumber RPC method. */
+export interface QueryNextAccountNumberResponse {
+  /** count defines the next account number. */
+  count: Long;
 }
-export interface Bech32PrefixResponseProtoMsg {
-  typeUrl: "/cosmos.auth.v1beta1.Bech32PrefixResponse";
+export interface QueryNextAccountNumberResponseProtoMsg {
+  typeUrl: "/cosmos.auth.v1beta1.QueryNextAccountNumberResponse";
   value: Uint8Array;
 }
-/** Bech32PrefixResponse is the response type for Bech32Prefix rpc method */
-export interface Bech32PrefixResponseAmino {
-  bech32_prefix?: string;
+/** QueryNextAccountResponse is the response type for the Query/NextAccountNumber RPC method. */
+export interface QueryNextAccountNumberResponseAmino {
+  /** count defines the next account number. */
+  count?: string;
 }
-export interface Bech32PrefixResponseAminoMsg {
-  type: "cosmos-sdk/Bech32PrefixResponse";
-  value: Bech32PrefixResponseAmino;
+export interface QueryNextAccountNumberResponseAminoMsg {
+  type: "cosmos-sdk/QueryNextAccountNumberResponse";
+  value: QueryNextAccountNumberResponseAmino;
 }
-/** Bech32PrefixResponse is the response type for Bech32Prefix rpc method */
-export interface Bech32PrefixResponseSDKType {
-  bech32_prefix: string;
-}
-/** AddressBytesToStringRequest is the request type for AddressString rpc method */
-export interface AddressBytesToStringRequest {
-  addressBytes: Uint8Array;
-}
-export interface AddressBytesToStringRequestProtoMsg {
-  typeUrl: "/cosmos.auth.v1beta1.AddressBytesToStringRequest";
-  value: Uint8Array;
-}
-/** AddressBytesToStringRequest is the request type for AddressString rpc method */
-export interface AddressBytesToStringRequestAmino {
-  address_bytes?: string;
-}
-export interface AddressBytesToStringRequestAminoMsg {
-  type: "cosmos-sdk/AddressBytesToStringRequest";
-  value: AddressBytesToStringRequestAmino;
-}
-/** AddressBytesToStringRequest is the request type for AddressString rpc method */
-export interface AddressBytesToStringRequestSDKType {
-  address_bytes: Uint8Array;
-}
-/** AddressBytesToStringResponse is the response type for AddressString rpc method */
-export interface AddressBytesToStringResponse {
-  addressString: string;
-}
-export interface AddressBytesToStringResponseProtoMsg {
-  typeUrl: "/cosmos.auth.v1beta1.AddressBytesToStringResponse";
-  value: Uint8Array;
-}
-/** AddressBytesToStringResponse is the response type for AddressString rpc method */
-export interface AddressBytesToStringResponseAmino {
-  address_string?: string;
-}
-export interface AddressBytesToStringResponseAminoMsg {
-  type: "cosmos-sdk/AddressBytesToStringResponse";
-  value: AddressBytesToStringResponseAmino;
-}
-/** AddressBytesToStringResponse is the response type for AddressString rpc method */
-export interface AddressBytesToStringResponseSDKType {
-  address_string: string;
-}
-/** AddressStringToBytesRequest is the request type for AccountBytes rpc method */
-export interface AddressStringToBytesRequest {
-  addressString: string;
-}
-export interface AddressStringToBytesRequestProtoMsg {
-  typeUrl: "/cosmos.auth.v1beta1.AddressStringToBytesRequest";
-  value: Uint8Array;
-}
-/** AddressStringToBytesRequest is the request type for AccountBytes rpc method */
-export interface AddressStringToBytesRequestAmino {
-  address_string?: string;
-}
-export interface AddressStringToBytesRequestAminoMsg {
-  type: "cosmos-sdk/AddressStringToBytesRequest";
-  value: AddressStringToBytesRequestAmino;
-}
-/** AddressStringToBytesRequest is the request type for AccountBytes rpc method */
-export interface AddressStringToBytesRequestSDKType {
-  address_string: string;
-}
-/** AddressStringToBytesResponse is the response type for AddressBytes rpc method */
-export interface AddressStringToBytesResponse {
-  addressBytes: Uint8Array;
-}
-export interface AddressStringToBytesResponseProtoMsg {
-  typeUrl: "/cosmos.auth.v1beta1.AddressStringToBytesResponse";
-  value: Uint8Array;
-}
-/** AddressStringToBytesResponse is the response type for AddressBytes rpc method */
-export interface AddressStringToBytesResponseAmino {
-  address_bytes?: string;
-}
-export interface AddressStringToBytesResponseAminoMsg {
-  type: "cosmos-sdk/AddressStringToBytesResponse";
-  value: AddressStringToBytesResponseAmino;
-}
-/** AddressStringToBytesResponse is the response type for AddressBytes rpc method */
-export interface AddressStringToBytesResponseSDKType {
-  address_bytes: Uint8Array;
+/** QueryNextAccountResponse is the response type for the Query/NextAccountNumber RPC method. */
+export interface QueryNextAccountNumberResponseSDKType {
+  count: Long;
 }
 function createBaseQueryAccountsRequest(): QueryAccountsRequest {
   return {
@@ -561,148 +449,6 @@ export const QueryAccountRequest = {
     };
   }
 };
-function createBaseQueryModuleAccountsRequest(): QueryModuleAccountsRequest {
-  return {};
-}
-export const QueryModuleAccountsRequest = {
-  typeUrl: "/cosmos.auth.v1beta1.QueryModuleAccountsRequest",
-  encode(_: QueryModuleAccountsRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    return writer;
-  },
-  decode(input: _m0.Reader | Uint8Array, length?: number): QueryModuleAccountsRequest {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseQueryModuleAccountsRequest();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        default:
-          reader.skipType(tag & 7);
-          break;
-      }
-    }
-    return message;
-  },
-  fromJSON(_: any): QueryModuleAccountsRequest {
-    return {};
-  },
-  toJSON(_: QueryModuleAccountsRequest): unknown {
-    const obj: any = {};
-    return obj;
-  },
-  fromPartial(_: Partial<QueryModuleAccountsRequest>): QueryModuleAccountsRequest {
-    const message = createBaseQueryModuleAccountsRequest();
-    return message;
-  },
-  fromAmino(_: QueryModuleAccountsRequestAmino): QueryModuleAccountsRequest {
-    const message = createBaseQueryModuleAccountsRequest();
-    return message;
-  },
-  toAmino(_: QueryModuleAccountsRequest): QueryModuleAccountsRequestAmino {
-    const obj: any = {};
-    return obj;
-  },
-  fromAminoMsg(object: QueryModuleAccountsRequestAminoMsg): QueryModuleAccountsRequest {
-    return QueryModuleAccountsRequest.fromAmino(object.value);
-  },
-  toAminoMsg(message: QueryModuleAccountsRequest): QueryModuleAccountsRequestAminoMsg {
-    return {
-      type: "cosmos-sdk/QueryModuleAccountsRequest",
-      value: QueryModuleAccountsRequest.toAmino(message)
-    };
-  },
-  fromProtoMsg(message: QueryModuleAccountsRequestProtoMsg): QueryModuleAccountsRequest {
-    return QueryModuleAccountsRequest.decode(message.value);
-  },
-  toProto(message: QueryModuleAccountsRequest): Uint8Array {
-    return QueryModuleAccountsRequest.encode(message).finish();
-  },
-  toProtoMsg(message: QueryModuleAccountsRequest): QueryModuleAccountsRequestProtoMsg {
-    return {
-      typeUrl: "/cosmos.auth.v1beta1.QueryModuleAccountsRequest",
-      value: QueryModuleAccountsRequest.encode(message).finish()
-    };
-  }
-};
-function createBaseQueryParamsResponse(): QueryParamsResponse {
-  return {
-    params: Params.fromPartial({})
-  };
-}
-export const QueryParamsResponse = {
-  typeUrl: "/cosmos.auth.v1beta1.QueryParamsResponse",
-  encode(message: QueryParamsResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.params !== undefined) {
-      Params.encode(message.params, writer.uint32(10).fork()).ldelim();
-    }
-    return writer;
-  },
-  decode(input: _m0.Reader | Uint8Array, length?: number): QueryParamsResponse {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseQueryParamsResponse();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          message.params = Params.decode(reader, reader.uint32());
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
-      }
-    }
-    return message;
-  },
-  fromJSON(object: any): QueryParamsResponse {
-    return {
-      params: isSet(object.params) ? Params.fromJSON(object.params) : undefined
-    };
-  },
-  toJSON(message: QueryParamsResponse): unknown {
-    const obj: any = {};
-    message.params !== undefined && (obj.params = message.params ? Params.toJSON(message.params) : undefined);
-    return obj;
-  },
-  fromPartial(object: Partial<QueryParamsResponse>): QueryParamsResponse {
-    const message = createBaseQueryParamsResponse();
-    message.params = object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
-    return message;
-  },
-  fromAmino(object: QueryParamsResponseAmino): QueryParamsResponse {
-    const message = createBaseQueryParamsResponse();
-    if (object.params !== undefined && object.params !== null) {
-      message.params = Params.fromAmino(object.params);
-    }
-    return message;
-  },
-  toAmino(message: QueryParamsResponse): QueryParamsResponseAmino {
-    const obj: any = {};
-    obj.params = message.params ? Params.toAmino(message.params) : undefined;
-    return obj;
-  },
-  fromAminoMsg(object: QueryParamsResponseAminoMsg): QueryParamsResponse {
-    return QueryParamsResponse.fromAmino(object.value);
-  },
-  toAminoMsg(message: QueryParamsResponse): QueryParamsResponseAminoMsg {
-    return {
-      type: "cosmos-sdk/QueryParamsResponse",
-      value: QueryParamsResponse.toAmino(message)
-    };
-  },
-  fromProtoMsg(message: QueryParamsResponseProtoMsg): QueryParamsResponse {
-    return QueryParamsResponse.decode(message.value);
-  },
-  toProto(message: QueryParamsResponse): Uint8Array {
-    return QueryParamsResponse.encode(message).finish();
-  },
-  toProtoMsg(message: QueryParamsResponse): QueryParamsResponseProtoMsg {
-    return {
-      typeUrl: "/cosmos.auth.v1beta1.QueryParamsResponse",
-      value: QueryParamsResponse.encode(message).finish()
-    };
-  }
-};
 function createBaseQueryAccountResponse(): QueryAccountResponse {
   return {
     account: undefined
@@ -845,28 +591,28 @@ export const QueryParamsRequest = {
     };
   }
 };
-function createBaseQueryModuleAccountsResponse(): QueryModuleAccountsResponse {
+function createBaseQueryParamsResponse(): QueryParamsResponse {
   return {
-    accounts: []
+    params: Params.fromPartial({})
   };
 }
-export const QueryModuleAccountsResponse = {
-  typeUrl: "/cosmos.auth.v1beta1.QueryModuleAccountsResponse",
-  encode(message: QueryModuleAccountsResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    for (const v of message.accounts) {
-      Any.encode(v!, writer.uint32(10).fork()).ldelim();
+export const QueryParamsResponse = {
+  typeUrl: "/cosmos.auth.v1beta1.QueryParamsResponse",
+  encode(message: QueryParamsResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.params !== undefined) {
+      Params.encode(message.params, writer.uint32(10).fork()).ldelim();
     }
     return writer;
   },
-  decode(input: _m0.Reader | Uint8Array, length?: number): QueryModuleAccountsResponse {
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryParamsResponse {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseQueryModuleAccountsResponse();
+    const message = createBaseQueryParamsResponse();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.accounts.push(Any.decode(reader, reader.uint32()));
+          message.params = Params.decode(reader, reader.uint32());
           break;
         default:
           reader.skipType(tag & 7);
@@ -875,73 +621,67 @@ export const QueryModuleAccountsResponse = {
     }
     return message;
   },
-  fromJSON(object: any): QueryModuleAccountsResponse {
+  fromJSON(object: any): QueryParamsResponse {
     return {
-      accounts: Array.isArray(object?.accounts) ? object.accounts.map((e: any) => Any.fromJSON(e)) : []
+      params: isSet(object.params) ? Params.fromJSON(object.params) : undefined
     };
   },
-  toJSON(message: QueryModuleAccountsResponse): unknown {
+  toJSON(message: QueryParamsResponse): unknown {
     const obj: any = {};
-    if (message.accounts) {
-      obj.accounts = message.accounts.map(e => e ? Any.toJSON(e) : undefined);
-    } else {
-      obj.accounts = [];
-    }
+    message.params !== undefined && (obj.params = message.params ? Params.toJSON(message.params) : undefined);
     return obj;
   },
-  fromPartial(object: Partial<QueryModuleAccountsResponse>): QueryModuleAccountsResponse {
-    const message = createBaseQueryModuleAccountsResponse();
-    message.accounts = object.accounts?.map(e => Any.fromPartial(e)) || [];
+  fromPartial(object: Partial<QueryParamsResponse>): QueryParamsResponse {
+    const message = createBaseQueryParamsResponse();
+    message.params = object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
     return message;
   },
-  fromAmino(object: QueryModuleAccountsResponseAmino): QueryModuleAccountsResponse {
-    const message = createBaseQueryModuleAccountsResponse();
-    message.accounts = object.accounts?.map(e => Any.fromAmino(e)) || [];
-    return message;
-  },
-  toAmino(message: QueryModuleAccountsResponse): QueryModuleAccountsResponseAmino {
-    const obj: any = {};
-    if (message.accounts) {
-      obj.accounts = message.accounts.map(e => e ? Any.toAmino(e) : undefined);
-    } else {
-      obj.accounts = [];
+  fromAmino(object: QueryParamsResponseAmino): QueryParamsResponse {
+    const message = createBaseQueryParamsResponse();
+    if (object.params !== undefined && object.params !== null) {
+      message.params = Params.fromAmino(object.params);
     }
+    return message;
+  },
+  toAmino(message: QueryParamsResponse): QueryParamsResponseAmino {
+    const obj: any = {};
+    obj.params = message.params ? Params.toAmino(message.params) : undefined;
     return obj;
   },
-  fromAminoMsg(object: QueryModuleAccountsResponseAminoMsg): QueryModuleAccountsResponse {
-    return QueryModuleAccountsResponse.fromAmino(object.value);
+  fromAminoMsg(object: QueryParamsResponseAminoMsg): QueryParamsResponse {
+    return QueryParamsResponse.fromAmino(object.value);
   },
-  toAminoMsg(message: QueryModuleAccountsResponse): QueryModuleAccountsResponseAminoMsg {
+  toAminoMsg(message: QueryParamsResponse): QueryParamsResponseAminoMsg {
     return {
-      type: "cosmos-sdk/QueryModuleAccountsResponse",
-      value: QueryModuleAccountsResponse.toAmino(message)
+      type: "cosmos-sdk/QueryParamsResponse",
+      value: QueryParamsResponse.toAmino(message)
     };
   },
-  fromProtoMsg(message: QueryModuleAccountsResponseProtoMsg): QueryModuleAccountsResponse {
-    return QueryModuleAccountsResponse.decode(message.value);
+  fromProtoMsg(message: QueryParamsResponseProtoMsg): QueryParamsResponse {
+    return QueryParamsResponse.decode(message.value);
   },
-  toProto(message: QueryModuleAccountsResponse): Uint8Array {
-    return QueryModuleAccountsResponse.encode(message).finish();
+  toProto(message: QueryParamsResponse): Uint8Array {
+    return QueryParamsResponse.encode(message).finish();
   },
-  toProtoMsg(message: QueryModuleAccountsResponse): QueryModuleAccountsResponseProtoMsg {
+  toProtoMsg(message: QueryParamsResponse): QueryParamsResponseProtoMsg {
     return {
-      typeUrl: "/cosmos.auth.v1beta1.QueryModuleAccountsResponse",
-      value: QueryModuleAccountsResponse.encode(message).finish()
+      typeUrl: "/cosmos.auth.v1beta1.QueryParamsResponse",
+      value: QueryParamsResponse.encode(message).finish()
     };
   }
 };
-function createBaseBech32PrefixRequest(): Bech32PrefixRequest {
+function createBaseQueryNextAccountNumberRequest(): QueryNextAccountNumberRequest {
   return {};
 }
-export const Bech32PrefixRequest = {
-  typeUrl: "/cosmos.auth.v1beta1.Bech32PrefixRequest",
-  encode(_: Bech32PrefixRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export const QueryNextAccountNumberRequest = {
+  typeUrl: "/cosmos.auth.v1beta1.QueryNextAccountNumberRequest",
+  encode(_: QueryNextAccountNumberRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     return writer;
   },
-  decode(input: _m0.Reader | Uint8Array, length?: number): Bech32PrefixRequest {
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryNextAccountNumberRequest {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseBech32PrefixRequest();
+    const message = createBaseQueryNextAccountNumberRequest();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -952,69 +692,69 @@ export const Bech32PrefixRequest = {
     }
     return message;
   },
-  fromJSON(_: any): Bech32PrefixRequest {
+  fromJSON(_: any): QueryNextAccountNumberRequest {
     return {};
   },
-  toJSON(_: Bech32PrefixRequest): unknown {
+  toJSON(_: QueryNextAccountNumberRequest): unknown {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: Partial<Bech32PrefixRequest>): Bech32PrefixRequest {
-    const message = createBaseBech32PrefixRequest();
+  fromPartial(_: Partial<QueryNextAccountNumberRequest>): QueryNextAccountNumberRequest {
+    const message = createBaseQueryNextAccountNumberRequest();
     return message;
   },
-  fromAmino(_: Bech32PrefixRequestAmino): Bech32PrefixRequest {
-    const message = createBaseBech32PrefixRequest();
+  fromAmino(_: QueryNextAccountNumberRequestAmino): QueryNextAccountNumberRequest {
+    const message = createBaseQueryNextAccountNumberRequest();
     return message;
   },
-  toAmino(_: Bech32PrefixRequest): Bech32PrefixRequestAmino {
+  toAmino(_: QueryNextAccountNumberRequest): QueryNextAccountNumberRequestAmino {
     const obj: any = {};
     return obj;
   },
-  fromAminoMsg(object: Bech32PrefixRequestAminoMsg): Bech32PrefixRequest {
-    return Bech32PrefixRequest.fromAmino(object.value);
+  fromAminoMsg(object: QueryNextAccountNumberRequestAminoMsg): QueryNextAccountNumberRequest {
+    return QueryNextAccountNumberRequest.fromAmino(object.value);
   },
-  toAminoMsg(message: Bech32PrefixRequest): Bech32PrefixRequestAminoMsg {
+  toAminoMsg(message: QueryNextAccountNumberRequest): QueryNextAccountNumberRequestAminoMsg {
     return {
-      type: "cosmos-sdk/Bech32PrefixRequest",
-      value: Bech32PrefixRequest.toAmino(message)
+      type: "cosmos-sdk/QueryNextAccountNumberRequest",
+      value: QueryNextAccountNumberRequest.toAmino(message)
     };
   },
-  fromProtoMsg(message: Bech32PrefixRequestProtoMsg): Bech32PrefixRequest {
-    return Bech32PrefixRequest.decode(message.value);
+  fromProtoMsg(message: QueryNextAccountNumberRequestProtoMsg): QueryNextAccountNumberRequest {
+    return QueryNextAccountNumberRequest.decode(message.value);
   },
-  toProto(message: Bech32PrefixRequest): Uint8Array {
-    return Bech32PrefixRequest.encode(message).finish();
+  toProto(message: QueryNextAccountNumberRequest): Uint8Array {
+    return QueryNextAccountNumberRequest.encode(message).finish();
   },
-  toProtoMsg(message: Bech32PrefixRequest): Bech32PrefixRequestProtoMsg {
+  toProtoMsg(message: QueryNextAccountNumberRequest): QueryNextAccountNumberRequestProtoMsg {
     return {
-      typeUrl: "/cosmos.auth.v1beta1.Bech32PrefixRequest",
-      value: Bech32PrefixRequest.encode(message).finish()
+      typeUrl: "/cosmos.auth.v1beta1.QueryNextAccountNumberRequest",
+      value: QueryNextAccountNumberRequest.encode(message).finish()
     };
   }
 };
-function createBaseBech32PrefixResponse(): Bech32PrefixResponse {
+function createBaseQueryNextAccountNumberResponse(): QueryNextAccountNumberResponse {
   return {
-    bech32Prefix: ""
+    count: Long.UZERO
   };
 }
-export const Bech32PrefixResponse = {
-  typeUrl: "/cosmos.auth.v1beta1.Bech32PrefixResponse",
-  encode(message: Bech32PrefixResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.bech32Prefix !== "") {
-      writer.uint32(10).string(message.bech32Prefix);
+export const QueryNextAccountNumberResponse = {
+  typeUrl: "/cosmos.auth.v1beta1.QueryNextAccountNumberResponse",
+  encode(message: QueryNextAccountNumberResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (!message.count.isZero()) {
+      writer.uint32(8).uint64(message.count);
     }
     return writer;
   },
-  decode(input: _m0.Reader | Uint8Array, length?: number): Bech32PrefixResponse {
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryNextAccountNumberResponse {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseBech32PrefixResponse();
+    const message = createBaseQueryNextAccountNumberResponse();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.bech32Prefix = reader.string();
+          message.count = (reader.uint64() as Long);
           break;
         default:
           reader.skipType(tag & 7);
@@ -1023,368 +763,52 @@ export const Bech32PrefixResponse = {
     }
     return message;
   },
-  fromJSON(object: any): Bech32PrefixResponse {
+  fromJSON(object: any): QueryNextAccountNumberResponse {
     return {
-      bech32Prefix: isSet(object.bech32Prefix) ? String(object.bech32Prefix) : ""
+      count: isSet(object.count) ? Long.fromValue(object.count) : Long.UZERO
     };
   },
-  toJSON(message: Bech32PrefixResponse): unknown {
+  toJSON(message: QueryNextAccountNumberResponse): unknown {
     const obj: any = {};
-    message.bech32Prefix !== undefined && (obj.bech32Prefix = message.bech32Prefix);
+    message.count !== undefined && (obj.count = (message.count || Long.UZERO).toString());
     return obj;
   },
-  fromPartial(object: Partial<Bech32PrefixResponse>): Bech32PrefixResponse {
-    const message = createBaseBech32PrefixResponse();
-    message.bech32Prefix = object.bech32Prefix ?? "";
+  fromPartial(object: Partial<QueryNextAccountNumberResponse>): QueryNextAccountNumberResponse {
+    const message = createBaseQueryNextAccountNumberResponse();
+    message.count = object.count !== undefined && object.count !== null ? Long.fromValue(object.count) : Long.UZERO;
     return message;
   },
-  fromAmino(object: Bech32PrefixResponseAmino): Bech32PrefixResponse {
-    const message = createBaseBech32PrefixResponse();
-    if (object.bech32_prefix !== undefined && object.bech32_prefix !== null) {
-      message.bech32Prefix = object.bech32_prefix;
+  fromAmino(object: QueryNextAccountNumberResponseAmino): QueryNextAccountNumberResponse {
+    const message = createBaseQueryNextAccountNumberResponse();
+    if (object.count !== undefined && object.count !== null) {
+      message.count = Long.fromString(object.count);
     }
     return message;
   },
-  toAmino(message: Bech32PrefixResponse): Bech32PrefixResponseAmino {
+  toAmino(message: QueryNextAccountNumberResponse): QueryNextAccountNumberResponseAmino {
     const obj: any = {};
-    obj.bech32_prefix = message.bech32Prefix;
+    obj.count = message.count ? message.count.toString() : undefined;
     return obj;
   },
-  fromAminoMsg(object: Bech32PrefixResponseAminoMsg): Bech32PrefixResponse {
-    return Bech32PrefixResponse.fromAmino(object.value);
+  fromAminoMsg(object: QueryNextAccountNumberResponseAminoMsg): QueryNextAccountNumberResponse {
+    return QueryNextAccountNumberResponse.fromAmino(object.value);
   },
-  toAminoMsg(message: Bech32PrefixResponse): Bech32PrefixResponseAminoMsg {
+  toAminoMsg(message: QueryNextAccountNumberResponse): QueryNextAccountNumberResponseAminoMsg {
     return {
-      type: "cosmos-sdk/Bech32PrefixResponse",
-      value: Bech32PrefixResponse.toAmino(message)
+      type: "cosmos-sdk/QueryNextAccountNumberResponse",
+      value: QueryNextAccountNumberResponse.toAmino(message)
     };
   },
-  fromProtoMsg(message: Bech32PrefixResponseProtoMsg): Bech32PrefixResponse {
-    return Bech32PrefixResponse.decode(message.value);
+  fromProtoMsg(message: QueryNextAccountNumberResponseProtoMsg): QueryNextAccountNumberResponse {
+    return QueryNextAccountNumberResponse.decode(message.value);
   },
-  toProto(message: Bech32PrefixResponse): Uint8Array {
-    return Bech32PrefixResponse.encode(message).finish();
+  toProto(message: QueryNextAccountNumberResponse): Uint8Array {
+    return QueryNextAccountNumberResponse.encode(message).finish();
   },
-  toProtoMsg(message: Bech32PrefixResponse): Bech32PrefixResponseProtoMsg {
+  toProtoMsg(message: QueryNextAccountNumberResponse): QueryNextAccountNumberResponseProtoMsg {
     return {
-      typeUrl: "/cosmos.auth.v1beta1.Bech32PrefixResponse",
-      value: Bech32PrefixResponse.encode(message).finish()
-    };
-  }
-};
-function createBaseAddressBytesToStringRequest(): AddressBytesToStringRequest {
-  return {
-    addressBytes: new Uint8Array()
-  };
-}
-export const AddressBytesToStringRequest = {
-  typeUrl: "/cosmos.auth.v1beta1.AddressBytesToStringRequest",
-  encode(message: AddressBytesToStringRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.addressBytes.length !== 0) {
-      writer.uint32(10).bytes(message.addressBytes);
-    }
-    return writer;
-  },
-  decode(input: _m0.Reader | Uint8Array, length?: number): AddressBytesToStringRequest {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseAddressBytesToStringRequest();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          message.addressBytes = reader.bytes();
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
-      }
-    }
-    return message;
-  },
-  fromJSON(object: any): AddressBytesToStringRequest {
-    return {
-      addressBytes: isSet(object.addressBytes) ? bytesFromBase64(object.addressBytes) : new Uint8Array()
-    };
-  },
-  toJSON(message: AddressBytesToStringRequest): unknown {
-    const obj: any = {};
-    message.addressBytes !== undefined && (obj.addressBytes = base64FromBytes(message.addressBytes !== undefined ? message.addressBytes : new Uint8Array()));
-    return obj;
-  },
-  fromPartial(object: Partial<AddressBytesToStringRequest>): AddressBytesToStringRequest {
-    const message = createBaseAddressBytesToStringRequest();
-    message.addressBytes = object.addressBytes ?? new Uint8Array();
-    return message;
-  },
-  fromAmino(object: AddressBytesToStringRequestAmino): AddressBytesToStringRequest {
-    const message = createBaseAddressBytesToStringRequest();
-    if (object.address_bytes !== undefined && object.address_bytes !== null) {
-      message.addressBytes = bytesFromBase64(object.address_bytes);
-    }
-    return message;
-  },
-  toAmino(message: AddressBytesToStringRequest): AddressBytesToStringRequestAmino {
-    const obj: any = {};
-    obj.address_bytes = message.addressBytes ? base64FromBytes(message.addressBytes) : undefined;
-    return obj;
-  },
-  fromAminoMsg(object: AddressBytesToStringRequestAminoMsg): AddressBytesToStringRequest {
-    return AddressBytesToStringRequest.fromAmino(object.value);
-  },
-  toAminoMsg(message: AddressBytesToStringRequest): AddressBytesToStringRequestAminoMsg {
-    return {
-      type: "cosmos-sdk/AddressBytesToStringRequest",
-      value: AddressBytesToStringRequest.toAmino(message)
-    };
-  },
-  fromProtoMsg(message: AddressBytesToStringRequestProtoMsg): AddressBytesToStringRequest {
-    return AddressBytesToStringRequest.decode(message.value);
-  },
-  toProto(message: AddressBytesToStringRequest): Uint8Array {
-    return AddressBytesToStringRequest.encode(message).finish();
-  },
-  toProtoMsg(message: AddressBytesToStringRequest): AddressBytesToStringRequestProtoMsg {
-    return {
-      typeUrl: "/cosmos.auth.v1beta1.AddressBytesToStringRequest",
-      value: AddressBytesToStringRequest.encode(message).finish()
-    };
-  }
-};
-function createBaseAddressBytesToStringResponse(): AddressBytesToStringResponse {
-  return {
-    addressString: ""
-  };
-}
-export const AddressBytesToStringResponse = {
-  typeUrl: "/cosmos.auth.v1beta1.AddressBytesToStringResponse",
-  encode(message: AddressBytesToStringResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.addressString !== "") {
-      writer.uint32(10).string(message.addressString);
-    }
-    return writer;
-  },
-  decode(input: _m0.Reader | Uint8Array, length?: number): AddressBytesToStringResponse {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseAddressBytesToStringResponse();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          message.addressString = reader.string();
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
-      }
-    }
-    return message;
-  },
-  fromJSON(object: any): AddressBytesToStringResponse {
-    return {
-      addressString: isSet(object.addressString) ? String(object.addressString) : ""
-    };
-  },
-  toJSON(message: AddressBytesToStringResponse): unknown {
-    const obj: any = {};
-    message.addressString !== undefined && (obj.addressString = message.addressString);
-    return obj;
-  },
-  fromPartial(object: Partial<AddressBytesToStringResponse>): AddressBytesToStringResponse {
-    const message = createBaseAddressBytesToStringResponse();
-    message.addressString = object.addressString ?? "";
-    return message;
-  },
-  fromAmino(object: AddressBytesToStringResponseAmino): AddressBytesToStringResponse {
-    const message = createBaseAddressBytesToStringResponse();
-    if (object.address_string !== undefined && object.address_string !== null) {
-      message.addressString = object.address_string;
-    }
-    return message;
-  },
-  toAmino(message: AddressBytesToStringResponse): AddressBytesToStringResponseAmino {
-    const obj: any = {};
-    obj.address_string = message.addressString;
-    return obj;
-  },
-  fromAminoMsg(object: AddressBytesToStringResponseAminoMsg): AddressBytesToStringResponse {
-    return AddressBytesToStringResponse.fromAmino(object.value);
-  },
-  toAminoMsg(message: AddressBytesToStringResponse): AddressBytesToStringResponseAminoMsg {
-    return {
-      type: "cosmos-sdk/AddressBytesToStringResponse",
-      value: AddressBytesToStringResponse.toAmino(message)
-    };
-  },
-  fromProtoMsg(message: AddressBytesToStringResponseProtoMsg): AddressBytesToStringResponse {
-    return AddressBytesToStringResponse.decode(message.value);
-  },
-  toProto(message: AddressBytesToStringResponse): Uint8Array {
-    return AddressBytesToStringResponse.encode(message).finish();
-  },
-  toProtoMsg(message: AddressBytesToStringResponse): AddressBytesToStringResponseProtoMsg {
-    return {
-      typeUrl: "/cosmos.auth.v1beta1.AddressBytesToStringResponse",
-      value: AddressBytesToStringResponse.encode(message).finish()
-    };
-  }
-};
-function createBaseAddressStringToBytesRequest(): AddressStringToBytesRequest {
-  return {
-    addressString: ""
-  };
-}
-export const AddressStringToBytesRequest = {
-  typeUrl: "/cosmos.auth.v1beta1.AddressStringToBytesRequest",
-  encode(message: AddressStringToBytesRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.addressString !== "") {
-      writer.uint32(10).string(message.addressString);
-    }
-    return writer;
-  },
-  decode(input: _m0.Reader | Uint8Array, length?: number): AddressStringToBytesRequest {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseAddressStringToBytesRequest();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          message.addressString = reader.string();
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
-      }
-    }
-    return message;
-  },
-  fromJSON(object: any): AddressStringToBytesRequest {
-    return {
-      addressString: isSet(object.addressString) ? String(object.addressString) : ""
-    };
-  },
-  toJSON(message: AddressStringToBytesRequest): unknown {
-    const obj: any = {};
-    message.addressString !== undefined && (obj.addressString = message.addressString);
-    return obj;
-  },
-  fromPartial(object: Partial<AddressStringToBytesRequest>): AddressStringToBytesRequest {
-    const message = createBaseAddressStringToBytesRequest();
-    message.addressString = object.addressString ?? "";
-    return message;
-  },
-  fromAmino(object: AddressStringToBytesRequestAmino): AddressStringToBytesRequest {
-    const message = createBaseAddressStringToBytesRequest();
-    if (object.address_string !== undefined && object.address_string !== null) {
-      message.addressString = object.address_string;
-    }
-    return message;
-  },
-  toAmino(message: AddressStringToBytesRequest): AddressStringToBytesRequestAmino {
-    const obj: any = {};
-    obj.address_string = message.addressString;
-    return obj;
-  },
-  fromAminoMsg(object: AddressStringToBytesRequestAminoMsg): AddressStringToBytesRequest {
-    return AddressStringToBytesRequest.fromAmino(object.value);
-  },
-  toAminoMsg(message: AddressStringToBytesRequest): AddressStringToBytesRequestAminoMsg {
-    return {
-      type: "cosmos-sdk/AddressStringToBytesRequest",
-      value: AddressStringToBytesRequest.toAmino(message)
-    };
-  },
-  fromProtoMsg(message: AddressStringToBytesRequestProtoMsg): AddressStringToBytesRequest {
-    return AddressStringToBytesRequest.decode(message.value);
-  },
-  toProto(message: AddressStringToBytesRequest): Uint8Array {
-    return AddressStringToBytesRequest.encode(message).finish();
-  },
-  toProtoMsg(message: AddressStringToBytesRequest): AddressStringToBytesRequestProtoMsg {
-    return {
-      typeUrl: "/cosmos.auth.v1beta1.AddressStringToBytesRequest",
-      value: AddressStringToBytesRequest.encode(message).finish()
-    };
-  }
-};
-function createBaseAddressStringToBytesResponse(): AddressStringToBytesResponse {
-  return {
-    addressBytes: new Uint8Array()
-  };
-}
-export const AddressStringToBytesResponse = {
-  typeUrl: "/cosmos.auth.v1beta1.AddressStringToBytesResponse",
-  encode(message: AddressStringToBytesResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.addressBytes.length !== 0) {
-      writer.uint32(10).bytes(message.addressBytes);
-    }
-    return writer;
-  },
-  decode(input: _m0.Reader | Uint8Array, length?: number): AddressStringToBytesResponse {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseAddressStringToBytesResponse();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          message.addressBytes = reader.bytes();
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
-      }
-    }
-    return message;
-  },
-  fromJSON(object: any): AddressStringToBytesResponse {
-    return {
-      addressBytes: isSet(object.addressBytes) ? bytesFromBase64(object.addressBytes) : new Uint8Array()
-    };
-  },
-  toJSON(message: AddressStringToBytesResponse): unknown {
-    const obj: any = {};
-    message.addressBytes !== undefined && (obj.addressBytes = base64FromBytes(message.addressBytes !== undefined ? message.addressBytes : new Uint8Array()));
-    return obj;
-  },
-  fromPartial(object: Partial<AddressStringToBytesResponse>): AddressStringToBytesResponse {
-    const message = createBaseAddressStringToBytesResponse();
-    message.addressBytes = object.addressBytes ?? new Uint8Array();
-    return message;
-  },
-  fromAmino(object: AddressStringToBytesResponseAmino): AddressStringToBytesResponse {
-    const message = createBaseAddressStringToBytesResponse();
-    if (object.address_bytes !== undefined && object.address_bytes !== null) {
-      message.addressBytes = bytesFromBase64(object.address_bytes);
-    }
-    return message;
-  },
-  toAmino(message: AddressStringToBytesResponse): AddressStringToBytesResponseAmino {
-    const obj: any = {};
-    obj.address_bytes = message.addressBytes ? base64FromBytes(message.addressBytes) : undefined;
-    return obj;
-  },
-  fromAminoMsg(object: AddressStringToBytesResponseAminoMsg): AddressStringToBytesResponse {
-    return AddressStringToBytesResponse.fromAmino(object.value);
-  },
-  toAminoMsg(message: AddressStringToBytesResponse): AddressStringToBytesResponseAminoMsg {
-    return {
-      type: "cosmos-sdk/AddressStringToBytesResponse",
-      value: AddressStringToBytesResponse.toAmino(message)
-    };
-  },
-  fromProtoMsg(message: AddressStringToBytesResponseProtoMsg): AddressStringToBytesResponse {
-    return AddressStringToBytesResponse.decode(message.value);
-  },
-  toProto(message: AddressStringToBytesResponse): Uint8Array {
-    return AddressStringToBytesResponse.encode(message).finish();
-  },
-  toProtoMsg(message: AddressStringToBytesResponse): AddressStringToBytesResponseProtoMsg {
-    return {
-      typeUrl: "/cosmos.auth.v1beta1.AddressStringToBytesResponse",
-      value: AddressStringToBytesResponse.encode(message).finish()
+      typeUrl: "/cosmos.auth.v1beta1.QueryNextAccountNumberResponse",
+      value: QueryNextAccountNumberResponse.encode(message).finish()
     };
   }
 };

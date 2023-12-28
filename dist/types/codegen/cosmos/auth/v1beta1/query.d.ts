@@ -1,6 +1,7 @@
 import { PageRequest, PageRequestAmino, PageRequestSDKType, PageResponse, PageResponseAmino, PageResponseSDKType } from "../../base/query/v1beta1/pagination";
 import { Any, AnyAmino, AnySDKType } from "../../../google/protobuf/any";
 import { Params, ParamsAmino, ParamsSDKType } from "./auth";
+import { Long } from "../../../helpers";
 import * as _m0 from "protobufjs/minimal";
 /**
  * QueryAccountsRequest is the request type for the Query/Accounts RPC method.
@@ -97,45 +98,6 @@ export interface QueryAccountRequestAminoMsg {
 export interface QueryAccountRequestSDKType {
     address: string;
 }
-/** QueryModuleAccountsRequest is the request type for the Query/ModuleAccounts RPC method. */
-export interface QueryModuleAccountsRequest {
-}
-export interface QueryModuleAccountsRequestProtoMsg {
-    typeUrl: "/cosmos.auth.v1beta1.QueryModuleAccountsRequest";
-    value: Uint8Array;
-}
-/** QueryModuleAccountsRequest is the request type for the Query/ModuleAccounts RPC method. */
-export interface QueryModuleAccountsRequestAmino {
-}
-export interface QueryModuleAccountsRequestAminoMsg {
-    type: "cosmos-sdk/QueryModuleAccountsRequest";
-    value: QueryModuleAccountsRequestAmino;
-}
-/** QueryModuleAccountsRequest is the request type for the Query/ModuleAccounts RPC method. */
-export interface QueryModuleAccountsRequestSDKType {
-}
-/** QueryParamsResponse is the response type for the Query/Params RPC method. */
-export interface QueryParamsResponse {
-    /** params defines the parameters of the module. */
-    params: Params;
-}
-export interface QueryParamsResponseProtoMsg {
-    typeUrl: "/cosmos.auth.v1beta1.QueryParamsResponse";
-    value: Uint8Array;
-}
-/** QueryParamsResponse is the response type for the Query/Params RPC method. */
-export interface QueryParamsResponseAmino {
-    /** params defines the parameters of the module. */
-    params?: ParamsAmino;
-}
-export interface QueryParamsResponseAminoMsg {
-    type: "cosmos-sdk/QueryParamsResponse";
-    value: QueryParamsResponseAmino;
-}
-/** QueryParamsResponse is the response type for the Query/Params RPC method. */
-export interface QueryParamsResponseSDKType {
-    params: ParamsSDKType;
-}
 /** QueryAccountResponse is the response type for the Query/Account RPC method. */
 export interface QueryAccountResponse {
     /** account defines the account of the corresponding address. */
@@ -175,142 +137,66 @@ export interface QueryParamsRequestAminoMsg {
 /** QueryParamsRequest is the request type for the Query/Params RPC method. */
 export interface QueryParamsRequestSDKType {
 }
-/** QueryModuleAccountsResponse is the response type for the Query/ModuleAccounts RPC method. */
-export interface QueryModuleAccountsResponse {
-    accounts: Any[];
+/** QueryParamsResponse is the response type for the Query/Params RPC method. */
+export interface QueryParamsResponse {
+    /** params defines the parameters of the module. */
+    params: Params;
 }
-export interface QueryModuleAccountsResponseProtoMsg {
-    typeUrl: "/cosmos.auth.v1beta1.QueryModuleAccountsResponse";
+export interface QueryParamsResponseProtoMsg {
+    typeUrl: "/cosmos.auth.v1beta1.QueryParamsResponse";
     value: Uint8Array;
 }
-/** QueryModuleAccountsResponse is the response type for the Query/ModuleAccounts RPC method. */
-export interface QueryModuleAccountsResponseAmino {
-    accounts?: AnyAmino[];
+/** QueryParamsResponse is the response type for the Query/Params RPC method. */
+export interface QueryParamsResponseAmino {
+    /** params defines the parameters of the module. */
+    params?: ParamsAmino;
 }
-export interface QueryModuleAccountsResponseAminoMsg {
-    type: "cosmos-sdk/QueryModuleAccountsResponse";
-    value: QueryModuleAccountsResponseAmino;
+export interface QueryParamsResponseAminoMsg {
+    type: "cosmos-sdk/QueryParamsResponse";
+    value: QueryParamsResponseAmino;
 }
-/** QueryModuleAccountsResponse is the response type for the Query/ModuleAccounts RPC method. */
-export interface QueryModuleAccountsResponseSDKType {
-    accounts: AnySDKType[];
+/** QueryParamsResponse is the response type for the Query/Params RPC method. */
+export interface QueryParamsResponseSDKType {
+    params: ParamsSDKType;
 }
-/** Bech32PrefixRequest is the request type for Bech32Prefix rpc method */
-export interface Bech32PrefixRequest {
+/** QueryNextAccountRequest is the request type for the Query/NextAccountNumber RPC method. */
+export interface QueryNextAccountNumberRequest {
 }
-export interface Bech32PrefixRequestProtoMsg {
-    typeUrl: "/cosmos.auth.v1beta1.Bech32PrefixRequest";
+export interface QueryNextAccountNumberRequestProtoMsg {
+    typeUrl: "/cosmos.auth.v1beta1.QueryNextAccountNumberRequest";
     value: Uint8Array;
 }
-/** Bech32PrefixRequest is the request type for Bech32Prefix rpc method */
-export interface Bech32PrefixRequestAmino {
+/** QueryNextAccountRequest is the request type for the Query/NextAccountNumber RPC method. */
+export interface QueryNextAccountNumberRequestAmino {
 }
-export interface Bech32PrefixRequestAminoMsg {
-    type: "cosmos-sdk/Bech32PrefixRequest";
-    value: Bech32PrefixRequestAmino;
+export interface QueryNextAccountNumberRequestAminoMsg {
+    type: "cosmos-sdk/QueryNextAccountNumberRequest";
+    value: QueryNextAccountNumberRequestAmino;
 }
-/** Bech32PrefixRequest is the request type for Bech32Prefix rpc method */
-export interface Bech32PrefixRequestSDKType {
+/** QueryNextAccountRequest is the request type for the Query/NextAccountNumber RPC method. */
+export interface QueryNextAccountNumberRequestSDKType {
 }
-/** Bech32PrefixResponse is the response type for Bech32Prefix rpc method */
-export interface Bech32PrefixResponse {
-    bech32Prefix: string;
+/** QueryNextAccountResponse is the response type for the Query/NextAccountNumber RPC method. */
+export interface QueryNextAccountNumberResponse {
+    /** count defines the next account number. */
+    count: Long;
 }
-export interface Bech32PrefixResponseProtoMsg {
-    typeUrl: "/cosmos.auth.v1beta1.Bech32PrefixResponse";
+export interface QueryNextAccountNumberResponseProtoMsg {
+    typeUrl: "/cosmos.auth.v1beta1.QueryNextAccountNumberResponse";
     value: Uint8Array;
 }
-/** Bech32PrefixResponse is the response type for Bech32Prefix rpc method */
-export interface Bech32PrefixResponseAmino {
-    bech32_prefix?: string;
+/** QueryNextAccountResponse is the response type for the Query/NextAccountNumber RPC method. */
+export interface QueryNextAccountNumberResponseAmino {
+    /** count defines the next account number. */
+    count?: string;
 }
-export interface Bech32PrefixResponseAminoMsg {
-    type: "cosmos-sdk/Bech32PrefixResponse";
-    value: Bech32PrefixResponseAmino;
+export interface QueryNextAccountNumberResponseAminoMsg {
+    type: "cosmos-sdk/QueryNextAccountNumberResponse";
+    value: QueryNextAccountNumberResponseAmino;
 }
-/** Bech32PrefixResponse is the response type for Bech32Prefix rpc method */
-export interface Bech32PrefixResponseSDKType {
-    bech32_prefix: string;
-}
-/** AddressBytesToStringRequest is the request type for AddressString rpc method */
-export interface AddressBytesToStringRequest {
-    addressBytes: Uint8Array;
-}
-export interface AddressBytesToStringRequestProtoMsg {
-    typeUrl: "/cosmos.auth.v1beta1.AddressBytesToStringRequest";
-    value: Uint8Array;
-}
-/** AddressBytesToStringRequest is the request type for AddressString rpc method */
-export interface AddressBytesToStringRequestAmino {
-    address_bytes?: string;
-}
-export interface AddressBytesToStringRequestAminoMsg {
-    type: "cosmos-sdk/AddressBytesToStringRequest";
-    value: AddressBytesToStringRequestAmino;
-}
-/** AddressBytesToStringRequest is the request type for AddressString rpc method */
-export interface AddressBytesToStringRequestSDKType {
-    address_bytes: Uint8Array;
-}
-/** AddressBytesToStringResponse is the response type for AddressString rpc method */
-export interface AddressBytesToStringResponse {
-    addressString: string;
-}
-export interface AddressBytesToStringResponseProtoMsg {
-    typeUrl: "/cosmos.auth.v1beta1.AddressBytesToStringResponse";
-    value: Uint8Array;
-}
-/** AddressBytesToStringResponse is the response type for AddressString rpc method */
-export interface AddressBytesToStringResponseAmino {
-    address_string?: string;
-}
-export interface AddressBytesToStringResponseAminoMsg {
-    type: "cosmos-sdk/AddressBytesToStringResponse";
-    value: AddressBytesToStringResponseAmino;
-}
-/** AddressBytesToStringResponse is the response type for AddressString rpc method */
-export interface AddressBytesToStringResponseSDKType {
-    address_string: string;
-}
-/** AddressStringToBytesRequest is the request type for AccountBytes rpc method */
-export interface AddressStringToBytesRequest {
-    addressString: string;
-}
-export interface AddressStringToBytesRequestProtoMsg {
-    typeUrl: "/cosmos.auth.v1beta1.AddressStringToBytesRequest";
-    value: Uint8Array;
-}
-/** AddressStringToBytesRequest is the request type for AccountBytes rpc method */
-export interface AddressStringToBytesRequestAmino {
-    address_string?: string;
-}
-export interface AddressStringToBytesRequestAminoMsg {
-    type: "cosmos-sdk/AddressStringToBytesRequest";
-    value: AddressStringToBytesRequestAmino;
-}
-/** AddressStringToBytesRequest is the request type for AccountBytes rpc method */
-export interface AddressStringToBytesRequestSDKType {
-    address_string: string;
-}
-/** AddressStringToBytesResponse is the response type for AddressBytes rpc method */
-export interface AddressStringToBytesResponse {
-    addressBytes: Uint8Array;
-}
-export interface AddressStringToBytesResponseProtoMsg {
-    typeUrl: "/cosmos.auth.v1beta1.AddressStringToBytesResponse";
-    value: Uint8Array;
-}
-/** AddressStringToBytesResponse is the response type for AddressBytes rpc method */
-export interface AddressStringToBytesResponseAmino {
-    address_bytes?: string;
-}
-export interface AddressStringToBytesResponseAminoMsg {
-    type: "cosmos-sdk/AddressStringToBytesResponse";
-    value: AddressStringToBytesResponseAmino;
-}
-/** AddressStringToBytesResponse is the response type for AddressBytes rpc method */
-export interface AddressStringToBytesResponseSDKType {
-    address_bytes: Uint8Array;
+/** QueryNextAccountResponse is the response type for the Query/NextAccountNumber RPC method. */
+export interface QueryNextAccountNumberResponseSDKType {
+    count: Long;
 }
 export declare const QueryAccountsRequest: {
     typeUrl: string;
@@ -357,36 +243,6 @@ export declare const QueryAccountRequest: {
     toProto(message: QueryAccountRequest): Uint8Array;
     toProtoMsg(message: QueryAccountRequest): QueryAccountRequestProtoMsg;
 };
-export declare const QueryModuleAccountsRequest: {
-    typeUrl: string;
-    encode(_: QueryModuleAccountsRequest, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): QueryModuleAccountsRequest;
-    fromJSON(_: any): QueryModuleAccountsRequest;
-    toJSON(_: QueryModuleAccountsRequest): unknown;
-    fromPartial(_: Partial<QueryModuleAccountsRequest>): QueryModuleAccountsRequest;
-    fromAmino(_: QueryModuleAccountsRequestAmino): QueryModuleAccountsRequest;
-    toAmino(_: QueryModuleAccountsRequest): QueryModuleAccountsRequestAmino;
-    fromAminoMsg(object: QueryModuleAccountsRequestAminoMsg): QueryModuleAccountsRequest;
-    toAminoMsg(message: QueryModuleAccountsRequest): QueryModuleAccountsRequestAminoMsg;
-    fromProtoMsg(message: QueryModuleAccountsRequestProtoMsg): QueryModuleAccountsRequest;
-    toProto(message: QueryModuleAccountsRequest): Uint8Array;
-    toProtoMsg(message: QueryModuleAccountsRequest): QueryModuleAccountsRequestProtoMsg;
-};
-export declare const QueryParamsResponse: {
-    typeUrl: string;
-    encode(message: QueryParamsResponse, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): QueryParamsResponse;
-    fromJSON(object: any): QueryParamsResponse;
-    toJSON(message: QueryParamsResponse): unknown;
-    fromPartial(object: Partial<QueryParamsResponse>): QueryParamsResponse;
-    fromAmino(object: QueryParamsResponseAmino): QueryParamsResponse;
-    toAmino(message: QueryParamsResponse): QueryParamsResponseAmino;
-    fromAminoMsg(object: QueryParamsResponseAminoMsg): QueryParamsResponse;
-    toAminoMsg(message: QueryParamsResponse): QueryParamsResponseAminoMsg;
-    fromProtoMsg(message: QueryParamsResponseProtoMsg): QueryParamsResponse;
-    toProto(message: QueryParamsResponse): Uint8Array;
-    toProtoMsg(message: QueryParamsResponse): QueryParamsResponseProtoMsg;
-};
 export declare const QueryAccountResponse: {
     typeUrl: string;
     encode(message: QueryAccountResponse, writer?: _m0.Writer): _m0.Writer;
@@ -417,108 +273,48 @@ export declare const QueryParamsRequest: {
     toProto(message: QueryParamsRequest): Uint8Array;
     toProtoMsg(message: QueryParamsRequest): QueryParamsRequestProtoMsg;
 };
-export declare const QueryModuleAccountsResponse: {
+export declare const QueryParamsResponse: {
     typeUrl: string;
-    encode(message: QueryModuleAccountsResponse, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): QueryModuleAccountsResponse;
-    fromJSON(object: any): QueryModuleAccountsResponse;
-    toJSON(message: QueryModuleAccountsResponse): unknown;
-    fromPartial(object: Partial<QueryModuleAccountsResponse>): QueryModuleAccountsResponse;
-    fromAmino(object: QueryModuleAccountsResponseAmino): QueryModuleAccountsResponse;
-    toAmino(message: QueryModuleAccountsResponse): QueryModuleAccountsResponseAmino;
-    fromAminoMsg(object: QueryModuleAccountsResponseAminoMsg): QueryModuleAccountsResponse;
-    toAminoMsg(message: QueryModuleAccountsResponse): QueryModuleAccountsResponseAminoMsg;
-    fromProtoMsg(message: QueryModuleAccountsResponseProtoMsg): QueryModuleAccountsResponse;
-    toProto(message: QueryModuleAccountsResponse): Uint8Array;
-    toProtoMsg(message: QueryModuleAccountsResponse): QueryModuleAccountsResponseProtoMsg;
+    encode(message: QueryParamsResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryParamsResponse;
+    fromJSON(object: any): QueryParamsResponse;
+    toJSON(message: QueryParamsResponse): unknown;
+    fromPartial(object: Partial<QueryParamsResponse>): QueryParamsResponse;
+    fromAmino(object: QueryParamsResponseAmino): QueryParamsResponse;
+    toAmino(message: QueryParamsResponse): QueryParamsResponseAmino;
+    fromAminoMsg(object: QueryParamsResponseAminoMsg): QueryParamsResponse;
+    toAminoMsg(message: QueryParamsResponse): QueryParamsResponseAminoMsg;
+    fromProtoMsg(message: QueryParamsResponseProtoMsg): QueryParamsResponse;
+    toProto(message: QueryParamsResponse): Uint8Array;
+    toProtoMsg(message: QueryParamsResponse): QueryParamsResponseProtoMsg;
 };
-export declare const Bech32PrefixRequest: {
+export declare const QueryNextAccountNumberRequest: {
     typeUrl: string;
-    encode(_: Bech32PrefixRequest, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): Bech32PrefixRequest;
-    fromJSON(_: any): Bech32PrefixRequest;
-    toJSON(_: Bech32PrefixRequest): unknown;
-    fromPartial(_: Partial<Bech32PrefixRequest>): Bech32PrefixRequest;
-    fromAmino(_: Bech32PrefixRequestAmino): Bech32PrefixRequest;
-    toAmino(_: Bech32PrefixRequest): Bech32PrefixRequestAmino;
-    fromAminoMsg(object: Bech32PrefixRequestAminoMsg): Bech32PrefixRequest;
-    toAminoMsg(message: Bech32PrefixRequest): Bech32PrefixRequestAminoMsg;
-    fromProtoMsg(message: Bech32PrefixRequestProtoMsg): Bech32PrefixRequest;
-    toProto(message: Bech32PrefixRequest): Uint8Array;
-    toProtoMsg(message: Bech32PrefixRequest): Bech32PrefixRequestProtoMsg;
+    encode(_: QueryNextAccountNumberRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryNextAccountNumberRequest;
+    fromJSON(_: any): QueryNextAccountNumberRequest;
+    toJSON(_: QueryNextAccountNumberRequest): unknown;
+    fromPartial(_: Partial<QueryNextAccountNumberRequest>): QueryNextAccountNumberRequest;
+    fromAmino(_: QueryNextAccountNumberRequestAmino): QueryNextAccountNumberRequest;
+    toAmino(_: QueryNextAccountNumberRequest): QueryNextAccountNumberRequestAmino;
+    fromAminoMsg(object: QueryNextAccountNumberRequestAminoMsg): QueryNextAccountNumberRequest;
+    toAminoMsg(message: QueryNextAccountNumberRequest): QueryNextAccountNumberRequestAminoMsg;
+    fromProtoMsg(message: QueryNextAccountNumberRequestProtoMsg): QueryNextAccountNumberRequest;
+    toProto(message: QueryNextAccountNumberRequest): Uint8Array;
+    toProtoMsg(message: QueryNextAccountNumberRequest): QueryNextAccountNumberRequestProtoMsg;
 };
-export declare const Bech32PrefixResponse: {
+export declare const QueryNextAccountNumberResponse: {
     typeUrl: string;
-    encode(message: Bech32PrefixResponse, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): Bech32PrefixResponse;
-    fromJSON(object: any): Bech32PrefixResponse;
-    toJSON(message: Bech32PrefixResponse): unknown;
-    fromPartial(object: Partial<Bech32PrefixResponse>): Bech32PrefixResponse;
-    fromAmino(object: Bech32PrefixResponseAmino): Bech32PrefixResponse;
-    toAmino(message: Bech32PrefixResponse): Bech32PrefixResponseAmino;
-    fromAminoMsg(object: Bech32PrefixResponseAminoMsg): Bech32PrefixResponse;
-    toAminoMsg(message: Bech32PrefixResponse): Bech32PrefixResponseAminoMsg;
-    fromProtoMsg(message: Bech32PrefixResponseProtoMsg): Bech32PrefixResponse;
-    toProto(message: Bech32PrefixResponse): Uint8Array;
-    toProtoMsg(message: Bech32PrefixResponse): Bech32PrefixResponseProtoMsg;
-};
-export declare const AddressBytesToStringRequest: {
-    typeUrl: string;
-    encode(message: AddressBytesToStringRequest, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): AddressBytesToStringRequest;
-    fromJSON(object: any): AddressBytesToStringRequest;
-    toJSON(message: AddressBytesToStringRequest): unknown;
-    fromPartial(object: Partial<AddressBytesToStringRequest>): AddressBytesToStringRequest;
-    fromAmino(object: AddressBytesToStringRequestAmino): AddressBytesToStringRequest;
-    toAmino(message: AddressBytesToStringRequest): AddressBytesToStringRequestAmino;
-    fromAminoMsg(object: AddressBytesToStringRequestAminoMsg): AddressBytesToStringRequest;
-    toAminoMsg(message: AddressBytesToStringRequest): AddressBytesToStringRequestAminoMsg;
-    fromProtoMsg(message: AddressBytesToStringRequestProtoMsg): AddressBytesToStringRequest;
-    toProto(message: AddressBytesToStringRequest): Uint8Array;
-    toProtoMsg(message: AddressBytesToStringRequest): AddressBytesToStringRequestProtoMsg;
-};
-export declare const AddressBytesToStringResponse: {
-    typeUrl: string;
-    encode(message: AddressBytesToStringResponse, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): AddressBytesToStringResponse;
-    fromJSON(object: any): AddressBytesToStringResponse;
-    toJSON(message: AddressBytesToStringResponse): unknown;
-    fromPartial(object: Partial<AddressBytesToStringResponse>): AddressBytesToStringResponse;
-    fromAmino(object: AddressBytesToStringResponseAmino): AddressBytesToStringResponse;
-    toAmino(message: AddressBytesToStringResponse): AddressBytesToStringResponseAmino;
-    fromAminoMsg(object: AddressBytesToStringResponseAminoMsg): AddressBytesToStringResponse;
-    toAminoMsg(message: AddressBytesToStringResponse): AddressBytesToStringResponseAminoMsg;
-    fromProtoMsg(message: AddressBytesToStringResponseProtoMsg): AddressBytesToStringResponse;
-    toProto(message: AddressBytesToStringResponse): Uint8Array;
-    toProtoMsg(message: AddressBytesToStringResponse): AddressBytesToStringResponseProtoMsg;
-};
-export declare const AddressStringToBytesRequest: {
-    typeUrl: string;
-    encode(message: AddressStringToBytesRequest, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): AddressStringToBytesRequest;
-    fromJSON(object: any): AddressStringToBytesRequest;
-    toJSON(message: AddressStringToBytesRequest): unknown;
-    fromPartial(object: Partial<AddressStringToBytesRequest>): AddressStringToBytesRequest;
-    fromAmino(object: AddressStringToBytesRequestAmino): AddressStringToBytesRequest;
-    toAmino(message: AddressStringToBytesRequest): AddressStringToBytesRequestAmino;
-    fromAminoMsg(object: AddressStringToBytesRequestAminoMsg): AddressStringToBytesRequest;
-    toAminoMsg(message: AddressStringToBytesRequest): AddressStringToBytesRequestAminoMsg;
-    fromProtoMsg(message: AddressStringToBytesRequestProtoMsg): AddressStringToBytesRequest;
-    toProto(message: AddressStringToBytesRequest): Uint8Array;
-    toProtoMsg(message: AddressStringToBytesRequest): AddressStringToBytesRequestProtoMsg;
-};
-export declare const AddressStringToBytesResponse: {
-    typeUrl: string;
-    encode(message: AddressStringToBytesResponse, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): AddressStringToBytesResponse;
-    fromJSON(object: any): AddressStringToBytesResponse;
-    toJSON(message: AddressStringToBytesResponse): unknown;
-    fromPartial(object: Partial<AddressStringToBytesResponse>): AddressStringToBytesResponse;
-    fromAmino(object: AddressStringToBytesResponseAmino): AddressStringToBytesResponse;
-    toAmino(message: AddressStringToBytesResponse): AddressStringToBytesResponseAmino;
-    fromAminoMsg(object: AddressStringToBytesResponseAminoMsg): AddressStringToBytesResponse;
-    toAminoMsg(message: AddressStringToBytesResponse): AddressStringToBytesResponseAminoMsg;
-    fromProtoMsg(message: AddressStringToBytesResponseProtoMsg): AddressStringToBytesResponse;
-    toProto(message: AddressStringToBytesResponse): Uint8Array;
-    toProtoMsg(message: AddressStringToBytesResponse): AddressStringToBytesResponseProtoMsg;
+    encode(message: QueryNextAccountNumberResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryNextAccountNumberResponse;
+    fromJSON(object: any): QueryNextAccountNumberResponse;
+    toJSON(message: QueryNextAccountNumberResponse): unknown;
+    fromPartial(object: Partial<QueryNextAccountNumberResponse>): QueryNextAccountNumberResponse;
+    fromAmino(object: QueryNextAccountNumberResponseAmino): QueryNextAccountNumberResponse;
+    toAmino(message: QueryNextAccountNumberResponse): QueryNextAccountNumberResponseAmino;
+    fromAminoMsg(object: QueryNextAccountNumberResponseAminoMsg): QueryNextAccountNumberResponse;
+    toAminoMsg(message: QueryNextAccountNumberResponse): QueryNextAccountNumberResponseAminoMsg;
+    fromProtoMsg(message: QueryNextAccountNumberResponseProtoMsg): QueryNextAccountNumberResponse;
+    toProto(message: QueryNextAccountNumberResponse): Uint8Array;
+    toProtoMsg(message: QueryNextAccountNumberResponse): QueryNextAccountNumberResponseProtoMsg;
 };

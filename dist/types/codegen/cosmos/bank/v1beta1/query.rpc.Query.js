@@ -1,6 +1,6 @@
 import * as _m0 from "protobufjs/minimal";
 import { createProtobufRpcClient } from "@cosmjs/stargate";
-import { QueryBalanceRequest, QueryBalanceResponse, QueryAllBalancesRequest, QueryAllBalancesResponse, QuerySpendableBalancesRequest, QuerySpendableBalancesResponse, QueryTotalSupplyRequest, QueryTotalSupplyResponse, QuerySupplyOfRequest, QuerySupplyOfResponse, QueryParamsRequest, QueryParamsResponse, QueryDenomMetadataRequest, QueryDenomMetadataResponse, QueryDenomsMetadataRequest, QueryDenomsMetadataResponse, QueryDenomOwnersRequest, QueryDenomOwnersResponse } from "./query";
+import { QueryBalanceRequest, QueryBalanceResponse, QueryAllBalancesRequest, QueryAllBalancesResponse, QuerySpendableBalancesRequest, QuerySpendableBalancesResponse, QueryTotalSupplyRequest, QueryTotalSupplyResponse, QuerySupplyOfRequest, QuerySupplyOfResponse, QueryParamsRequest, QueryParamsResponse, QueryDenomMetadataRequest, QueryDenomMetadataResponse, QueryDenomsMetadataRequest, QueryDenomsMetadataResponse } from "./query";
 export class QueryClientImpl {
     constructor(rpc) {
         this.rpc = rpc;
@@ -12,7 +12,6 @@ export class QueryClientImpl {
         this.params = this.params.bind(this);
         this.denomMetadata = this.denomMetadata.bind(this);
         this.denomsMetadata = this.denomsMetadata.bind(this);
-        this.denomOwners = this.denomOwners.bind(this);
     }
     balance(request) {
         const data = QueryBalanceRequest.encode(request).finish();
@@ -58,11 +57,6 @@ export class QueryClientImpl {
         const promise = this.rpc.request("cosmos.bank.v1beta1.Query", "DenomsMetadata", data);
         return promise.then(data => QueryDenomsMetadataResponse.decode(new _m0.Reader(data)));
     }
-    denomOwners(request) {
-        const data = QueryDenomOwnersRequest.encode(request).finish();
-        const promise = this.rpc.request("cosmos.bank.v1beta1.Query", "DenomOwners", data);
-        return promise.then(data => QueryDenomOwnersResponse.decode(new _m0.Reader(data)));
-    }
 }
 export const createRpcQueryExtension = (base) => {
     const rpc = createProtobufRpcClient(base);
@@ -91,9 +85,6 @@ export const createRpcQueryExtension = (base) => {
         },
         denomsMetadata(request) {
             return queryService.denomsMetadata(request);
-        },
-        denomOwners(request) {
-            return queryService.denomOwners(request);
         }
     };
 };

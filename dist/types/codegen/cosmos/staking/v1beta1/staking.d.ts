@@ -621,6 +621,10 @@ export interface Params {
     bondDenom: string;
     /** min_commission_rate is the chain-wide minimum commission rate that a validator can charge their delegators */
     minCommissionRate: string;
+    /** max_voting_power_ratio defines the maximal allowable voting power ratio delegated to a validator. */
+    maxVotingPowerRatio: string;
+    /** max_voting_power_enforcement_threshold defines the minimal bonded voting power of the max voting power ratio enforcement */
+    maxVotingPowerEnforcementThreshold: string;
 }
 export interface ParamsProtoMsg {
     typeUrl: "/cosmos.staking.v1beta1.Params";
@@ -640,6 +644,10 @@ export interface ParamsAmino {
     bond_denom?: string;
     /** min_commission_rate is the chain-wide minimum commission rate that a validator can charge their delegators */
     min_commission_rate?: string;
+    /** max_voting_power_ratio defines the maximal allowable voting power ratio delegated to a validator. */
+    max_voting_power_ratio?: string;
+    /** max_voting_power_enforcement_threshold defines the minimal bonded voting power of the max voting power ratio enforcement */
+    max_voting_power_enforcement_threshold?: string;
 }
 export interface ParamsAminoMsg {
     type: "cosmos-sdk/Params";
@@ -653,6 +661,8 @@ export interface ParamsSDKType {
     historical_entries: number;
     bond_denom: string;
     min_commission_rate: string;
+    max_voting_power_ratio: string;
+    max_voting_power_enforcement_threshold: string;
 }
 /**
  * DelegationResponse is equivalent to Delegation except that it contains a

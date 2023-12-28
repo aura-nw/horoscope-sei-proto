@@ -11,6 +11,7 @@ export interface MsgSubmitProposal {
     content?: Any;
     initialDeposit: Coin[];
     proposer: string;
+    isExpedited: boolean;
 }
 export interface MsgSubmitProposalProtoMsg {
     typeUrl: "/cosmos.gov.v1beta1.MsgSubmitProposal";
@@ -24,6 +25,7 @@ export interface MsgSubmitProposalAmino {
     content?: AnyAmino;
     initial_deposit?: CoinAmino[];
     proposer?: string;
+    is_expedited?: boolean;
 }
 export interface MsgSubmitProposalAminoMsg {
     type: "cosmos-sdk/MsgSubmitProposal";
@@ -37,6 +39,7 @@ export interface MsgSubmitProposalSDKType {
     content?: AnySDKType;
     initial_deposit: CoinSDKType[];
     proposer: string;
+    is_expedited: boolean;
 }
 /** MsgSubmitProposalResponse defines the Msg/SubmitProposal response type. */
 export interface MsgSubmitProposalResponse {

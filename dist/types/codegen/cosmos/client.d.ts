@@ -7,16 +7,6 @@ export declare const cosmosAminoConverters: {
         toAmino: (message: import("./vesting/v1beta1/tx").MsgCreateVestingAccount) => import("./vesting/v1beta1/tx").MsgCreateVestingAccountAmino;
         fromAmino: (object: import("./vesting/v1beta1/tx").MsgCreateVestingAccountAmino) => import("./vesting/v1beta1/tx").MsgCreateVestingAccount;
     };
-    "/cosmos.vesting.v1beta1.MsgCreatePermanentLockedAccount": {
-        aminoType: string;
-        toAmino: (message: import("./vesting/v1beta1/tx").MsgCreatePermanentLockedAccount) => import("./vesting/v1beta1/tx").MsgCreatePermanentLockedAccountAmino;
-        fromAmino: (object: import("./vesting/v1beta1/tx").MsgCreatePermanentLockedAccountAmino) => import("./vesting/v1beta1/tx").MsgCreatePermanentLockedAccount;
-    };
-    "/cosmos.vesting.v1beta1.MsgCreatePeriodicVestingAccount": {
-        aminoType: string;
-        toAmino: (message: import("./vesting/v1beta1/tx").MsgCreatePeriodicVestingAccount) => import("./vesting/v1beta1/tx").MsgCreatePeriodicVestingAccountAmino;
-        fromAmino: (object: import("./vesting/v1beta1/tx").MsgCreatePeriodicVestingAccountAmino) => import("./vesting/v1beta1/tx").MsgCreatePeriodicVestingAccount;
-    };
     "/cosmos.upgrade.v1beta1.MsgSoftwareUpgrade": {
         aminoType: string;
         toAmino: (message: import("./upgrade/v1beta1/tx").MsgSoftwareUpgrade) => import("./upgrade/v1beta1/tx").MsgSoftwareUpgradeAmino;
@@ -241,6 +231,11 @@ export declare const cosmosAminoConverters: {
         aminoType: string;
         toAmino: (message: import("./authz/v1beta1/tx").MsgRevoke) => import("./authz/v1beta1/tx").MsgRevokeAmino;
         fromAmino: (object: import("./authz/v1beta1/tx").MsgRevokeAmino) => import("./authz/v1beta1/tx").MsgRevoke;
+    };
+    "/cosmos.accesscontrol_x.v1beta1.MsgRegisterWasmDependency": {
+        aminoType: string;
+        toAmino: (message: import("./accesscontrol_x/tx").MsgRegisterWasmDependency) => import("./accesscontrol_x/tx").MsgRegisterWasmDependencyAmino;
+        fromAmino: (object: import("./accesscontrol_x/tx").MsgRegisterWasmDependencyAmino) => import("./accesscontrol_x/tx").MsgRegisterWasmDependency;
     };
 };
 export declare const cosmosProtoRegistry: ReadonlyArray<[string, GeneratedType]>;

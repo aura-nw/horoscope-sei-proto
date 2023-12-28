@@ -4,7 +4,8 @@ function createBaseParameterChangeProposal() {
     return {
         title: "",
         description: "",
-        changes: []
+        changes: [],
+        isExpedited: false
     };
 }
 export const ParameterChangeProposal = {
@@ -18,6 +19,9 @@ export const ParameterChangeProposal = {
         }
         for (const v of message.changes) {
             ParamChange.encode(v, writer.uint32(26).fork()).ldelim();
+        }
+        if (message.isExpedited === true) {
+            writer.uint32(32).bool(message.isExpedited);
         }
         return writer;
     },
@@ -37,6 +41,9 @@ export const ParameterChangeProposal = {
                 case 3:
                     message.changes.push(ParamChange.decode(reader, reader.uint32()));
                     break;
+                case 4:
+                    message.isExpedited = reader.bool();
+                    break;
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -48,7 +55,8 @@ export const ParameterChangeProposal = {
         return {
             title: isSet(object.title) ? String(object.title) : "",
             description: isSet(object.description) ? String(object.description) : "",
-            changes: Array.isArray(object?.changes) ? object.changes.map((e) => ParamChange.fromJSON(e)) : []
+            changes: Array.isArray(object?.changes) ? object.changes.map((e) => ParamChange.fromJSON(e)) : [],
+            isExpedited: isSet(object.isExpedited) ? Boolean(object.isExpedited) : false
         };
     },
     toJSON(message) {
@@ -61,6 +69,7 @@ export const ParameterChangeProposal = {
         else {
             obj.changes = [];
         }
+        message.isExpedited !== undefined && (obj.isExpedited = message.isExpedited);
         return obj;
     },
     fromPartial(object) {
@@ -68,6 +77,7 @@ export const ParameterChangeProposal = {
         message.title = object.title ?? "";
         message.description = object.description ?? "";
         message.changes = object.changes?.map(e => ParamChange.fromPartial(e)) || [];
+        message.isExpedited = object.isExpedited ?? false;
         return message;
     },
     fromAmino(object) {
@@ -79,6 +89,9 @@ export const ParameterChangeProposal = {
             message.description = object.description;
         }
         message.changes = object.changes?.map(e => ParamChange.fromAmino(e)) || [];
+        if (object.is_expedited !== undefined && object.is_expedited !== null) {
+            message.isExpedited = object.is_expedited;
+        }
         return message;
     },
     toAmino(message) {
@@ -91,6 +104,7 @@ export const ParameterChangeProposal = {
         else {
             obj.changes = [];
         }
+        obj.is_expedited = message.isExpedited;
         return obj;
     },
     fromAminoMsg(object) {

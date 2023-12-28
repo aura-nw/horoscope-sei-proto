@@ -1,6 +1,6 @@
 import * as _m0 from "protobufjs/minimal";
 import { createProtobufRpcClient } from "@cosmjs/stargate";
-import { QueryCurrentPlanRequest, QueryCurrentPlanResponse, QueryAppliedPlanRequest, QueryAppliedPlanResponse, QueryUpgradedConsensusStateRequest, QueryUpgradedConsensusStateResponse, QueryModuleVersionsRequest, QueryModuleVersionsResponse, QueryAuthorityRequest, QueryAuthorityResponse } from "./query";
+import { QueryCurrentPlanRequest, QueryCurrentPlanResponse, QueryAppliedPlanRequest, QueryAppliedPlanResponse, QueryUpgradedConsensusStateRequest, QueryUpgradedConsensusStateResponse, QueryModuleVersionsRequest, QueryModuleVersionsResponse } from "./query";
 export class QueryClientImpl {
     constructor(rpc) {
         this.rpc = rpc;
@@ -8,7 +8,6 @@ export class QueryClientImpl {
         this.appliedPlan = this.appliedPlan.bind(this);
         this.upgradedConsensusState = this.upgradedConsensusState.bind(this);
         this.moduleVersions = this.moduleVersions.bind(this);
-        this.authority = this.authority.bind(this);
     }
     currentPlan(request = {}) {
         const data = QueryCurrentPlanRequest.encode(request).finish();
@@ -30,11 +29,6 @@ export class QueryClientImpl {
         const promise = this.rpc.request("cosmos.upgrade.v1beta1.Query", "ModuleVersions", data);
         return promise.then(data => QueryModuleVersionsResponse.decode(new _m0.Reader(data)));
     }
-    authority(request = {}) {
-        const data = QueryAuthorityRequest.encode(request).finish();
-        const promise = this.rpc.request("cosmos.upgrade.v1beta1.Query", "Authority", data);
-        return promise.then(data => QueryAuthorityResponse.decode(new _m0.Reader(data)));
-    }
 }
 export const createRpcQueryExtension = (base) => {
     const rpc = createProtobufRpcClient(base);
@@ -51,9 +45,6 @@ export const createRpcQueryExtension = (base) => {
         },
         moduleVersions(request) {
             return queryService.moduleVersions(request);
-        },
-        authority(request) {
-            return queryService.authority(request);
         }
     };
 };

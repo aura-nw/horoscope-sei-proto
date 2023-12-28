@@ -12,6 +12,10 @@ export interface BaseVestingAccount {
     delegatedFree: Coin[];
     delegatedVesting: Coin[];
     endTime: Long;
+    /** admin field (optional), an address who has oversight powers for the vesting account such as cancelling */
+    admin: string;
+    /** this field (default nil) indicates whether the vesting for the account has been cancelled (and what time it was cancelled) */
+    cancelledTime: Long;
 }
 export interface BaseVestingAccountProtoMsg {
     typeUrl: "/cosmos.vesting.v1beta1.BaseVestingAccount";
@@ -27,6 +31,10 @@ export interface BaseVestingAccountAmino {
     delegated_free?: CoinAmino[];
     delegated_vesting?: CoinAmino[];
     end_time?: string;
+    /** admin field (optional), an address who has oversight powers for the vesting account such as cancelling */
+    admin?: string;
+    /** this field (default nil) indicates whether the vesting for the account has been cancelled (and what time it was cancelled) */
+    cancelled_time?: string;
 }
 export interface BaseVestingAccountAminoMsg {
     type: "cosmos-sdk/BaseVestingAccount";
@@ -42,6 +50,8 @@ export interface BaseVestingAccountSDKType {
     delegated_free: CoinSDKType[];
     delegated_vesting: CoinSDKType[];
     end_time: Long;
+    admin: string;
+    cancelled_time: Long;
 }
 /**
  * ContinuousVestingAccount implements the VestingAccount interface. It

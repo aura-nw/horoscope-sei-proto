@@ -8,7 +8,9 @@ function createBaseBaseVestingAccount() {
         originalVesting: [],
         delegatedFree: [],
         delegatedVesting: [],
-        endTime: Long.ZERO
+        endTime: Long.ZERO,
+        admin: "",
+        cancelledTime: Long.ZERO
     };
 }
 export const BaseVestingAccount = {
@@ -28,6 +30,12 @@ export const BaseVestingAccount = {
         }
         if (!message.endTime.isZero()) {
             writer.uint32(40).int64(message.endTime);
+        }
+        if (message.admin !== "") {
+            writer.uint32(50).string(message.admin);
+        }
+        if (!message.cancelledTime.isZero()) {
+            writer.uint32(56).int64(message.cancelledTime);
         }
         return writer;
     },
@@ -53,6 +61,12 @@ export const BaseVestingAccount = {
                 case 5:
                     message.endTime = reader.int64();
                     break;
+                case 6:
+                    message.admin = reader.string();
+                    break;
+                case 7:
+                    message.cancelledTime = reader.int64();
+                    break;
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -66,7 +80,9 @@ export const BaseVestingAccount = {
             originalVesting: Array.isArray(object?.originalVesting) ? object.originalVesting.map((e) => Coin.fromJSON(e)) : [],
             delegatedFree: Array.isArray(object?.delegatedFree) ? object.delegatedFree.map((e) => Coin.fromJSON(e)) : [],
             delegatedVesting: Array.isArray(object?.delegatedVesting) ? object.delegatedVesting.map((e) => Coin.fromJSON(e)) : [],
-            endTime: isSet(object.endTime) ? Long.fromValue(object.endTime) : Long.ZERO
+            endTime: isSet(object.endTime) ? Long.fromValue(object.endTime) : Long.ZERO,
+            admin: isSet(object.admin) ? String(object.admin) : "",
+            cancelledTime: isSet(object.cancelledTime) ? Long.fromValue(object.cancelledTime) : Long.ZERO
         };
     },
     toJSON(message) {
@@ -91,6 +107,8 @@ export const BaseVestingAccount = {
             obj.delegatedVesting = [];
         }
         message.endTime !== undefined && (obj.endTime = (message.endTime || Long.ZERO).toString());
+        message.admin !== undefined && (obj.admin = message.admin);
+        message.cancelledTime !== undefined && (obj.cancelledTime = (message.cancelledTime || Long.ZERO).toString());
         return obj;
     },
     fromPartial(object) {
@@ -100,6 +118,8 @@ export const BaseVestingAccount = {
         message.delegatedFree = object.delegatedFree?.map(e => Coin.fromPartial(e)) || [];
         message.delegatedVesting = object.delegatedVesting?.map(e => Coin.fromPartial(e)) || [];
         message.endTime = object.endTime !== undefined && object.endTime !== null ? Long.fromValue(object.endTime) : Long.ZERO;
+        message.admin = object.admin ?? "";
+        message.cancelledTime = object.cancelledTime !== undefined && object.cancelledTime !== null ? Long.fromValue(object.cancelledTime) : Long.ZERO;
         return message;
     },
     fromAmino(object) {
@@ -112,6 +132,12 @@ export const BaseVestingAccount = {
         message.delegatedVesting = object.delegated_vesting?.map(e => Coin.fromAmino(e)) || [];
         if (object.end_time !== undefined && object.end_time !== null) {
             message.endTime = Long.fromString(object.end_time);
+        }
+        if (object.admin !== undefined && object.admin !== null) {
+            message.admin = object.admin;
+        }
+        if (object.cancelled_time !== undefined && object.cancelled_time !== null) {
+            message.cancelledTime = Long.fromString(object.cancelled_time);
         }
         return message;
     },
@@ -137,6 +163,8 @@ export const BaseVestingAccount = {
             obj.delegated_vesting = [];
         }
         obj.end_time = message.endTime ? message.endTime.toString() : undefined;
+        obj.admin = message.admin;
+        obj.cancelled_time = message.cancelledTime ? message.cancelledTime.toString() : undefined;
         return obj;
     },
     fromAminoMsg(object) {

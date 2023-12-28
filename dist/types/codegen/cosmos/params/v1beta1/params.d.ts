@@ -4,6 +4,7 @@ export interface ParameterChangeProposal {
     title: string;
     description: string;
     changes: ParamChange[];
+    isExpedited: boolean;
 }
 export interface ParameterChangeProposalProtoMsg {
     typeUrl: "/cosmos.params.v1beta1.ParameterChangeProposal";
@@ -14,6 +15,7 @@ export interface ParameterChangeProposalAmino {
     title?: string;
     description?: string;
     changes?: ParamChangeAmino[];
+    is_expedited?: boolean;
 }
 export interface ParameterChangeProposalAminoMsg {
     type: "cosmos-sdk/ParameterChangeProposal";
@@ -24,6 +26,7 @@ export interface ParameterChangeProposalSDKType {
     title: string;
     description: string;
     changes: ParamChangeSDKType[];
+    is_expedited: boolean;
 }
 /**
  * ParamChange defines an individual parameter change, for use in

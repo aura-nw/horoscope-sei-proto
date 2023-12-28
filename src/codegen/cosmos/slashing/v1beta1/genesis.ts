@@ -1,9 +1,97 @@
-import { Params, ParamsAmino, ParamsSDKType, ValidatorSigningInfo, ValidatorSigningInfoAmino, ValidatorSigningInfoSDKType } from "./slashing";
+import { Params, ParamsAmino, ParamsSDKType, ValidatorMissedBlockArray, ValidatorMissedBlockArrayAmino, ValidatorMissedBlockArraySDKType, ValidatorMissedBlockArrayLegacyMissedHeights, ValidatorMissedBlockArrayLegacyMissedHeightsAmino, ValidatorMissedBlockArrayLegacyMissedHeightsSDKType, ValidatorSigningInfo, ValidatorSigningInfoAmino, ValidatorSigningInfoSDKType, ValidatorSigningInfoLegacyMissedHeights, ValidatorSigningInfoLegacyMissedHeightsAmino, ValidatorSigningInfoLegacyMissedHeightsSDKType } from "./slashing";
 import { Long, isSet } from "../../../helpers";
 import * as _m0 from "protobufjs/minimal";
 /** GenesisState defines the slashing module's genesis state. */
 export interface GenesisState {
-  /** params defines all the paramaters of related to deposit. */
+  /** params defines all the paramaters of related to slashing. */
+  params: Params;
+  /**
+   * signing_infos represents a map between validator addresses and their
+   * signing infos.
+   */
+  signingInfos: SigningInfo[];
+  /**
+   * missed_blocks represents a map between validator addresses and their
+   * missed blocks.
+   */
+  missedBlocks: ValidatorMissedBlockArray[];
+}
+export interface GenesisStateProtoMsg {
+  typeUrl: "/cosmos.slashing.v1beta1.GenesisState";
+  value: Uint8Array;
+}
+/** GenesisState defines the slashing module's genesis state. */
+export interface GenesisStateAmino {
+  /** params defines all the paramaters of related to slashing. */
+  params?: ParamsAmino;
+  /**
+   * signing_infos represents a map between validator addresses and their
+   * signing infos.
+   */
+  signing_infos?: SigningInfoAmino[];
+  /**
+   * missed_blocks represents a map between validator addresses and their
+   * missed blocks.
+   */
+  missed_blocks?: ValidatorMissedBlockArrayAmino[];
+}
+export interface GenesisStateAminoMsg {
+  type: "cosmos-sdk/GenesisState";
+  value: GenesisStateAmino;
+}
+/** GenesisState defines the slashing module's genesis state. */
+export interface GenesisStateSDKType {
+  params: ParamsSDKType;
+  signing_infos: SigningInfoSDKType[];
+  missed_blocks: ValidatorMissedBlockArraySDKType[];
+}
+/** GenesisState defines the slashing module's genesis state. */
+export interface GenesisStateLegacyMissingHeights {
+  /** params defines all the paramaters of related to slashing. */
+  params: Params;
+  /**
+   * signing_infos represents a map between validator addresses and their
+   * signing infos.
+   */
+  signingInfos: SigningInfo[];
+  /**
+   * missed_blocks represents a map between validator addresses and their
+   * missed blocks.
+   */
+  missedBlocks: ValidatorMissedBlockArrayLegacyMissedHeights[];
+}
+export interface GenesisStateLegacyMissingHeightsProtoMsg {
+  typeUrl: "/cosmos.slashing.v1beta1.GenesisStateLegacyMissingHeights";
+  value: Uint8Array;
+}
+/** GenesisState defines the slashing module's genesis state. */
+export interface GenesisStateLegacyMissingHeightsAmino {
+  /** params defines all the paramaters of related to slashing. */
+  params?: ParamsAmino;
+  /**
+   * signing_infos represents a map between validator addresses and their
+   * signing infos.
+   */
+  signing_infos?: SigningInfoAmino[];
+  /**
+   * missed_blocks represents a map between validator addresses and their
+   * missed blocks.
+   */
+  missed_blocks?: ValidatorMissedBlockArrayLegacyMissedHeightsAmino[];
+}
+export interface GenesisStateLegacyMissingHeightsAminoMsg {
+  type: "cosmos-sdk/GenesisStateLegacyMissingHeights";
+  value: GenesisStateLegacyMissingHeightsAmino;
+}
+/** GenesisState defines the slashing module's genesis state. */
+export interface GenesisStateLegacyMissingHeightsSDKType {
+  params: ParamsSDKType;
+  signing_infos: SigningInfoSDKType[];
+  missed_blocks: ValidatorMissedBlockArrayLegacyMissedHeightsSDKType[];
+}
+/** GenesisState defines the slashing module's genesis state. */
+export interface GenesisStateLegacyV43 {
+  /** params defines all the paramaters of related to slashing. */
   params: Params;
   /**
    * signing_infos represents a map between validator addresses and their
@@ -16,13 +104,13 @@ export interface GenesisState {
    */
   missedBlocks: ValidatorMissedBlocks[];
 }
-export interface GenesisStateProtoMsg {
-  typeUrl: "/cosmos.slashing.v1beta1.GenesisState";
+export interface GenesisStateLegacyV43ProtoMsg {
+  typeUrl: "/cosmos.slashing.v1beta1.GenesisStateLegacyV43";
   value: Uint8Array;
 }
 /** GenesisState defines the slashing module's genesis state. */
-export interface GenesisStateAmino {
-  /** params defines all the paramaters of related to deposit. */
+export interface GenesisStateLegacyV43Amino {
+  /** params defines all the paramaters of related to slashing. */
   params?: ParamsAmino;
   /**
    * signing_infos represents a map between validator addresses and their
@@ -35,12 +123,12 @@ export interface GenesisStateAmino {
    */
   missed_blocks?: ValidatorMissedBlocksAmino[];
 }
-export interface GenesisStateAminoMsg {
-  type: "cosmos-sdk/GenesisState";
-  value: GenesisStateAmino;
+export interface GenesisStateLegacyV43AminoMsg {
+  type: "cosmos-sdk/GenesisStateLegacyV43";
+  value: GenesisStateLegacyV43Amino;
 }
 /** GenesisState defines the slashing module's genesis state. */
-export interface GenesisStateSDKType {
+export interface GenesisStateLegacyV43SDKType {
   params: ParamsSDKType;
   signing_infos: SigningInfoSDKType[];
   missed_blocks: ValidatorMissedBlocksSDKType[];
@@ -71,6 +159,33 @@ export interface SigningInfoAminoMsg {
 export interface SigningInfoSDKType {
   address: string;
   validator_signing_info: ValidatorSigningInfoSDKType;
+}
+/** SigningInfo stores validator signing info of corresponding address. */
+export interface SigningInfoLegacyMissedHeights {
+  /** address is the validator address. */
+  address: string;
+  /** validator_signing_info represents the signing info of this validator. */
+  validatorSigningInfo: ValidatorSigningInfoLegacyMissedHeights;
+}
+export interface SigningInfoLegacyMissedHeightsProtoMsg {
+  typeUrl: "/cosmos.slashing.v1beta1.SigningInfoLegacyMissedHeights";
+  value: Uint8Array;
+}
+/** SigningInfo stores validator signing info of corresponding address. */
+export interface SigningInfoLegacyMissedHeightsAmino {
+  /** address is the validator address. */
+  address?: string;
+  /** validator_signing_info represents the signing info of this validator. */
+  validator_signing_info?: ValidatorSigningInfoLegacyMissedHeightsAmino;
+}
+export interface SigningInfoLegacyMissedHeightsAminoMsg {
+  type: "cosmos-sdk/SigningInfoLegacyMissedHeights";
+  value: SigningInfoLegacyMissedHeightsAmino;
+}
+/** SigningInfo stores validator signing info of corresponding address. */
+export interface SigningInfoLegacyMissedHeightsSDKType {
+  address: string;
+  validator_signing_info: ValidatorSigningInfoLegacyMissedHeightsSDKType;
 }
 /**
  * ValidatorMissedBlocks contains array of missed blocks of corresponding
@@ -152,7 +267,7 @@ export const GenesisState = {
       SigningInfo.encode(v!, writer.uint32(18).fork()).ldelim();
     }
     for (const v of message.missedBlocks) {
-      ValidatorMissedBlocks.encode(v!, writer.uint32(26).fork()).ldelim();
+      ValidatorMissedBlockArray.encode(v!, writer.uint32(26).fork()).ldelim();
     }
     return writer;
   },
@@ -170,7 +285,7 @@ export const GenesisState = {
           message.signingInfos.push(SigningInfo.decode(reader, reader.uint32()));
           break;
         case 3:
-          message.missedBlocks.push(ValidatorMissedBlocks.decode(reader, reader.uint32()));
+          message.missedBlocks.push(ValidatorMissedBlockArray.decode(reader, reader.uint32()));
           break;
         default:
           reader.skipType(tag & 7);
@@ -183,7 +298,7 @@ export const GenesisState = {
     return {
       params: isSet(object.params) ? Params.fromJSON(object.params) : undefined,
       signingInfos: Array.isArray(object?.signingInfos) ? object.signingInfos.map((e: any) => SigningInfo.fromJSON(e)) : [],
-      missedBlocks: Array.isArray(object?.missedBlocks) ? object.missedBlocks.map((e: any) => ValidatorMissedBlocks.fromJSON(e)) : []
+      missedBlocks: Array.isArray(object?.missedBlocks) ? object.missedBlocks.map((e: any) => ValidatorMissedBlockArray.fromJSON(e)) : []
     };
   },
   toJSON(message: GenesisState): unknown {
@@ -195,7 +310,7 @@ export const GenesisState = {
       obj.signingInfos = [];
     }
     if (message.missedBlocks) {
-      obj.missedBlocks = message.missedBlocks.map(e => e ? ValidatorMissedBlocks.toJSON(e) : undefined);
+      obj.missedBlocks = message.missedBlocks.map(e => e ? ValidatorMissedBlockArray.toJSON(e) : undefined);
     } else {
       obj.missedBlocks = [];
     }
@@ -205,7 +320,7 @@ export const GenesisState = {
     const message = createBaseGenesisState();
     message.params = object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
     message.signingInfos = object.signingInfos?.map(e => SigningInfo.fromPartial(e)) || [];
-    message.missedBlocks = object.missedBlocks?.map(e => ValidatorMissedBlocks.fromPartial(e)) || [];
+    message.missedBlocks = object.missedBlocks?.map(e => ValidatorMissedBlockArray.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: GenesisStateAmino): GenesisState {
@@ -214,7 +329,7 @@ export const GenesisState = {
       message.params = Params.fromAmino(object.params);
     }
     message.signingInfos = object.signing_infos?.map(e => SigningInfo.fromAmino(e)) || [];
-    message.missedBlocks = object.missed_blocks?.map(e => ValidatorMissedBlocks.fromAmino(e)) || [];
+    message.missedBlocks = object.missed_blocks?.map(e => ValidatorMissedBlockArray.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: GenesisState): GenesisStateAmino {
@@ -226,7 +341,7 @@ export const GenesisState = {
       obj.signing_infos = [];
     }
     if (message.missedBlocks) {
-      obj.missed_blocks = message.missedBlocks.map(e => e ? ValidatorMissedBlocks.toAmino(e) : undefined);
+      obj.missed_blocks = message.missedBlocks.map(e => e ? ValidatorMissedBlockArray.toAmino(e) : undefined);
     } else {
       obj.missed_blocks = [];
     }
@@ -251,6 +366,244 @@ export const GenesisState = {
     return {
       typeUrl: "/cosmos.slashing.v1beta1.GenesisState",
       value: GenesisState.encode(message).finish()
+    };
+  }
+};
+function createBaseGenesisStateLegacyMissingHeights(): GenesisStateLegacyMissingHeights {
+  return {
+    params: Params.fromPartial({}),
+    signingInfos: [],
+    missedBlocks: []
+  };
+}
+export const GenesisStateLegacyMissingHeights = {
+  typeUrl: "/cosmos.slashing.v1beta1.GenesisStateLegacyMissingHeights",
+  encode(message: GenesisStateLegacyMissingHeights, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.params !== undefined) {
+      Params.encode(message.params, writer.uint32(10).fork()).ldelim();
+    }
+    for (const v of message.signingInfos) {
+      SigningInfo.encode(v!, writer.uint32(18).fork()).ldelim();
+    }
+    for (const v of message.missedBlocks) {
+      ValidatorMissedBlockArrayLegacyMissedHeights.encode(v!, writer.uint32(26).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input: _m0.Reader | Uint8Array, length?: number): GenesisStateLegacyMissingHeights {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseGenesisStateLegacyMissingHeights();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.params = Params.decode(reader, reader.uint32());
+          break;
+        case 2:
+          message.signingInfos.push(SigningInfo.decode(reader, reader.uint32()));
+          break;
+        case 3:
+          message.missedBlocks.push(ValidatorMissedBlockArrayLegacyMissedHeights.decode(reader, reader.uint32()));
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromJSON(object: any): GenesisStateLegacyMissingHeights {
+    return {
+      params: isSet(object.params) ? Params.fromJSON(object.params) : undefined,
+      signingInfos: Array.isArray(object?.signingInfos) ? object.signingInfos.map((e: any) => SigningInfo.fromJSON(e)) : [],
+      missedBlocks: Array.isArray(object?.missedBlocks) ? object.missedBlocks.map((e: any) => ValidatorMissedBlockArrayLegacyMissedHeights.fromJSON(e)) : []
+    };
+  },
+  toJSON(message: GenesisStateLegacyMissingHeights): unknown {
+    const obj: any = {};
+    message.params !== undefined && (obj.params = message.params ? Params.toJSON(message.params) : undefined);
+    if (message.signingInfos) {
+      obj.signingInfos = message.signingInfos.map(e => e ? SigningInfo.toJSON(e) : undefined);
+    } else {
+      obj.signingInfos = [];
+    }
+    if (message.missedBlocks) {
+      obj.missedBlocks = message.missedBlocks.map(e => e ? ValidatorMissedBlockArrayLegacyMissedHeights.toJSON(e) : undefined);
+    } else {
+      obj.missedBlocks = [];
+    }
+    return obj;
+  },
+  fromPartial(object: Partial<GenesisStateLegacyMissingHeights>): GenesisStateLegacyMissingHeights {
+    const message = createBaseGenesisStateLegacyMissingHeights();
+    message.params = object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
+    message.signingInfos = object.signingInfos?.map(e => SigningInfo.fromPartial(e)) || [];
+    message.missedBlocks = object.missedBlocks?.map(e => ValidatorMissedBlockArrayLegacyMissedHeights.fromPartial(e)) || [];
+    return message;
+  },
+  fromAmino(object: GenesisStateLegacyMissingHeightsAmino): GenesisStateLegacyMissingHeights {
+    const message = createBaseGenesisStateLegacyMissingHeights();
+    if (object.params !== undefined && object.params !== null) {
+      message.params = Params.fromAmino(object.params);
+    }
+    message.signingInfos = object.signing_infos?.map(e => SigningInfo.fromAmino(e)) || [];
+    message.missedBlocks = object.missed_blocks?.map(e => ValidatorMissedBlockArrayLegacyMissedHeights.fromAmino(e)) || [];
+    return message;
+  },
+  toAmino(message: GenesisStateLegacyMissingHeights): GenesisStateLegacyMissingHeightsAmino {
+    const obj: any = {};
+    obj.params = message.params ? Params.toAmino(message.params) : undefined;
+    if (message.signingInfos) {
+      obj.signing_infos = message.signingInfos.map(e => e ? SigningInfo.toAmino(e) : undefined);
+    } else {
+      obj.signing_infos = [];
+    }
+    if (message.missedBlocks) {
+      obj.missed_blocks = message.missedBlocks.map(e => e ? ValidatorMissedBlockArrayLegacyMissedHeights.toAmino(e) : undefined);
+    } else {
+      obj.missed_blocks = [];
+    }
+    return obj;
+  },
+  fromAminoMsg(object: GenesisStateLegacyMissingHeightsAminoMsg): GenesisStateLegacyMissingHeights {
+    return GenesisStateLegacyMissingHeights.fromAmino(object.value);
+  },
+  toAminoMsg(message: GenesisStateLegacyMissingHeights): GenesisStateLegacyMissingHeightsAminoMsg {
+    return {
+      type: "cosmos-sdk/GenesisStateLegacyMissingHeights",
+      value: GenesisStateLegacyMissingHeights.toAmino(message)
+    };
+  },
+  fromProtoMsg(message: GenesisStateLegacyMissingHeightsProtoMsg): GenesisStateLegacyMissingHeights {
+    return GenesisStateLegacyMissingHeights.decode(message.value);
+  },
+  toProto(message: GenesisStateLegacyMissingHeights): Uint8Array {
+    return GenesisStateLegacyMissingHeights.encode(message).finish();
+  },
+  toProtoMsg(message: GenesisStateLegacyMissingHeights): GenesisStateLegacyMissingHeightsProtoMsg {
+    return {
+      typeUrl: "/cosmos.slashing.v1beta1.GenesisStateLegacyMissingHeights",
+      value: GenesisStateLegacyMissingHeights.encode(message).finish()
+    };
+  }
+};
+function createBaseGenesisStateLegacyV43(): GenesisStateLegacyV43 {
+  return {
+    params: Params.fromPartial({}),
+    signingInfos: [],
+    missedBlocks: []
+  };
+}
+export const GenesisStateLegacyV43 = {
+  typeUrl: "/cosmos.slashing.v1beta1.GenesisStateLegacyV43",
+  encode(message: GenesisStateLegacyV43, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.params !== undefined) {
+      Params.encode(message.params, writer.uint32(10).fork()).ldelim();
+    }
+    for (const v of message.signingInfos) {
+      SigningInfo.encode(v!, writer.uint32(18).fork()).ldelim();
+    }
+    for (const v of message.missedBlocks) {
+      ValidatorMissedBlocks.encode(v!, writer.uint32(26).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input: _m0.Reader | Uint8Array, length?: number): GenesisStateLegacyV43 {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseGenesisStateLegacyV43();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.params = Params.decode(reader, reader.uint32());
+          break;
+        case 2:
+          message.signingInfos.push(SigningInfo.decode(reader, reader.uint32()));
+          break;
+        case 3:
+          message.missedBlocks.push(ValidatorMissedBlocks.decode(reader, reader.uint32()));
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromJSON(object: any): GenesisStateLegacyV43 {
+    return {
+      params: isSet(object.params) ? Params.fromJSON(object.params) : undefined,
+      signingInfos: Array.isArray(object?.signingInfos) ? object.signingInfos.map((e: any) => SigningInfo.fromJSON(e)) : [],
+      missedBlocks: Array.isArray(object?.missedBlocks) ? object.missedBlocks.map((e: any) => ValidatorMissedBlocks.fromJSON(e)) : []
+    };
+  },
+  toJSON(message: GenesisStateLegacyV43): unknown {
+    const obj: any = {};
+    message.params !== undefined && (obj.params = message.params ? Params.toJSON(message.params) : undefined);
+    if (message.signingInfos) {
+      obj.signingInfos = message.signingInfos.map(e => e ? SigningInfo.toJSON(e) : undefined);
+    } else {
+      obj.signingInfos = [];
+    }
+    if (message.missedBlocks) {
+      obj.missedBlocks = message.missedBlocks.map(e => e ? ValidatorMissedBlocks.toJSON(e) : undefined);
+    } else {
+      obj.missedBlocks = [];
+    }
+    return obj;
+  },
+  fromPartial(object: Partial<GenesisStateLegacyV43>): GenesisStateLegacyV43 {
+    const message = createBaseGenesisStateLegacyV43();
+    message.params = object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
+    message.signingInfos = object.signingInfos?.map(e => SigningInfo.fromPartial(e)) || [];
+    message.missedBlocks = object.missedBlocks?.map(e => ValidatorMissedBlocks.fromPartial(e)) || [];
+    return message;
+  },
+  fromAmino(object: GenesisStateLegacyV43Amino): GenesisStateLegacyV43 {
+    const message = createBaseGenesisStateLegacyV43();
+    if (object.params !== undefined && object.params !== null) {
+      message.params = Params.fromAmino(object.params);
+    }
+    message.signingInfos = object.signing_infos?.map(e => SigningInfo.fromAmino(e)) || [];
+    message.missedBlocks = object.missed_blocks?.map(e => ValidatorMissedBlocks.fromAmino(e)) || [];
+    return message;
+  },
+  toAmino(message: GenesisStateLegacyV43): GenesisStateLegacyV43Amino {
+    const obj: any = {};
+    obj.params = message.params ? Params.toAmino(message.params) : undefined;
+    if (message.signingInfos) {
+      obj.signing_infos = message.signingInfos.map(e => e ? SigningInfo.toAmino(e) : undefined);
+    } else {
+      obj.signing_infos = [];
+    }
+    if (message.missedBlocks) {
+      obj.missed_blocks = message.missedBlocks.map(e => e ? ValidatorMissedBlocks.toAmino(e) : undefined);
+    } else {
+      obj.missed_blocks = [];
+    }
+    return obj;
+  },
+  fromAminoMsg(object: GenesisStateLegacyV43AminoMsg): GenesisStateLegacyV43 {
+    return GenesisStateLegacyV43.fromAmino(object.value);
+  },
+  toAminoMsg(message: GenesisStateLegacyV43): GenesisStateLegacyV43AminoMsg {
+    return {
+      type: "cosmos-sdk/GenesisStateLegacyV43",
+      value: GenesisStateLegacyV43.toAmino(message)
+    };
+  },
+  fromProtoMsg(message: GenesisStateLegacyV43ProtoMsg): GenesisStateLegacyV43 {
+    return GenesisStateLegacyV43.decode(message.value);
+  },
+  toProto(message: GenesisStateLegacyV43): Uint8Array {
+    return GenesisStateLegacyV43.encode(message).finish();
+  },
+  toProtoMsg(message: GenesisStateLegacyV43): GenesisStateLegacyV43ProtoMsg {
+    return {
+      typeUrl: "/cosmos.slashing.v1beta1.GenesisStateLegacyV43",
+      value: GenesisStateLegacyV43.encode(message).finish()
     };
   }
 };
@@ -344,6 +697,99 @@ export const SigningInfo = {
     return {
       typeUrl: "/cosmos.slashing.v1beta1.SigningInfo",
       value: SigningInfo.encode(message).finish()
+    };
+  }
+};
+function createBaseSigningInfoLegacyMissedHeights(): SigningInfoLegacyMissedHeights {
+  return {
+    address: "",
+    validatorSigningInfo: ValidatorSigningInfoLegacyMissedHeights.fromPartial({})
+  };
+}
+export const SigningInfoLegacyMissedHeights = {
+  typeUrl: "/cosmos.slashing.v1beta1.SigningInfoLegacyMissedHeights",
+  encode(message: SigningInfoLegacyMissedHeights, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.address !== "") {
+      writer.uint32(10).string(message.address);
+    }
+    if (message.validatorSigningInfo !== undefined) {
+      ValidatorSigningInfoLegacyMissedHeights.encode(message.validatorSigningInfo, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input: _m0.Reader | Uint8Array, length?: number): SigningInfoLegacyMissedHeights {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseSigningInfoLegacyMissedHeights();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.address = reader.string();
+          break;
+        case 2:
+          message.validatorSigningInfo = ValidatorSigningInfoLegacyMissedHeights.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromJSON(object: any): SigningInfoLegacyMissedHeights {
+    return {
+      address: isSet(object.address) ? String(object.address) : "",
+      validatorSigningInfo: isSet(object.validatorSigningInfo) ? ValidatorSigningInfoLegacyMissedHeights.fromJSON(object.validatorSigningInfo) : undefined
+    };
+  },
+  toJSON(message: SigningInfoLegacyMissedHeights): unknown {
+    const obj: any = {};
+    message.address !== undefined && (obj.address = message.address);
+    message.validatorSigningInfo !== undefined && (obj.validatorSigningInfo = message.validatorSigningInfo ? ValidatorSigningInfoLegacyMissedHeights.toJSON(message.validatorSigningInfo) : undefined);
+    return obj;
+  },
+  fromPartial(object: Partial<SigningInfoLegacyMissedHeights>): SigningInfoLegacyMissedHeights {
+    const message = createBaseSigningInfoLegacyMissedHeights();
+    message.address = object.address ?? "";
+    message.validatorSigningInfo = object.validatorSigningInfo !== undefined && object.validatorSigningInfo !== null ? ValidatorSigningInfoLegacyMissedHeights.fromPartial(object.validatorSigningInfo) : undefined;
+    return message;
+  },
+  fromAmino(object: SigningInfoLegacyMissedHeightsAmino): SigningInfoLegacyMissedHeights {
+    const message = createBaseSigningInfoLegacyMissedHeights();
+    if (object.address !== undefined && object.address !== null) {
+      message.address = object.address;
+    }
+    if (object.validator_signing_info !== undefined && object.validator_signing_info !== null) {
+      message.validatorSigningInfo = ValidatorSigningInfoLegacyMissedHeights.fromAmino(object.validator_signing_info);
+    }
+    return message;
+  },
+  toAmino(message: SigningInfoLegacyMissedHeights): SigningInfoLegacyMissedHeightsAmino {
+    const obj: any = {};
+    obj.address = message.address;
+    obj.validator_signing_info = message.validatorSigningInfo ? ValidatorSigningInfoLegacyMissedHeights.toAmino(message.validatorSigningInfo) : undefined;
+    return obj;
+  },
+  fromAminoMsg(object: SigningInfoLegacyMissedHeightsAminoMsg): SigningInfoLegacyMissedHeights {
+    return SigningInfoLegacyMissedHeights.fromAmino(object.value);
+  },
+  toAminoMsg(message: SigningInfoLegacyMissedHeights): SigningInfoLegacyMissedHeightsAminoMsg {
+    return {
+      type: "cosmos-sdk/SigningInfoLegacyMissedHeights",
+      value: SigningInfoLegacyMissedHeights.toAmino(message)
+    };
+  },
+  fromProtoMsg(message: SigningInfoLegacyMissedHeightsProtoMsg): SigningInfoLegacyMissedHeights {
+    return SigningInfoLegacyMissedHeights.decode(message.value);
+  },
+  toProto(message: SigningInfoLegacyMissedHeights): Uint8Array {
+    return SigningInfoLegacyMissedHeights.encode(message).finish();
+  },
+  toProtoMsg(message: SigningInfoLegacyMissedHeights): SigningInfoLegacyMissedHeightsProtoMsg {
+    return {
+      typeUrl: "/cosmos.slashing.v1beta1.SigningInfoLegacyMissedHeights",
+      value: SigningInfoLegacyMissedHeights.encode(message).finish()
     };
   }
 };

@@ -12,6 +12,10 @@ export interface BaseVestingAccount {
   delegatedFree: Coin[];
   delegatedVesting: Coin[];
   endTime: Long;
+  /** admin field (optional), an address who has oversight powers for the vesting account such as cancelling */
+  admin: string;
+  /** this field (default nil) indicates whether the vesting for the account has been cancelled (and what time it was cancelled) */
+  cancelledTime: Long;
 }
 export interface BaseVestingAccountProtoMsg {
   typeUrl: "/cosmos.vesting.v1beta1.BaseVestingAccount";
@@ -27,6 +31,10 @@ export interface BaseVestingAccountAmino {
   delegated_free?: CoinAmino[];
   delegated_vesting?: CoinAmino[];
   end_time?: string;
+  /** admin field (optional), an address who has oversight powers for the vesting account such as cancelling */
+  admin?: string;
+  /** this field (default nil) indicates whether the vesting for the account has been cancelled (and what time it was cancelled) */
+  cancelled_time?: string;
 }
 export interface BaseVestingAccountAminoMsg {
   type: "cosmos-sdk/BaseVestingAccount";
@@ -42,6 +50,8 @@ export interface BaseVestingAccountSDKType {
   delegated_free: CoinSDKType[];
   delegated_vesting: CoinSDKType[];
   end_time: Long;
+  admin: string;
+  cancelled_time: Long;
 }
 /**
  * ContinuousVestingAccount implements the VestingAccount interface. It
@@ -209,7 +219,9 @@ function createBaseBaseVestingAccount(): BaseVestingAccount {
     originalVesting: [],
     delegatedFree: [],
     delegatedVesting: [],
-    endTime: Long.ZERO
+    endTime: Long.ZERO,
+    admin: "",
+    cancelledTime: Long.ZERO
   };
 }
 export const BaseVestingAccount = {
@@ -229,6 +241,12 @@ export const BaseVestingAccount = {
     }
     if (!message.endTime.isZero()) {
       writer.uint32(40).int64(message.endTime);
+    }
+    if (message.admin !== "") {
+      writer.uint32(50).string(message.admin);
+    }
+    if (!message.cancelledTime.isZero()) {
+      writer.uint32(56).int64(message.cancelledTime);
     }
     return writer;
   },
@@ -254,6 +272,12 @@ export const BaseVestingAccount = {
         case 5:
           message.endTime = (reader.int64() as Long);
           break;
+        case 6:
+          message.admin = reader.string();
+          break;
+        case 7:
+          message.cancelledTime = (reader.int64() as Long);
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -267,7 +291,9 @@ export const BaseVestingAccount = {
       originalVesting: Array.isArray(object?.originalVesting) ? object.originalVesting.map((e: any) => Coin.fromJSON(e)) : [],
       delegatedFree: Array.isArray(object?.delegatedFree) ? object.delegatedFree.map((e: any) => Coin.fromJSON(e)) : [],
       delegatedVesting: Array.isArray(object?.delegatedVesting) ? object.delegatedVesting.map((e: any) => Coin.fromJSON(e)) : [],
-      endTime: isSet(object.endTime) ? Long.fromValue(object.endTime) : Long.ZERO
+      endTime: isSet(object.endTime) ? Long.fromValue(object.endTime) : Long.ZERO,
+      admin: isSet(object.admin) ? String(object.admin) : "",
+      cancelledTime: isSet(object.cancelledTime) ? Long.fromValue(object.cancelledTime) : Long.ZERO
     };
   },
   toJSON(message: BaseVestingAccount): unknown {
@@ -289,6 +315,8 @@ export const BaseVestingAccount = {
       obj.delegatedVesting = [];
     }
     message.endTime !== undefined && (obj.endTime = (message.endTime || Long.ZERO).toString());
+    message.admin !== undefined && (obj.admin = message.admin);
+    message.cancelledTime !== undefined && (obj.cancelledTime = (message.cancelledTime || Long.ZERO).toString());
     return obj;
   },
   fromPartial(object: Partial<BaseVestingAccount>): BaseVestingAccount {
@@ -298,6 +326,8 @@ export const BaseVestingAccount = {
     message.delegatedFree = object.delegatedFree?.map(e => Coin.fromPartial(e)) || [];
     message.delegatedVesting = object.delegatedVesting?.map(e => Coin.fromPartial(e)) || [];
     message.endTime = object.endTime !== undefined && object.endTime !== null ? Long.fromValue(object.endTime) : Long.ZERO;
+    message.admin = object.admin ?? "";
+    message.cancelledTime = object.cancelledTime !== undefined && object.cancelledTime !== null ? Long.fromValue(object.cancelledTime) : Long.ZERO;
     return message;
   },
   fromAmino(object: BaseVestingAccountAmino): BaseVestingAccount {
@@ -310,6 +340,12 @@ export const BaseVestingAccount = {
     message.delegatedVesting = object.delegated_vesting?.map(e => Coin.fromAmino(e)) || [];
     if (object.end_time !== undefined && object.end_time !== null) {
       message.endTime = Long.fromString(object.end_time);
+    }
+    if (object.admin !== undefined && object.admin !== null) {
+      message.admin = object.admin;
+    }
+    if (object.cancelled_time !== undefined && object.cancelled_time !== null) {
+      message.cancelledTime = Long.fromString(object.cancelled_time);
     }
     return message;
   },
@@ -332,6 +368,8 @@ export const BaseVestingAccount = {
       obj.delegated_vesting = [];
     }
     obj.end_time = message.endTime ? message.endTime.toString() : undefined;
+    obj.admin = message.admin;
+    obj.cancelled_time = message.cancelledTime ? message.cancelledTime.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: BaseVestingAccountAminoMsg): BaseVestingAccount {
